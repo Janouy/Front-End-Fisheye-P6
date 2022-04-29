@@ -9,20 +9,15 @@ async function getPhotographer() {
         const queryString = window.location.search;
         const photographId = queryString.replace('?', '');
         let allPhotographers = datas.photographers;
-        console.log(allPhotographers);
         let foundId = -1;
         for(let i=0; i<allPhotographers.length; i++) {
             if(allPhotographers[i].id == photographId) {
                 foundId = i;
             }
-            console.log(foundId);
-            
         }
-        const photographer = new Photographers(allPhotographers[foundId])
-        const photographersSection = document.querySelector(".one_photographer_section");
-        const photographerModel = photographerFactory(photographer);
-        const userCardDOM = photographerModel.getUserCardDOM2();
-        photographersSection.appendChild(userCardDOM);
+        const photographer = new Photographer(allPhotographers[foundId])
+        const photographersSection = document.querySelector(".photograph-header");
+        photographersSection.appendChild(photographer.getUserCardDOM());
     })
     .catch(err => console.log('==== error ====', err));
             

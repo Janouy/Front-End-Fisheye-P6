@@ -10,13 +10,14 @@
 </head>
 
 <body>
-  <header>
+  <header role="banner">
+    <a href="index.html" tabindex=0 aria-label="Fisheye Home page">
+      <img src="assets/images/logo.png" class="logo" alt="Fisheye Home Page" role='img' />
+    </a>
   </header>
   <main id="main">
-    <div class="photograph-header">
-      <div class="one_photographer_section"></div>
-      <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
-    </div>
+    <section class="photograph-header"></section>
+    <section class="medias"></section>
   </main>
   <div id="contact_modal">
     <div class="modal">
@@ -38,11 +39,12 @@
   <script src="scripts/factories/Photographer.js"></script>
 
   <!-- Pages-->
-  <script src="scripts/pages/index.js"></script>
   <script src="scripts/pages/photographer.js"></script>
+  <script src="scripts/pages/medias.js"></script>
 
   <!-- Models-->
   <script src="scripts/models/photographer.js"></script>
+  <script src="scripts/models/medias.js"></script>
 </body>
 
 </html>
