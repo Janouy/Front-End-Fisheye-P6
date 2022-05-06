@@ -15,9 +15,12 @@ async function getPhotographer() {
                 foundId = i;
             }
         }
-        const photographer = new Photographer(allPhotographers[foundId])
-        const photographersSection = document.querySelector(".photograph-header");
-        photographersSection.appendChild(photographer.getUserCardDOM());
+        //const photographer = new Photographer(allPhotographers[foundId])
+        const photographer = new photographerFactory(allPhotographers[foundId], 'photographerPage')
+        const photographerSection = document.querySelector(".photograph-header");
+        photographerSection.appendChild(photographer.getUserCardDOM());
+        const photographerFooter = document.querySelector(".footer");
+        photographerFooter.appendChild(photographer.getUsercardDOMFooter());
     })
     .catch(err => console.log('==== error ====', err));
             

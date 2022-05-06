@@ -5,13 +5,22 @@
 .photograph-header {
     background-color: #FAFAFA;
     height: 300px;
-    margin: 0 100px;
+    margin: auto;
+    width: 90%;
 }
 
-.photograph_header_page{
+.photograph_header-page{
     display: flex;
     justify-content: space-around;
     align-items: center;
+    height: 100%;
+}
+
+
+.photograph_infos h1{
+    font-size: 3rem;
+    color:#D3573C;
+    font-weight:lighter;
 }
 
 .photograph_picture {
@@ -20,7 +29,7 @@
     border-radius: 100px;
 }
 
-.contact_button {
+.contact_button, #form_submit {
     font-size: 20px;
     font-weight: bold;
     color: white;
@@ -36,38 +45,76 @@
 .medias{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    margin: 5%;
+    grid-gap: 2%;
+    margin-top: 5%;
     background-color: #FFF;
-}
-
-.image_section{
    
-    width: 350px; 
-    height: 350px;
-    margin: 5%;
-    position: relative;
-    overflow: hidden;
+   
 }
-
-.photograph_image{
-    width: 500px; 
-    height: auto;
-    position: absolute;
-}
-
-.modal {
-    border-radius: 5px;
-    background-color: #DB8876;
-    width: 50%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    padding: 35px;
+.medias article{
+    width: 350px;
     margin: auto;
 }
 
+.image_section, .video_section{
+    width: 350px; 
+    height: 350px;
+    overflow: hidden; 
+    margin: auto;
+    border-radius: 5px;
+    position: relative;
+}
+.photograph_image{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    height: 200%;
+    width: auto;
+    -webkit-transform: translate(-50%,-50%);
+        -ms-transform: translate(-50%,-50%);
+            transform: translate(-50%,-50%);
+}
+.photograph_video{
+    min-width: auto;
+    height: 100%;
+}
+.title_likes_media{
+    display: flex;
+    justify-content: space-between;
+    width: 300px; 
+    margin: auto;
+}
+.priceAndLikes{
+    display: flex;
+    justify-content: flex-end;
+    position: fixed;
+    bottom: 0;
+    right: 2%;
+    padding-right: 1%;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    background-color: #DB8876;
+    width: 25%;
+    border-radius: 5px;
+} 
+.modal {
+    border-radius: 5px;
+    background-color: #DB8876;
+    width: 40%;
+    max-height: 90%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2%;
+    z-index: 2;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
 .modal header {
+    display: flex;
     justify-content: space-between;
     width: 100%;
 }
@@ -77,9 +124,14 @@
 }
 
 .modal header h2 {
-    font-size: 64px;
+    font-size: 2.5rem;
     font-weight: normal;
-    text-align: center;
+    margin-bottom: 10%;
+   
+}
+.modal header button {
+    background-color: #DB8876;
+    border: #DB8876;
 }
 
 form {
@@ -91,7 +143,8 @@ form {
 
 form label {
     color: #312E2E;
-    font-size: 36px;
+    font-size: 2rem;
+    
 }
 
 form div {
@@ -104,7 +157,44 @@ form div {
 
 form input {
     width: 100%;
-    height: 68px;
+    height: 2rem;
     border: none;
     border-radius: 5px;
 }
+
+form #message {
+    width: 100%;
+    height: 3.5rem;
+    border: none;
+    border-radius: 5px;
+}
+
+.hidden {
+    height: 1px;
+    left: 0;
+    overflow: hidden;
+    position: absolute;
+    top: -10000px;
+    width: 1px;
+ }
+
+ .no-scroll{
+    overflow: hidden;
+ }
+
+ .opacity{
+    opacity: 0.5;
+ }
+
+ .carrousel{
+    border-radius: 5px;
+    width: 40%;
+    max-height: 90%;
+    align-items: center;
+    padding: 2%;
+    z-index: 2;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+ }

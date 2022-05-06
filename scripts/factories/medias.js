@@ -1,4 +1,6 @@
-function mediasFactory(name, picture, likes, photographer, type) {
-    
-    return {name, picture, likes, photographer, type}
+function mediasFactory(data) {
+   if(Object.keys(data).includes('image')){
+       return new Picture(data)
+   }
+    return new Video(data)
 }

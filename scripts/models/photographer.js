@@ -10,9 +10,12 @@ class Photographer{
     }
 
     getUserCardDOM() {
+        const modalTitle = document.getElementById("modalTitle");
+        modalTitle.innerHTML = "Contactez-moi <br/>" + this.name;
         const article = document.createElement( 'article' );
-        article.classList.add('photograph_header_page')
+        article.classList.add('photograph_header-page')
         const divInfoPhotograper = document.createElement('div');
+        divInfoPhotograper.classList.add('photograph_infos')
         const h1 = document.createElement('h1');
         h1.textContent = this.name;
         const pLocation = document.createElement( 'p' );
@@ -37,6 +40,12 @@ class Photographer{
         divInfoPhotograper.appendChild(h1);
         divInfoPhotograper.appendChild(pLocation);
         divInfoPhotograper.appendChild(pTagline);
+        return (article);
+    }
+    getUsercardDOMFooter(){
+        const article = document.createElement('article');
+        article.classList.add('priceAndLikes')
+        article.textContent = this.price + '€/jour';
         return (article);
     }
 }

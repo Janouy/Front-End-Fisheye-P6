@@ -8,8 +8,7 @@ async function getMedias() {
         const queryString = window.location.search;
         const photographerId = queryString.replace('?', '');
         let allMedias = datas.media;
-        console.log(allMedias)
-        const medias = allMedias.map(medias => new Medias(medias))
+        let medias = allMedias.map(media => mediasFactory(media));
         const mediasSection = document.querySelector(".medias");
         medias.forEach((media) => {
             if(media.photographerId == photographerId){
