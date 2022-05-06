@@ -4,7 +4,7 @@ function displayModal() {
     const wrapper = document.getElementById("main-wrapper");
     const closeBtn = document.getElementById("modal-close-btn");
     modal.setAttribute('aria-hidden', false);
-	modal.style.display = "flex";
+    modal.style.display = "flex";
     modal.classList.remove('hidden');    
     wrapper.setAttribute('aria-hidden', true);
     closeBtn.focus();
@@ -16,6 +16,7 @@ function displayModal() {
 function closeModal() {
     const modal = document.getElementById("contact_modal");
     const wrapper = document.getElementById("main-wrapper");
+    const body = document.getElementById('body');
     body.classList.remove('no-scroll');
     wrapper.classList.remove('opacity');
     modal.classList.add('hidden');
@@ -30,9 +31,9 @@ button_submit.addEventListener('click', function(event){
     let formDatas ={};
     for (let input of inputForm) {
         formDatas[input.id] = input.value;
-    };
-   console.log(formDatas);
-   this.form.reset();
+    }
+    console.log(formDatas);
+    this.form.reset();
 })
 
 const closeBtn = document.getElementById("modal-close-btn");

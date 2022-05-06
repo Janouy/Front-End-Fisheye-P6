@@ -10,6 +10,7 @@ class Picture{
 
     getUserCardDOM() {
         const article = document.createElement( 'article' );
+        article.setAttribute('onclick', "displayLightbox()");
         const section = document.createElement('section');
         section.classList.add('image_section');
         const img = document.createElement( 'img' );

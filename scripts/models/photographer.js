@@ -49,3 +49,4 @@ class Photographer{
         return (article);
     }
 }
+
