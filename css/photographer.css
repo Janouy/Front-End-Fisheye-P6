@@ -103,57 +103,43 @@
     width: 25%;
     border-radius: 5px;
 } 
-/* Global */
-.sr-only {
-    position:absolute;
-    width:1px;
-    height:1px;
-    padding:0;
-    margin:-1px;
-    overflow:hidden;
-    clip:rect(0,0,0,0);
-    white-space:nowrap;
-    border:0
- }
-  
- .carousel {
-    border-radius: 5px;
-    background-color: #ffff;
-    width: 90%;
-    max-height: 90%;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    z-index: 2;
+
+.carousel{
+    width: 80%;
+    height: 500px;
     position: absolute;
     left: 50%;
     top: 50%;
+    overflow: hidden;
     transform: translate(-50%, -50%);
- }
+    border: 1px solid black;
+    border-radius: 20px;
+}
+
+.carousel-item{
+    display: flex;
+    height: 100%;
+}
   
- .carousel-item {
-    height: 200px;
-    width: 100%;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    list-style-type: none;
- }
+.slide {
+    min-width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
   
- .item-0 {
-    background-color: tomato;
- }
+.slide img {
+    width: auto;
+    height: 100%;
+}
+.carousel {
+    width: 650px;
+    margin: 0 auto;
+    overflow: hidden;
+    height: 500px;
+  }
   
- .item-1 {
-    background-color: blue;
-    display: none;
- }
-  
- .item-2 {
-    background-color: green;
-    display: none;
- }
-  
- .img {
+  .img {
     height: 40px;
     width: 40px;
     background-color: white;
@@ -179,22 +165,28 @@
  .next-image {
     right: 20px;
  }
-  
- .caroussel-picture {
-    height: 300px;
-    width: 300px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
- }
- .caroussel-picture img{
-    height: 300px;
-    width: 300px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
- }
- 
+/* .wrap-link {
+    width: 100%;
+    margin: auto;
+  }
+
+.wrap-link .arrow{
+    position: absolute;
+    top: 0px;
+    bottom: 0;
+    height: 40px;
+    line-height: 40px;
+    padding: 0 10px;
+    background-color: #000;
+    color: #fff;
+    margin: auto;
+}
+.wrap-link .arrow-l{
+    left: 15%;
+}
+.wrap-link .arrow-r{
+    right: 15%;
+} */
 .modal{
     border-radius: 5px;
     background-color: #DB8876;

@@ -16,7 +16,7 @@ async function getMedias() {
                     mediasSection.appendChild(media.getUserCardDOM());
                 }
             });
-            const carrouselUl = document.getElementById('lightbox_modal');
+            const carrouselUl = document.querySelector('.carousel');
             let mediasCarrousel = allMedias.map(media => carrouselFactory(media));
             let mediasArray = [];
             for (let medias of mediasCarrousel){
@@ -25,10 +25,12 @@ async function getMedias() {
                 }
             }
             mediasArray.forEach((media, index) => {
-                let div = document.createElement( 'div' );
-                carrouselUl.appendChild(div);
-                div.appendChild(media.getUserCardDOM());
-                div.classList.add(index);
+                let li = document.createElement( 'li' );
+                carrouselUl.appendChild(li);
+                li.appendChild(media.getUserCardDOM());
+                li.classList.add("carousel-item");
+                li.classList.add('item-'+index);
+                li.setAttribute("aria-hidden", false);
             });
         })
         .catch(err => console.log('==== error ====', err));
