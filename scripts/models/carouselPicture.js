@@ -1,5 +1,5 @@
 class CarouselPicture{
-    constructor (data){
+    constructor (data, index){
         this.photographerId = data.photographerId;
         this.title = data.title;
         this.image = data.image;
@@ -43,51 +43,55 @@ class CarouselPicture{
         next_img.appendChild(arrow_right);
 
         let currentItemPosition = 0;
-        //let carouselInterval
+        //let imgNum = 0;
+        //let current_picture = document.querySelector(`.item-${currentItemPosition}`);
+        let test = document.getElementsByClassName('carousel-item');
+        let imgs = [...document.querySelectorAll(".carousel li")];
+        imgs.forEach((item, idx) => {
+            item.style.display = "none";
+            item.setAttribute('aria-hidden', true);
+        })
 
-       // let current_picture = document.querySelector(`.item-${currentItemPosition}`);
-        let test = document.querySelectorAll('.carousel-item')
-        
         const goToNextSlide = () => {
+            imgs.forEach((item, idx) => {
+                if(item.getAttribute('style') === 'display: block;'){
+                    currentItemPosition = idx;
+                }
+            })
             currentItemPosition += 1
-        if (currentItemPosition >= 1 && currentItemPosition < test.length) {
-            const currentItem = `.item-${currentItemPosition}`
-            const lastItem = `.item-${currentItemPosition -1}`
-            setNodeAttributes(lastItem, currentItem)
-
-        // } else if (currentItemPosition === 0 ){
-        //     currentItemPosition += 1
-        //     const lastItem = `.item-${currentItemPosition - 1}`
-        //     const currentItem = `.item-${currentItemPosition}`
-        //     setNodeAttributes(lastItem, currentItem);
-
-        }else if (currentItemPosition >= test.length){
-            currentItemPosition = 0;
-            const lastItem = `.item-${test.length}`
-            const currentItem = `.item-${currentItemPosition}`
-            setNodeAttributes(test.length, lastItem, currentItem);
-        }
+            console.log('cas:',currentItemPosition, test.length);
+            if (currentItemPosition >= 1 && currentItemPosition < test.length) {
+                let currentItem = `.item-${currentItemPosition}`
+                let lastItem = `.item-${currentItemPosition -1}`
+                setNodeAttributes(lastItem, currentItem)
+                console.log('1er cas:',currentItem, lastItem, currentItemPosition);
+               
+            }else if (currentItemPosition >= test.length){
+                currentItemPosition = 0;
+                let lastItem = `.item-${test.length -1}`
+                let currentItem = `.item-${currentItemPosition }`
+                setNodeAttributes(lastItem, currentItem);
+                console.log('2nd cas:',currentItem, lastItem, currentItemPosition);
+            }
         }
         
         const goToPreviousSlide = () => {
             if (currentItemPosition - 1 >=  0) {
                 currentItemPosition -= 1
-                const currentItem = `.item-${currentItemPosition}`
-                const lastItem = `.item-${currentItemPosition + 1}`
+                let currentItem = `.item-${currentItemPosition}`
+                let lastItem = `.item-${currentItemPosition + 1}`
                 setNodeAttributes(lastItem, currentItem)
                 console.log('1er cas:',currentItem, lastItem, currentItemPosition);
 
             } else if (currentItemPosition === 0){
-                const lastItem = `.item-${currentItemPosition}`
+                let lastItem = `.item-${currentItemPosition}`
                 currentItemPosition = test.length;
-                const currentItem = `.item-${currentItemPosition}`
+                let currentItem = `.item-${currentItemPosition -1}`
                 setNodeAttributes(lastItem, currentItem)
                 console.log('2nd cas:',currentItem, lastItem, currentItemPosition);
             }
          }
         
-
-
         const setNodeAttributes = (lastItem, currentItem) => {
         $(lastItem).css('display', 'none')
         $(currentItem).css('display', 'block')
@@ -103,9 +107,6 @@ class CarouselPicture{
             goToNextSlide()
         })
         
-        // $(document).ready(function() {
-        // carouselInterval = setInterval(() => goToNextSlide(), 5000)
-        // })
         return (slide);
         }
     }

@@ -31,7 +31,8 @@ async function getMedias() {
                 li.classList.add("carousel-item");
                 li.classList.add('item-'+index);
                 li.setAttribute('id', media.id);
-                li.setAttribute("aria-hidden", true);
+                // li.setAttribute("aria-hidden", true);
+                // li.style.display = 'none';
             });
         })
         .catch(err => console.log('==== error ====', err));
