@@ -1,4 +1,4 @@
-function displayLightbox() {
+function displayLightbox(picture_id) {
     const body = document.getElementById('body');
     const lightbox = document.getElementById("lightbox_modal");
     const wrapper = document.getElementById("main-wrapper");
@@ -10,6 +10,9 @@ function displayLightbox() {
     body.classList.add('no-scroll');
     lightbox.classList.remove('hidden');
     closeBtn.focus();
+    // const opened_media = document.getElementById(picture_id);
+    // opened_media.setAttribute('aria-hidden', false);
+    // opened_media.style.display='block';
     
 }
 

@@ -1,7 +1,7 @@
 
-function mediasFactory(data) {
-    if(Object.keys(data).includes('image')){
-        return new Picture(data)
+function mediasFactory(photographer_media) {
+    if(Object.keys(photographer_media).includes('image')){
+        return new Picture(photographer_media)
     }
-    return new Video(data)
+    return new Video(photographer_media)
 }

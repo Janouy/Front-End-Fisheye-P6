@@ -11,6 +11,7 @@ class Video{
 
     getUserCardDOM() {
         const article = document.createElement( 'article' );
+        article.setAttribute('onclick', `displayLightbox(${this.id})`);
         const section = document.createElement('section');
         section.classList.add('video_section');
         const video = document.createElement( 'video' );

@@ -6,11 +6,12 @@ class Picture{
         this.likes = data.likes;
         this.date = data.date;
         this.price = data.price;
+        this.id= data.id;
     }
 
     getUserCardDOM() {
         const article = document.createElement( 'article' );
-        article.setAttribute('onclick', "displayLightbox()");
+        article.setAttribute('onclick', `displayLightbox(${this.id})`);
         const section = document.createElement('section');
         section.classList.add('image_section');
         const img = document.createElement( 'img' );

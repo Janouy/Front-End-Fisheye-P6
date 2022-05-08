@@ -1,4 +1,4 @@
-class Carrousel{
+class CarouselPicture{
     constructor (data){
         this.photographerId = data.photographerId;
         this.title = data.title;
@@ -42,52 +42,52 @@ class Carrousel{
         prev_img.appendChild(arrow_left);
         next_img.appendChild(arrow_right);
 
-        let currentItemPosition = 0
+        let currentItemPosition = 0;
         //let carouselInterval
 
        // let current_picture = document.querySelector(`.item-${currentItemPosition}`);
         let test = document.querySelectorAll('.carousel-item')
         
-        
         const goToNextSlide = () => {
             currentItemPosition += 1
-            console.log('1er cas:', currentItemPosition);
-        if (currentItemPosition >= 1 && currentItemPosition <= test.length) {
+        if (currentItemPosition >= 1 && currentItemPosition < test.length) {
             const currentItem = `.item-${currentItemPosition}`
             const lastItem = `.item-${currentItemPosition -1}`
             setNodeAttributes(lastItem, currentItem)
 
-        } else if (currentItemPosition === 0 ){
-            console.log('2nd cas:', currentItemPosition);
-            currentItemPosition += 1
-            const lastItem = `.item-${currentItemPosition - 1}`
-            const currentItem = `.item-${currentItemPosition}`
-            setNodeAttributes(lastItem, currentItem)
-        }else if (currentItemPosition > test.length){
-            const lastItem = `.item-${currentItemPosition}`
+        // } else if (currentItemPosition === 0 ){
+        //     currentItemPosition += 1
+        //     const lastItem = `.item-${currentItemPosition - 1}`
+        //     const currentItem = `.item-${currentItemPosition}`
+        //     setNodeAttributes(lastItem, currentItem);
+
+        }else if (currentItemPosition >= test.length){
             currentItemPosition = 0;
+            const lastItem = `.item-${test.length}`
             const currentItem = `.item-${currentItemPosition}`
-            setNodeAttributes(lastItem, currentItem)
+            setNodeAttributes(test.length, lastItem, currentItem);
         }
         }
         
         const goToPreviousSlide = () => {
-        if (currentItemPosition - 1 >=  0) {
-            currentItemPosition -= 1
-            const currentItem = `.item-${currentItemPosition}`
-            const lastItem = `.item-${currentItemPosition + 1}`
+            if (currentItemPosition - 1 >=  0) {
+                currentItemPosition -= 1
+                const currentItem = `.item-${currentItemPosition}`
+                const lastItem = `.item-${currentItemPosition + 1}`
+                setNodeAttributes(lastItem, currentItem)
+                console.log('1er cas:',currentItem, lastItem, currentItemPosition);
+
+            } else if (currentItemPosition === 0){
+                const lastItem = `.item-${currentItemPosition}`
+                currentItemPosition = test.length;
+                const currentItem = `.item-${currentItemPosition}`
+                setNodeAttributes(lastItem, currentItem)
+                console.log('2nd cas:',currentItem, lastItem, currentItemPosition);
+            }
+         }
         
-            setNodeAttributes(lastItem, currentItem)
-        } else {
-            const lastItem = `.item-${currentItemPosition}`
-            
-            currentItemPosition = 2
-            const currentItem = `.item-${currentItemPosition}`
-            
-            setNodeAttributes(lastItem, currentItem)
-        }
-        }
-        
+
+
         const setNodeAttributes = (lastItem, currentItem) => {
         $(lastItem).css('display', 'none')
         $(currentItem).css('display', 'block')
