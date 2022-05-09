@@ -21,16 +21,25 @@ class Picture{
         const titleAndLikes = document.createElement( 'div' );
         titleAndLikes.classList.add('title_likes_media');
         const title = document.createElement('div');
+        title.classList.add('media_title');
         const likes = document.createElement('div');
+        likes.classList.add('media_likes');
+        const like = document.createElement('span');
+        like.classList.add('like');
+        const heart = document.createElement('i');
+        heart.classList.add('fa-solid','fa-heart');
         title.textContent = this.title;
-        likes.textContent = this.likes;
+        likes.textContent = this.likes + ' ';
         article.appendChild(section);
         section.appendChild(img);
         article.appendChild(titleAndLikes);
         titleAndLikes.appendChild(title)
         titleAndLikes.appendChild(likes)
+        likes.appendChild(like);
+        like.appendChild(heart);
         return (article);
     }
+   
 }
 
 

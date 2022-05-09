@@ -11,6 +11,22 @@ async function getMedias() {
             let allMedias = photographers_medias.media;
             let medias = allMedias.map(media => mediasFactory(media));
             const mediasSection = document.querySelector(".medias");
+            const photographerFooter = document.querySelector(".footer");
+            const totalLikes = allMedias.map(media => new Likes(media));
+            let totalOfLikes = [];
+            totalLikes.forEach((media) => {
+                if(media.photographerId == photographerId){
+                    totalOfLikes.push(media.likes)
+                }
+            });
+            let total = 0;
+            for(let i=0; i<totalOfLikes.length; i++){
+                total += totalOfLikes[i];
+            }
+            const allLikes = {photographerId: photographerId, likes: total}
+            const test = new Likes(allLikes);
+            photographerFooter.appendChild(test.getUsercardDOMFooter()); 
+
             medias.forEach((media) => {
                 if(media.photographerId == photographerId){
                     mediasSection.appendChild(media.getUserCardDOM());
@@ -24,6 +40,7 @@ async function getMedias() {
                     mediasArray.push(medias)
                 }
             }
+            //console.log(mediasArray.likes)
             mediasArray.forEach((media, index) => {
                 let li = document.createElement( 'li' );
                 carouselUl.appendChild(li);
@@ -31,8 +48,6 @@ async function getMedias() {
                 li.classList.add("carousel-item");
                 li.classList.add('item-'+index);
                 li.setAttribute('id', media.id);
-                // li.setAttribute("aria-hidden", true);
-                // li.style.display = 'none';
             });
         })
         .catch(err => console.log('==== error ====', err));

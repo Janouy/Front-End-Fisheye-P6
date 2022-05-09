@@ -43,10 +43,10 @@ class Photographer{
         return (article);
     }
     getUsercardDOMFooter(){
-        const article = document.createElement('article');
-        article.classList.add('priceAndLikes')
-        article.textContent = this.price + '€/jour';
-        return (article);
+        const price = document.createElement('div');
+        price.classList.add('photographer_price');
+        price.textContent = this.price + '€/jour';
+        return (price);
     }
 }
 

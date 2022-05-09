@@ -83,40 +83,35 @@
 .photograph_video{
     min-width: auto;
     height: 100%;
+    
 }
 .title_likes_media{
     display: flex;
     justify-content: space-between;
-    width: 300px; 
-    margin: auto;
+    font-size: 1.2rem;
 }
-.priceAndLikes{
-    display: flex;
-    justify-content: flex-end;
-    position: fixed;
-    bottom: 0;
-    right: 2%;
-    padding-right: 1%;
-    padding-top: 1%;
-    padding-bottom: 1%;
-    background-color: #DB8876;
-    width: 25%;
-    border-radius: 5px;
-} 
+.title_likes_media .like{
+    color: #901C1C;
+}
+.title_likes_media .media_title{
+    margin-top: 2%;
+    color: #901C1C;
+}
+.title_likes_media .media_likes{
+    margin-top: 2%;
+    color: #901C1C;
+}
+
 #lightbox-close-btn{
     position: relative;
     left: 93%;
     top: 3%;
     background: transparent;    
     padding: 0;
-   
-}
-#lightbox-close-btn img{
-    width: 40%;
-    padding: 5%;
 }
 
 .carousel{
+
     width: 95%;
     margin: 0 auto;
     overflow: hidden;
@@ -173,16 +168,17 @@
  }
   
  .prev-image {
-    left: 20px;
+    left: 50px;
  }
   
- .fa-arrow-circle-left,
- .fa-arrow-circle-right {
+ .fa-angle-left,
+ .fa-angle-right {
     font-size: 30px;
+    color: #901C1C;
  }
   
  .next-image {
-    right: 20px;
+    right: 50px;
  }
 
 .modal{
@@ -276,4 +272,20 @@ form #message {
 
  ul{
      padding: 0;
+ }
+
+ footer .footer{
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    position: fixed;
+    bottom: 0;
+    right: 2%;
+    padding: 1%;
+    background-color: #DB8876;
+    width: 20%;
+    border-radius: 5px;
+} 
+ footer .photographer_price, .totalLikes{
+    font-weight: bold;
  }

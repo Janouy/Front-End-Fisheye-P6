@@ -18,8 +18,7 @@ class CarouselPicture{
         prev_img.classList.add('img');
         prev_img.classList.add('prev-image');
         const arrow_left = document.createElement('i');
-        arrow_left.classList.add('fa');
-        arrow_left.classList.add('fa-arrow-circle-left');
+        arrow_left.classList.add('fa-solid','fa-angle-left');
         arrow_left.setAttribute("aria-hidden", false);
         const button_right = document.createElement('div');
         button_right.classList.add("controls");
@@ -29,8 +28,7 @@ class CarouselPicture{
         next_img.classList.add('img');
         next_img.classList.add('next-image');
         const arrow_right = document.createElement('i');
-        arrow_right.classList.add('fa');
-        arrow_right.classList.add('fa-arrow-circle-right');
+        arrow_right.classList.add('fa-solid','fa-angle-right');
         arrow_right.setAttribute("aria-hidden", false);
         const source_content = document.createElement('div');
         source_content.classList.add('source_content');

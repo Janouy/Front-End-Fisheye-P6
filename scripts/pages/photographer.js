@@ -15,7 +15,7 @@ async function getPhotographer() {
                     foundId = i;
                 }
             }
-            //const photographer = new Photographer(allPhotographers[foundId])
+            
             const photographer = new photographerFactory(allPhotographers[foundId], 'photographerPage')
             const photographerSection = document.querySelector(".photograph-header");
             photographerSection.appendChild(photographer.getUserCardDOM());

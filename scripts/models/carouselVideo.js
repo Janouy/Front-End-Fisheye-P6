@@ -18,8 +18,7 @@ class CarouselVideo{
         prev_img.classList.add('img');
         prev_img.classList.add('prev-image');
         const arrow_left = document.createElement('i');
-        arrow_left.classList.add('fa');
-        arrow_left.classList.add('fa-arrow-circle-left');
+        arrow_left.classList.add('fa-solid','fa-angle-left');
         arrow_left.setAttribute("aria-hidden", false);
         const button_right = document.createElement('div');
         button_right.classList.add("controls");
@@ -29,15 +28,13 @@ class CarouselVideo{
         next_img.classList.add('img');
         next_img.classList.add('next-image');
         const arrow_right = document.createElement('i');
-        arrow_right.classList.add('fa');
-        arrow_right.classList.add('fa-arrow-circle-right');
+        arrow_right.classList.add('fa-solid','fa-angle-right');
         arrow_right.setAttribute("aria-hidden", false);
         const source_content = document.createElement('div');
         source_content.classList.add('source_content');
         const video = document.createElement( 'video' );
         video.setAttribute("controls", true);
         video.setAttribute("playsinline", true);
-        video.classList.add('photograph_video');
         const source = document.createElement('source');
         source.setAttribute("src", `${`assets/samplePhotos/${this.photographerId}/${this.video}`}`);
         source.setAttribute("type", "video/mp4");
@@ -52,9 +49,7 @@ class CarouselVideo{
         prev_img.appendChild(arrow_left);
         next_img.appendChild(arrow_right);
         let currentItemPosition = 0;
-        //let imgNum = 0;
-        //let current_picture = document.querySelector(`.item-${currentItemPosition}`);
-        let test = document.getElementsByClassName('carousel-item');
+        let carousel_item = document.getElementsByClassName('carousel-item');
         let imgs = [...document.querySelectorAll(".carousel li")];
        
         const goToNextSlide = () => {
@@ -64,16 +59,16 @@ class CarouselVideo{
                 }
             })
             currentItemPosition += 1
-            console.log('cas:',currentItemPosition, test.length);
-            if (currentItemPosition >= 1 && currentItemPosition < test.length) {
+            console.log('cas:',currentItemPosition, carousel_item.length);
+            if (currentItemPosition >= 1 && currentItemPosition < carousel_item.length) {
                 let currentItem = `.item-${currentItemPosition}`
                 let lastItem = `.item-${currentItemPosition -1}`
                 setNodeAttributes(lastItem, currentItem)
                 console.log('1er cas:',currentItem, lastItem, currentItemPosition);
                
-            }else if (currentItemPosition >= test.length){
+            }else if (currentItemPosition >= carousel_item.length){
                 currentItemPosition = 0;
-                let lastItem = `.item-${test.length -1}`
+                let lastItem = `.item-${carousel_item.length -1}`
                 let currentItem = `.item-${currentItemPosition }`
                 setNodeAttributes(lastItem, currentItem);
                 console.log('2nd cas:',currentItem, lastItem, currentItemPosition);
@@ -86,21 +81,37 @@ class CarouselVideo{
                     currentItemPosition = idx;
                 }
             })
-            currentItemPosition -= 1
-            console.log('cas:',currentItemPosition, test.length);
-            if (currentItemPosition - 1 >=  0 && currentItemPosition < test.length) {
-                let currentItem = `.item-${currentItemPosition}`
-                let lastItem = `.item-${currentItemPosition + 1}`
-                setNodeAttributes(lastItem, currentItem)
-                console.log('1er cas:',currentItem, lastItem, currentItemPosition);
+            if(currentItemPosition > 0){
+                currentItemPosition -= 1
+                console.log('cas:',currentItemPosition, carousel_item.length);
+                if (currentItemPosition  >=  1 && currentItemPosition < carousel_item.length) {
+                    let currentItem = `.item-${currentItemPosition}`
+                    let lastItem = `.item-${currentItemPosition + 1}`
+                    setNodeAttributes(lastItem, currentItem)
+                    console.log('1er cas:',currentItem, lastItem, currentItemPosition);
 
-            } else if (currentItemPosition === 0){
-                let lastItem = `.item-${currentItemPosition}`
-                currentItemPosition = test.length;
-                let currentItem = `.item-${currentItemPosition -1}`
-                setNodeAttributes(lastItem, currentItem)
-                console.log('2nd cas:',currentItem, lastItem, currentItemPosition);
+                } else if (currentItemPosition === 0){
+                    let lastItem = `.item-${currentItemPosition +1}`
+                    let currentItem = `.item-${currentItemPosition}`
+                    setNodeAttributes(lastItem, currentItem)
+                    console.log('2nd cas:',currentItem, lastItem, currentItemPosition);
+                }
+            }else if(currentItemPosition === 0){
+                currentItemPosition = carousel_item.length -1;
+                if (currentItemPosition  >=  1 && currentItemPosition < carousel_item.length) {
+                    let currentItem = `.item-${currentItemPosition}`
+                    let lastItem = `.item-0`
+                    setNodeAttributes(lastItem, currentItem)
+                    console.log('1er cas:',currentItem, lastItem, currentItemPosition);
+
+                } else if (currentItemPosition === 0){
+                    let lastItem = `.item-${currentItemPosition +1}`
+                    let currentItem = `.item-${currentItemPosition}`
+                    setNodeAttributes(lastItem, currentItem)
+                    console.log('2nd cas:',currentItem, lastItem, currentItemPosition);
+                }
             }
+            
          }
         
         const setNodeAttributes = (lastItem, currentItem) => {
