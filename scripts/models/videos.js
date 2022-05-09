@@ -12,10 +12,10 @@ class Video{
 
     getUserCardDOM() {
         const article = document.createElement( 'article' );
-        article.setAttribute('onclick', `displayLightbox(${this.id})`);
         const section = document.createElement('section');
         section.classList.add('video_section');
         const video = document.createElement( 'video' );
+        video.setAttribute('onclick', `displayLightbox(${this.id})`);
         // video.setAttribute("controls", true);
         // video.setAttribute("playsinline", true);
         video.classList.add('photograph_video');
@@ -28,11 +28,13 @@ class Video{
         const title = document.createElement('div');
         title.classList.add('media_title');
         const likes = document.createElement('div');
-        likes.classList.add('media_title');
+        likes.classList.add('media_likes');
+        likes.setAttribute('id', `liked_${this.id}`);
         const like = document.createElement('span');
         like.classList.add('like');
         const heart = document.createElement('i');
         heart.classList.add('fa-solid','fa-heart');
+        heart.setAttribute("onclick", `inscrLike(${this.id})`);
         title.textContent = this.title;
         likes.textContent = this.likes+ ' ';
         article.appendChild(section);
