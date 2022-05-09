@@ -12,7 +12,15 @@ function displayLightbox(picture_id) {
     closeBtn.focus();
     const opened_media = document.getElementById(picture_id);
     opened_media.setAttribute('aria-hidden', false);
-    opened_media.style.display='block';
+    opened_media.style.display='flex';
+    let imgs = [...document.querySelectorAll(".carousel li img")];
+    imgs.forEach((item) => {
+        if(item.naturalWidth > item.naturalHeight){
+            item.classList.add('landscape');
+        }else if(item.naturalWidth < item.naturalHeight){
+            item.classList.add('portrait');
+        }
+    })
 }
 
 function closeLightbox() {

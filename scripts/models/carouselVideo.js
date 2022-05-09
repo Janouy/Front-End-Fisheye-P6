@@ -51,6 +51,72 @@ class CarouselVideo{
         button_right.appendChild(next_img);
         prev_img.appendChild(arrow_left);
         next_img.appendChild(arrow_right);
+        let currentItemPosition = 0;
+        //let imgNum = 0;
+        //let current_picture = document.querySelector(`.item-${currentItemPosition}`);
+        let test = document.getElementsByClassName('carousel-item');
+        let imgs = [...document.querySelectorAll(".carousel li")];
+       
+        const goToNextSlide = () => {
+            imgs.forEach((item, idx) => {
+                if(item.getAttribute('style') === 'display: flex;'){
+                    currentItemPosition = idx;
+                }
+            })
+            currentItemPosition += 1
+            console.log('cas:',currentItemPosition, test.length);
+            if (currentItemPosition >= 1 && currentItemPosition < test.length) {
+                let currentItem = `.item-${currentItemPosition}`
+                let lastItem = `.item-${currentItemPosition -1}`
+                setNodeAttributes(lastItem, currentItem)
+                console.log('1er cas:',currentItem, lastItem, currentItemPosition);
+               
+            }else if (currentItemPosition >= test.length){
+                currentItemPosition = 0;
+                let lastItem = `.item-${test.length -1}`
+                let currentItem = `.item-${currentItemPosition }`
+                setNodeAttributes(lastItem, currentItem);
+                console.log('2nd cas:',currentItem, lastItem, currentItemPosition);
+            }
+        }
+        
+        const goToPreviousSlide = () => {
+            imgs.forEach((item, idx) => {
+                if(item.getAttribute('style') === 'display: flex;'){
+                    currentItemPosition = idx;
+                }
+            })
+            currentItemPosition -= 1
+            console.log('cas:',currentItemPosition, test.length);
+            if (currentItemPosition - 1 >=  0 && currentItemPosition < test.length) {
+                let currentItem = `.item-${currentItemPosition}`
+                let lastItem = `.item-${currentItemPosition + 1}`
+                setNodeAttributes(lastItem, currentItem)
+                console.log('1er cas:',currentItem, lastItem, currentItemPosition);
+
+            } else if (currentItemPosition === 0){
+                let lastItem = `.item-${currentItemPosition}`
+                currentItemPosition = test.length;
+                let currentItem = `.item-${currentItemPosition -1}`
+                setNodeAttributes(lastItem, currentItem)
+                console.log('2nd cas:',currentItem, lastItem, currentItemPosition);
+            }
+         }
+        
+        const setNodeAttributes = (lastItem, currentItem) => {
+        $(lastItem).css('display', 'none')
+        $(currentItem).css('display', 'flex')
+        $(lastItem).attr('aria-hidden', 'true')
+        $(currentItem).attr('aria-hidden', 'false')
+        }
+        
+        prev_img.addEventListener('click',function() {
+            goToPreviousSlide()
+        })
+        
+        next_img.addEventListener('click',function() {
+            goToNextSlide()
+        })
         return(slide)
     }
 }

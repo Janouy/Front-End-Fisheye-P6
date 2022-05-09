@@ -7,7 +7,7 @@ class CarouselPicture{
         this.id = data.id;
     }
 
-  getUserCardDOM() {
+    getUserCardDOM() {
         const slide = document.createElement('div');
         slide.classList.add('slide');
         const button_left = document.createElement('div');
@@ -44,78 +44,84 @@ class CarouselPicture{
         button_right.appendChild(next_img);
         prev_img.appendChild(arrow_left);
         next_img.appendChild(arrow_right);
-
         let currentItemPosition = 0;
-        //let imgNum = 0;
-        //let current_picture = document.querySelector(`.item-${currentItemPosition}`);
-        let test = document.getElementsByClassName('carousel-item');
+        let carousel_item = document.getElementsByClassName('carousel-item');
         let imgs = [...document.querySelectorAll(".carousel li")];
         imgs.forEach((item, idx) => {
             item.style.display = "none";
             item.setAttribute('aria-hidden', true);
         })
-
         const goToNextSlide = () => {
             imgs.forEach((item, idx) => {
-                if(item.getAttribute('style') === 'display: block;'){
+                if(item.getAttribute('style') === 'display: flex;'){
                     currentItemPosition = idx;
                 }
             })
             currentItemPosition += 1
-            console.log('cas:',currentItemPosition, test.length);
-            if (currentItemPosition >= 1 && currentItemPosition < test.length) {
+            console.log('cas:',currentItemPosition, carousel_item.length);
+            if (currentItemPosition >= 1 && currentItemPosition < carousel_item.length) {
                 let currentItem = `.item-${currentItemPosition}`
                 let lastItem = `.item-${currentItemPosition -1}`
                 setNodeAttributes(lastItem, currentItem)
-                console.log('1er cas:',currentItem, lastItem, currentItemPosition);
                
-            }else if (currentItemPosition >= test.length){
+            }else if (currentItemPosition >= carousel_item.length){
                 currentItemPosition = 0;
-                let lastItem = `.item-${test.length -1}`
+                let lastItem = `.item-${carousel_item.length -1}`
                 let currentItem = `.item-${currentItemPosition }`
                 setNodeAttributes(lastItem, currentItem);
-                console.log('2nd cas:',currentItem, lastItem, currentItemPosition);
             }
         }
-        
+
         const goToPreviousSlide = () => {
             imgs.forEach((item, idx) => {
-                if(item.getAttribute('style') === 'display: block;'){
+                if(item.getAttribute('style') === 'display: flex;'){
                     currentItemPosition = idx;
                 }
             })
-            currentItemPosition -= 1
-            console.log('cas:',currentItemPosition, test.length);
-            if (currentItemPosition - 1 >=  0 && currentItemPosition < test.length) {
-                let currentItem = `.item-${currentItemPosition}`
-                let lastItem = `.item-${currentItemPosition + 1}`
-                setNodeAttributes(lastItem, currentItem)
-                console.log('1er cas:',currentItem, lastItem, currentItemPosition);
+            if(currentItemPosition > 0){
+                currentItemPosition -= 1
+                console.log('cas:',currentItemPosition, carousel_item.length);
+                if (currentItemPosition  >=  1 && currentItemPosition < carousel_item.length) {
+                    let currentItem = `.item-${currentItemPosition}`
+                    let lastItem = `.item-${currentItemPosition + 1}`
+                    setNodeAttributes(lastItem, currentItem)
+                    console.log('1er cas:',currentItem, lastItem, currentItemPosition);
 
-            } else if (currentItemPosition === 0){
-                let lastItem = `.item-${currentItemPosition}`
-                currentItemPosition = test.length;
-                let currentItem = `.item-${currentItemPosition -1}`
-                setNodeAttributes(lastItem, currentItem)
-                console.log('2nd cas:',currentItem, lastItem, currentItemPosition);
+                } else if (currentItemPosition === 0){
+                    let lastItem = `.item-${currentItemPosition +1}`
+                    let currentItem = `.item-${currentItemPosition}`
+                    setNodeAttributes(lastItem, currentItem)
+                    console.log('2nd cas:',currentItem, lastItem, currentItemPosition);
+                }
+            }else if(currentItemPosition === 0){
+                currentItemPosition = carousel_item.length -1;
+                if (currentItemPosition  >=  1 && currentItemPosition < carousel_item.length) {
+                    let currentItem = `.item-${currentItemPosition}`
+                    let lastItem = `.item-0`
+                    setNodeAttributes(lastItem, currentItem)
+                    console.log('1er cas:',currentItem, lastItem, currentItemPosition);
+
+                } else if (currentItemPosition === 0){
+                    let lastItem = `.item-${currentItemPosition +1}`
+                    let currentItem = `.item-${currentItemPosition}`
+                    setNodeAttributes(lastItem, currentItem)
+                    console.log('2nd cas:',currentItem, lastItem, currentItemPosition);
+                }
             }
+            
          }
-        
         const setNodeAttributes = (lastItem, currentItem) => {
         $(lastItem).css('display', 'none')
-        $(currentItem).css('display', 'block')
+        $(currentItem).css('display', 'flex')
         $(lastItem).attr('aria-hidden', 'true')
         $(currentItem).attr('aria-hidden', 'false')
         }
-        
         prev_img.addEventListener('click',function() {
             goToPreviousSlide()
         })
-        
         next_img.addEventListener('click',function() {
             goToNextSlide()
         })
-        
         return (slide);
         }
     }
