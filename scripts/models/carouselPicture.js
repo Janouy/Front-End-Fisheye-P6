@@ -32,11 +32,14 @@ class CarouselPicture{
         arrow_right.classList.add('fa');
         arrow_right.classList.add('fa-arrow-circle-right');
         arrow_right.setAttribute("aria-hidden", false);
+        const source_content = document.createElement('div');
+        source_content.classList.add('source_content');
         const source = document.createElement('img');
         source.setAttribute("src", `${`assets/samplePhotos/${this.photographerId}/${this.image}`}`);
         slide.appendChild(button_left);
+        slide.appendChild(source_content);
         slide.appendChild(button_right);
-        slide.appendChild(source);
+        source_content.appendChild(source);
         button_left.appendChild(prev_img);
         button_right.appendChild(next_img);
         prev_img.appendChild(arrow_left);
@@ -76,8 +79,14 @@ class CarouselPicture{
         }
         
         const goToPreviousSlide = () => {
-            if (currentItemPosition - 1 >=  0) {
-                currentItemPosition -= 1
+            imgs.forEach((item, idx) => {
+                if(item.getAttribute('style') === 'display: block;'){
+                    currentItemPosition = idx;
+                }
+            })
+            currentItemPosition -= 1
+            console.log('cas:',currentItemPosition, test.length);
+            if (currentItemPosition - 1 >=  0 && currentItemPosition < test.length) {
                 let currentItem = `.item-${currentItemPosition}`
                 let lastItem = `.item-${currentItemPosition + 1}`
                 setNodeAttributes(lastItem, currentItem)
