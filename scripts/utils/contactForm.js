@@ -3,13 +3,17 @@ function displayModal() {
     const modal = document.getElementById("contact_modal");
     const wrapper = document.getElementById("main-wrapper");
     const closeBtn = document.getElementById("modal-close-btn");
+    const submitBtn = document.getElementById('form_submit');
     modal.setAttribute('aria-hidden', false);
     modal.style.display = "flex";
     modal.classList.remove('hidden');    
     wrapper.setAttribute('aria-hidden', true);
     closeBtn.focus();
+    closeBtn.setAttribute('aria-hidden', false);
     wrapper.classList.add('opacity');
     body.classList.add('no-scroll');
+    body.setAttribute('aria-hidden', true);
+    submitBtn.setAttribute('aria-hidden', false);
     
 }
 
@@ -17,14 +21,20 @@ function closeModal() {
     const modal = document.getElementById("contact_modal");
     const wrapper = document.getElementById("main-wrapper");
     const body = document.getElementById('body');
+    const closeBtn = document.getElementById("modal-close-btn");
+    const submitBtn = document.getElementById('form_submit');
     body.classList.remove('no-scroll');
     wrapper.classList.remove('opacity');
     modal.classList.add('hidden');
+    modal.setAttribute('aria-hidden', true);
+    closeBtn.setAttribute('aria-hidden', true);
+    submitBtn.setAttribute('aria-hidden', true);
 }
 
-const button_submit = document.getElementById('form_submit');
+const submitBtn = document.getElementById('form_submit');
 
-button_submit.addEventListener('click', function(event){
+submitBtn.addEventListener('click', function(event){
+    submitBtn.setAttribute('aria-hidden', true);
     const inputForm = document.querySelectorAll(".text-input");
     event.preventDefault();
     closeModal();

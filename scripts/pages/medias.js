@@ -11,7 +11,27 @@ async function getMedias() {
             let allMedias = photographers_medias.media;
             let medias = allMedias.map(media => mediasFactory(media));
             const mediasSection = document.querySelector(".medias");
+            const mediasSorting = document.querySelector(".medias_sorting");
             const photographerFooter = document.querySelector(".footer");
+            const sorting = document.createElement('select');
+            sorting.setAttribute('aria-hidden', false);
+            sorting.setAttribute('role', 'button');
+            sorting.setAttribute('aria-haspopup', 'listbox');
+            sorting.setAttribute('tabindex', 0);
+            sorting.setAttribute('id', 'listbox1');
+            const popularity = document.createElement('div');
+            popularity.setAttribute('role', 'option');
+            popularity.textContent = 'Popularité';
+            const date = document.createElement('div');
+            date.setAttribute('role', 'option');
+            date.textContent = 'Date';
+            const title = document.createElement('div');
+            title.setAttribute('role', 'option');
+            title.textContent = 'Titre';
+            mediasSorting.appendChild(sorting);
+            sorting.appendChild(popularity);
+            sorting.appendChild(date)
+            sorting.appendChild(title);
             const totalLikes = allMedias.map(media => new Likes(media));
             let totalOfLikes = [];
             totalLikes.forEach((media) => {
@@ -46,7 +66,7 @@ async function getMedias() {
                 carouselUl.appendChild(li);
                 li.appendChild(media.getUserCardDOM());
                 li.classList.add("carousel-item");
-                li.classList.add('item-'+index);
+                
                 li.setAttribute('id', media.id);
             });
         })

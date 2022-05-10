@@ -1,9 +1,10 @@
 class Likes{
     constructor (data){
         this.photographerId = data.photographerId;
-        this.likes = data.likes;  
+        this.likes = data.likes; 
+        this.data = data; 
     }
-
+    
     getUsercardDOMFooter(){
         const likes = document.createElement('div');
         likes.classList.add('totalLikes');

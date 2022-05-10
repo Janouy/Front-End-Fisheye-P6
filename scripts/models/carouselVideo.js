@@ -48,6 +48,9 @@ class CarouselVideo{
         button_right.appendChild(next_img);
         prev_img.appendChild(arrow_left);
         next_img.appendChild(arrow_right);
+
+
+        
         let currentItemPosition = 0;
         let carousel_item = document.getElementsByClassName('carousel-item');
         let imgs = [...document.querySelectorAll(".carousel li")];
