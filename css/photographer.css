@@ -291,3 +291,14 @@ form #message {
  footer .photographer_price, .totalLikes{
     font-weight: bold;
  }
+
+ .medias_sorting{
+    display: flex;
+   
+    padding-left: 2%;
+ }
+ .medias_sorting form{
+    width: 25%;
+    padding-left: 2%;
+    
+}

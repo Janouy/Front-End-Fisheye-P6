@@ -20,7 +20,17 @@
     </header>
     <main>
       <section class="photograph-header"></section>
-      <section class="medias_sorting"> Trier par : </section>
+      <section class="medias_sorting">
+        <div>Trier par: </div>
+        <form action="">
+          <select>
+            <option value=""></option>
+            <option value="Popularite">Popularité</option>
+            <option value="Date">Date</option>
+            <option value="Titre">Titre</option>
+          </select>
+        </form>
+      </section>
       <section class="medias"></section>
     </main>
     <footer role="footer">
@@ -79,7 +89,7 @@
   <!-- Pages-->
   <script type="module" src="scripts/pages/photographer.js"></script>
   <script type="module" src="scripts/pages/medias.js"></script>
-  <!----> Utils -->
+  <!-- Utils -->
   <script src="/scripts/utils/contactForm.js"></script>
   <script src="/scripts/utils/lightbox.js"></script>
   <script src="/scripts/utils/likes.js"></script>

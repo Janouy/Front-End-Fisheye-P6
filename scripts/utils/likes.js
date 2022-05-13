@@ -1,5 +1,8 @@
 function inscrLike(picture_id){
     const liked_media = document.getElementById(`liked_${picture_id}`);
+    const heart_media = document.querySelector(`#liked_${picture_id} .like i`);
+    heart_media.setAttribute('onclick', '');
+    console.log(heart_media);
     liked_media.textContent = parseInt(liked_media.textContent)+1 + ' ';
     const heart = document.createElement('i');
     heart.classList.add('fa-solid','fa-heart');

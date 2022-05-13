@@ -12,6 +12,7 @@ class Video{
 
     getUserCardDOM() {
         const article = document.createElement( 'article' );
+        article.classList.add('media_photographer_page');
         const section = document.createElement('section');
         section.classList.add('video_section');
         const video = document.createElement( 'video' );

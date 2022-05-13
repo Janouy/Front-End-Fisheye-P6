@@ -11,6 +11,7 @@ class Picture{
 
     getUserCardDOM() {
         const article = document.createElement( 'article' );
+        article.classList.add('media_photographer_page');
         const section = document.createElement('section');
         section.classList.add('image_section');
         const img = document.createElement( 'img' );
