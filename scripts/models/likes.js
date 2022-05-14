@@ -1,8 +1,6 @@
 class Likes{
     constructor (data){
-        this.photographerId = data.photographerId;
         this.likes = data.likes; 
-        this.data = data; 
     }
     
     getUsercardDOMFooter(){

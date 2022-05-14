@@ -9,98 +9,37 @@ async function getMedias() {
             const queryString = window.location.search;
             const photographerId = queryString.replace('?', '');
             let allMedias = photographers_medias.media;
-            let medias = allMedias.map(media => mediasFactory(media));
-            const mediasSection = document.querySelector(".medias");
-            const photographerFooter = document.querySelector(".footer");
-            const totalLikes = allMedias.map(media => new Likes(media));
-            let totalOfLikes = [];
-            function compare_title( a, b ){
-                if ( a.title.toLowerCase() < b.title.toLowerCase()){
-                    return -1;
-                }
-                if ( a.title.toLowerCase() > b.title.toLowerCase()){
-                    return 1;
-                }
-                return 0;
-            };
-            function compare_date( a, b ){
-                if ( parseInt(a.date) > parseInt(b.date)){
-                    return -1;
-                }
-                if ( parseInt(a.date) < parseInt(b.date)){
-                    return 1;
-                }
-                return 0;
-            };
-            function compare_likes( a, b ){
-                if ( parseInt(a.likes) < parseInt(b.likes)){
-                    return -1;
-                }
-                if ( parseInt(a.likes) > parseInt(b.likes)){
-                    return 1;
-                }
-                return 0;
-            };
-            const medias_sorting = document.querySelector('select');
-                medias_sorting.addEventListener('change', function () {
-                    if (this.value === 'Titre') {
-                        medias.sort(compare_title);
-                        mediasSection.innerHTML = '';
-                        medias.forEach((media) => {
-                            if(media.photographerId == photographerId){
-                                mediasSection.appendChild(media.getUserCardDOM());
-                            }
-                        });
-                    }else if(this.value ==='Date'){
-                        medias.sort(compare_date);
-                        mediasSection.innerHTML = '';
-                        medias.forEach((media) => {
-                            if(media.photographerId == photographerId){
-                                mediasSection.appendChild(media.getUserCardDOM());
-                            }
-                        });
-                    }else if(this.value === 'Popularite'){
-                        medias.forEach((media) => {
-                            let liked_media = document.getElementById(`liked_${media.id}`);
-                            if(media.photographerId == photographerId){
-                                mediasSection.appendChild(media.getUserCardDOM());
-                                media.likes = liked_media.textContent;
-                                medias.sort(compare_likes);
-                                mediasSection.innerHTML = '';
-                                medias.forEach((sortedMedia) => {
-                                    if(sortedMedia.likes != allMedias.likes){
-                                        mediasSection.appendChild(sortedMedia.getUserCardDOM());
-                                    }
-                                });
-                            }
-                        });
+            const mediasSortedById = allMedias.reduce(function(acc, valCourante){
+                if(acc.indexOf(valCourante) === -1){
+                    if(valCourante.photographerId == photographerId){
+                        acc.push(valCourante);
                     }
-                })
-            totalLikes.forEach((media) => {
-                if(media.photographerId == photographerId){
-                    totalOfLikes.push(media.likes)
                 }
-            });
-            let total = 0;
-            for(let i=0; i<totalOfLikes.length; i++){
-                total += totalOfLikes[i];
-            }
-            const allLikes = {photographerId: photographerId, likes: total}
-            const test = new Likes(allLikes);
-            photographerFooter.appendChild(test.getUsercardDOMFooter()); 
+                return acc
+            }, []);
+
+            // appel de la class qui contiendra l'affichage des medias sur la page photographe
+            const mediasSection = document.querySelector(".medias");
+            //choix du model de class à executer avec le factory pattern mediasFactory si le media est une photo ou une video
+            let medias = mediasSortedById.map(media => mediasFactory(media));
+
+            let liked_media;
+            let heart_media;
+            //affichage des medias sur la page photographer.html et gestion de l'incrementation du like
             medias.forEach((media) => {
-                if(media.photographerId == photographerId){
-                    mediasSection.appendChild(media.getUserCardDOM());
-                }
+                mediasSection.appendChild(media.getUserCardDOM());
+                heart_media = document.querySelector(`#liked_${media.id} .like i`);
+                liked_media = document.getElementById(`liked_${media.id}`);
+                incrLike(heart_media, liked_media, media);
             });
+            
+          
+            
+            // appel de la class qui contiendra l'affichage des medias dans la lightbox
             const carouselUl = document.querySelector('.carousel');
-            let mediasCarousel = allMedias.map(media => carouselFactory(media));
-            let carouselMediasArray = [];
-            for (let medias of mediasCarousel){
-                if (medias.photographerId == photographerId){
-                    carouselMediasArray.push(medias)
-                }
-            }
+             //choix du model de class à executer avec le factory pattern carouselFactory si le media est une photo ou une video
+            let mediasCarousel = mediasSortedById.map(media => carouselFactory(media));
+            //affichage de la lightbox sur la page photographer.html pour chaque instance de classes appelées dans le carouselfactory
             mediasCarousel.forEach((media) => {
                 let li = document.createElement( 'li' );
                 carouselUl.appendChild(li);
@@ -108,7 +47,31 @@ async function getMedias() {
                 li.classList.add("carousel-item");
                 li.setAttribute('id', media.id);
             });
+
+            // appel de la class qui contiendra l'affichage de l'encart contenant le total des likes et le tarif  sur la page photographe
+            const photographerFooter = document.querySelector(".footer");
+
+            // faire la somme des likes et les afficher dans l'encart
+            const initialValue = 0;
+            let totalOfLikes = [];
+            const totalLike = mediasSortedById.map(media => new Likes(media));
+            totalLike.forEach((media) => {
+                totalOfLikes.push(media.likes)
+            });
+            const totalLikes = totalOfLikes.reduce(
+                (previousValue, currentValue) => previousValue + currentValue,
+                initialValue
+            );
+            const allLikes = {likes: totalLikes}
+            const test = new Likes(allLikes);
+            photographerFooter.appendChild(test.getUsercardDOMFooter()); 
           
+            // afficher les données triées
+            
+            const medias_sorting = document.querySelector('select');
+            selectSortingValue(medias_sorting, medias, mediasSection, allMedias);
+
+            
         })
         .catch(err => console.log('==== error ====', err));
             

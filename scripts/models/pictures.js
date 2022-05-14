@@ -30,7 +30,7 @@ class Picture{
         like.classList.add('like');
         const heart = document.createElement('i');
         heart.classList.add('fa-solid','fa-heart');
-        heart.setAttribute("onclick", `inscrLike(${this.id})`);
+        //heart.setAttribute("onclick", `incrLike(${this.id})`);
         title.textContent = this.title;
         likes.textContent = this.likes + ' ';
         article.appendChild(section);

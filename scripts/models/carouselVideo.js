@@ -49,87 +49,15 @@ class CarouselVideo{
         prev_img.appendChild(arrow_left);
         next_img.appendChild(arrow_right);
 
-
-        
-        let currentItemPosition = 0;
         let carousel_item = document.getElementsByClassName('carousel-item');
         let imgs = [...document.querySelectorAll(".carousel li")];
        
-        const goToNextSlide = () => {
-            imgs.forEach((item, idx) => {
-                if(item.getAttribute('style') === 'display: flex;'){
-                    currentItemPosition = idx;
-                }
-            })
-            currentItemPosition += 1
-            console.log('cas:',currentItemPosition, carousel_item.length);
-            if (currentItemPosition >= 1 && currentItemPosition < carousel_item.length) {
-                let currentItem = `.item-${currentItemPosition}`
-                let lastItem = `.item-${currentItemPosition -1}`
-                setNodeAttributes(lastItem, currentItem)
-                console.log('1er cas:',currentItem, lastItem, currentItemPosition);
-               
-            }else if (currentItemPosition >= carousel_item.length){
-                currentItemPosition = 0;
-                let lastItem = `.item-${carousel_item.length -1}`
-                let currentItem = `.item-${currentItemPosition }`
-                setNodeAttributes(lastItem, currentItem);
-                console.log('2nd cas:',currentItem, lastItem, currentItemPosition);
-            }
-        }
-        
-        const goToPreviousSlide = () => {
-            imgs.forEach((item, idx) => {
-                if(item.getAttribute('style') === 'display: flex;'){
-                    currentItemPosition = idx;
-                }
-            })
-            if(currentItemPosition > 0){
-                currentItemPosition -= 1
-                console.log('cas:',currentItemPosition, carousel_item.length);
-                if (currentItemPosition  >=  1 && currentItemPosition < carousel_item.length) {
-                    let currentItem = `.item-${currentItemPosition}`
-                    let lastItem = `.item-${currentItemPosition + 1}`
-                    setNodeAttributes(lastItem, currentItem)
-                    console.log('1er cas:',currentItem, lastItem, currentItemPosition);
-
-                } else if (currentItemPosition === 0){
-                    let lastItem = `.item-${currentItemPosition +1}`
-                    let currentItem = `.item-${currentItemPosition}`
-                    setNodeAttributes(lastItem, currentItem)
-                    console.log('2nd cas:',currentItem, lastItem, currentItemPosition);
-                }
-            }else if(currentItemPosition === 0){
-                currentItemPosition = carousel_item.length -1;
-                if (currentItemPosition  >=  1 && currentItemPosition < carousel_item.length) {
-                    let currentItem = `.item-${currentItemPosition}`
-                    let lastItem = `.item-0`
-                    setNodeAttributes(lastItem, currentItem)
-                    console.log('1er cas:',currentItem, lastItem, currentItemPosition);
-
-                } else if (currentItemPosition === 0){
-                    let lastItem = `.item-${currentItemPosition +1}`
-                    let currentItem = `.item-${currentItemPosition}`
-                    setNodeAttributes(lastItem, currentItem)
-                    console.log('2nd cas:',currentItem, lastItem, currentItemPosition);
-                }
-            }
-            
-         }
-        
-        const setNodeAttributes = (lastItem, currentItem) => {
-        $(lastItem).css('display', 'none')
-        $(currentItem).css('display', 'flex')
-        $(lastItem).attr('aria-hidden', 'true')
-        $(currentItem).attr('aria-hidden', 'false')
-        }
-        
         prev_img.addEventListener('click',function() {
-            goToPreviousSlide()
+            goToPreviousSlide(carousel_item, imgs)
         })
         
         next_img.addEventListener('click',function() {
-            goToNextSlide()
+            goToNextSlide(carousel_item, imgs)
         })
         return(slide)
     }
