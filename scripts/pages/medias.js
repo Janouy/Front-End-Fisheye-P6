@@ -18,24 +18,26 @@ async function getMedias() {
                 return acc
             }, []);
 
-            // appel de la class qui contiendra l'affichage des medias sur la page photographe
+            // appel de la balise qui contiendra l'affichage des medias sur la page photographe
             const mediasSection = document.querySelector(".medias");
             //choix du model de class à executer avec le factory pattern mediasFactory si le media est une photo ou une video
             let medias = mediasSortedById.map(media => mediasFactory(media));
-
+            
             let liked_media;
             let heart_media;
-            //affichage des medias sur la page photographer.html et gestion de l'incrementation du like
+            
+            // appel de la balsie qui permet de trier les médias
+            const medias_sorting = document.querySelector('select');
+            //affichage des medias sur la page photographer.html et gestion de l'incrementation du like et affichage du tri
             medias.forEach((media) => {
                 mediasSection.appendChild(media.getUserCardDOM());
                 heart_media = document.querySelector(`#liked_${media.id} .like i`);
                 liked_media = document.getElementById(`liked_${media.id}`);
-                incrLike(heart_media, liked_media, media);
+                incrLike(heart_media, liked_media, media.id);
+                selectSortingValue(medias_sorting, medias, mediasSection, allMedias);
             });
-            
-          
-            
-            // appel de la class qui contiendra l'affichage des medias dans la lightbox
+        
+            // appel de la balise qui contiendra l'affichage des medias dans la lightbox
             const carouselUl = document.querySelector('.carousel');
              //choix du model de class à executer avec le factory pattern carouselFactory si le media est une photo ou une video
             let mediasCarousel = mediasSortedById.map(media => carouselFactory(media));
@@ -48,7 +50,7 @@ async function getMedias() {
                 li.setAttribute('id', media.id);
             });
 
-            // appel de la class qui contiendra l'affichage de l'encart contenant le total des likes et le tarif  sur la page photographe
+            // appel de la balise qui contiendra l'affichage de l'encart contenant le total des likes et le tarif  sur la page photographe
             const photographerFooter = document.querySelector(".footer");
 
             // faire la somme des likes et les afficher dans l'encart
@@ -65,12 +67,6 @@ async function getMedias() {
             const allLikes = {likes: totalLikes}
             const test = new Likes(allLikes);
             photographerFooter.appendChild(test.getUsercardDOMFooter()); 
-          
-            // afficher les données triées
-            
-            const medias_sorting = document.querySelector('select');
-            selectSortingValue(medias_sorting, medias, mediasSection, allMedias);
-
             
         })
         .catch(err => console.log('==== error ====', err));

@@ -17,6 +17,7 @@ function compare_likes( a, b ){
 };
 
 let liked_media;
+let heart_media
 function selectSortingValue(Element, medias, mediasSection) {
     Element.addEventListener('change', function () {
         if (this.value === 'Titre') {
@@ -32,15 +33,17 @@ function selectSortingValue(Element, medias, mediasSection) {
                 mediasSection.appendChild(media.getUserCardDOM());
             });
         }else if(this.value === 'Popularite'){
-            medias.sort(compare_likes);
             medias.forEach((media) => {
-                let liked_media = document.getElementById(`liked_${media.id}`);
+                liked_media = document.getElementById(`liked_${media.id}`);
                 media.likes = liked_media.textContent;
-                mediasSection.appendChild(media.getUserCardDOM());
             });
+            let test;
             mediasSection.innerHTML = '';
-            medias.forEach((media) => {
+            medias.sort(compare_likes).forEach((media) => {
                 mediasSection.appendChild(media.getUserCardDOM());
+                liked_media = document.getElementById(`liked_${media.id}`);
+                heart_media = document.querySelector(`#liked_${media.id} .like i`);
+                incrLike(heart_media, liked_media, media.id);
             });
         }
     });
