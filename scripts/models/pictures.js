@@ -26,18 +26,24 @@ class Picture{
         const likes = document.createElement('div');
         likes.classList.add('media_likes');
         likes.setAttribute('id', `liked_${this.id}`);
+        const likesOfMedia = document.createElement('span');
+        likesOfMedia.classList.add('likesOfMedia')
+        likesOfMedia.textContent = this.likes + ' ';
         const like = document.createElement('span');
         like.classList.add('like');
         const heart = document.createElement('i');
         heart.classList.add('fa-solid','fa-heart');
-        //heart.setAttribute("onclick", `incrLike(${this.id})`);
+        heart.setAttribute("onclick", `incrLike(${this.id})`);
+        if(sessionStorage.getItem(`likes_media_${this.id}`)){
+            heart.setAttribute('onclick', '');
+        }
         title.textContent = this.title;
-        likes.textContent = this.likes + ' ';
         article.appendChild(section);
         section.appendChild(img);
         article.appendChild(titleAndLikes);
         titleAndLikes.appendChild(title)
         titleAndLikes.appendChild(likes)
+        likes.appendChild(likesOfMedia)
         likes.appendChild(like);
         like.appendChild(heart);
         return (article);

@@ -18,28 +18,9 @@ async function getMedias() {
                 return acc
             }, []);
 
-            // appel de la balise qui contiendra l'affichage des medias sur la page photographe
-            const mediasSection = document.querySelector(".medias");
-            //choix du model de class à executer avec le factory pattern mediasFactory si le media est une photo ou une video
-            let medias = mediasSortedById.map(media => mediasFactory(media));
-            
-            let liked_media;
-            let heart_media;
-            
-            // appel de la balsie qui permet de trier les médias
-            const medias_sorting = document.querySelector('select');
-            //affichage des medias sur la page photographer.html et gestion de l'incrementation du like et affichage du tri
-            medias.forEach((media) => {
-                mediasSection.appendChild(media.getUserCardDOM());
-                heart_media = document.querySelector(`#liked_${media.id} .like i`);
-                liked_media = document.getElementById(`liked_${media.id}`);
-                incrLike(heart_media, liked_media, media.id);
-                selectSortingValue(medias_sorting, medias, mediasSection, allMedias);
-            });
-        
             // appel de la balise qui contiendra l'affichage des medias dans la lightbox
             const carouselUl = document.querySelector('.carousel');
-             //choix du model de class à executer avec le factory pattern carouselFactory si le media est une photo ou une video
+            //choix du model de class à executer avec le factory pattern carouselFactory si le media est une photo ou une video
             let mediasCarousel = mediasSortedById.map(media => carouselFactory(media));
             //affichage de la lightbox sur la page photographer.html pour chaque instance de classes appelées dans le carouselfactory
             mediasCarousel.forEach((media) => {
@@ -50,6 +31,19 @@ async function getMedias() {
                 li.setAttribute('id', media.id);
             });
 
+            // appel de la balise qui contiendra l'affichage des medias sur la page photographe
+            const mediasSection = document.querySelector(".medias");
+            //choix du model de class à executer avec le factory pattern mediasFactory si le media est une photo ou une video
+            let medias = mediasSortedById.map(media => mediasFactory(media));
+            
+            // appel de la balsie qui permet de trier les médias
+            const medias_sorting = document.querySelector('select');
+            //affichage des medias sur la page photographer.html et gestion de l'incrementation du like et affichage du tri
+            medias.forEach((media) => {
+                mediasSection.appendChild(media.getUserCardDOM());
+                selectSortingValue(medias_sorting, medias, mediasSection);
+            });
+        
             // appel de la balise qui contiendra l'affichage de l'encart contenant le total des likes et le tarif  sur la page photographe
             const photographerFooter = document.querySelector(".footer");
 
@@ -74,3 +68,6 @@ async function getMedias() {
 }
 
 getMedias();
+window.onunload = function () {
+	sessionStorage.clear();
+}

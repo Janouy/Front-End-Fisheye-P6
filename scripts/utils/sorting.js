@@ -17,33 +17,37 @@ function compare_likes( a, b ){
 };
 
 let liked_media;
-let heart_media
+
 function selectSortingValue(Element, medias, mediasSection) {
     Element.addEventListener('change', function () {
         if (this.value === 'Titre') {
-            medias.sort(compare_title);
-            mediasSection.innerHTML = '';
             medias.forEach((media) => {
+                liked_media = document.getElementById(`liked_${media.id}`);
+                media.likes = liked_media.textContent;
+            });
+            mediasSection.innerHTML = '';
+            medias.sort(compare_title).forEach((media) => {
                 mediasSection.appendChild(media.getUserCardDOM());
             });
         }else if(this.value ==='Date'){
-            medias.sort(compare_date);
-            mediasSection.innerHTML = '';
             medias.forEach((media) => {
+                liked_media = document.getElementById(`liked_${media.id}`);
+                media.likes = liked_media.textContent;
+            });
+            mediasSection.innerHTML = '';
+            medias.sort(compare_date).forEach((media) => {
                 mediasSection.appendChild(media.getUserCardDOM());
             });
+
+            
         }else if(this.value === 'Popularite'){
             medias.forEach((media) => {
                 liked_media = document.getElementById(`liked_${media.id}`);
                 media.likes = liked_media.textContent;
             });
-            let test;
             mediasSection.innerHTML = '';
             medias.sort(compare_likes).forEach((media) => {
                 mediasSection.appendChild(media.getUserCardDOM());
-                liked_media = document.getElementById(`liked_${media.id}`);
-                heart_media = document.querySelector(`#liked_${media.id} .like i`);
-                incrLike(heart_media, liked_media, media.id);
             });
         }
     });
