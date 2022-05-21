@@ -20,6 +20,7 @@ async function getPhotographer() {
             photographerSection.appendChild(photographer.getUserCardDOM());
             const photographerFooter = document.querySelector(".footer");
             photographerFooter.appendChild(photographer.getUsercardDOMFooter());
+
         })
         .catch(err => console.log('==== error ====', err));
             

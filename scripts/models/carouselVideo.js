@@ -3,8 +3,9 @@ class CarouselVideo{
         this.photographerId = data.photographerId;
         this.title = data.title;
         this.video = data.video;
-        this.title = data.title;
+        this.date = data.date;
         this.id = data.id;
+        this.likes = data.likes;
     }
 
   getUserCardDOM() {
@@ -51,7 +52,12 @@ class CarouselVideo{
 
         let carousel_item = document.getElementsByClassName('carousel-item');
         let imgs = [...document.querySelectorAll(".carousel li")];
-       
+
+        imgs.forEach((item, idx) => {
+            item.style.display = "none";
+            item.setAttribute('aria-hidden', true);
+        })
+        
         prev_img.addEventListener('click',function() {
             goToPreviousSlide(carousel_item, imgs)
         })

@@ -17,16 +17,19 @@
 //     });
 // }
 
-function incrLike(picture_id){
-    sessionStorage.setItem(`likes_media_${picture_id}`, picture_id);
-    const liked_media = document.querySelector(`#liked_${picture_id} .likesOfMedia`);
-    liked_media.textContent = parseInt(liked_media.textContent)+1 + ' ';
-    const heart = document.querySelector(`#liked_${picture_id} .like i`);
-    const totalLikes = document.querySelector('.totalLikes');
-    totalLikes.textContent = parseInt(totalLikes.textContent)+1 + ' ';
-    const heart2 = document.createElement('i');
-    heart2.classList.add('fa-solid','fa-heart');
-    totalLikes.appendChild(heart2);
-    setTimeout(heart.setAttribute('onclick', ''), 100);
+// function incrLike(picture_id){
+//     sessionStorage.setItem(`likes_media_${picture_id}`, picture_id);
+//     const liked_media = document.querySelector(`#liked_${picture_id} .likesOfMedia`);
+//     liked_media.textContent = parseInt(liked_media.textContent)+1 + ' ';
+//     const heart = document.querySelector(`#liked_${picture_id} .like i`);
+//     const totalLikes = document.querySelector('.totalLikes');
+//     totalLikes.textContent = parseInt(totalLikes.textContent)+1 + ' ';
+//     const heart2 = document.createElement('i');
+//     heart2.classList.add('fa-solid','fa-heart');
+//     totalLikes.appendChild(heart2);
+//     heart.setAttribute('onclick', '');
+    
+
+//     //setTimeout(heart.setAttribute('onclick', ''), 100);
   
-}
+// }

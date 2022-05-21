@@ -1,15 +1,23 @@
 class Picture{
-    constructor (data){
+    constructor (data, sortingMedias, displayTotalLikes){
         this.photographerId = data.photographerId;
         this.title = data.title;
         this.image = data.image;
         this.likes = data.likes;
+        this.likesIncr = data.likes +1;
         this.date = data.date;
         this.price = data.price;
         this.id= data.id;
+        this.sortingMedias = sortingMedias;
+        this.displayTotalLikes = displayTotalLikes;
+       
     }
 
     getUserCardDOM() {
+       
+        let totalLikes = document.querySelector('.total_likes');
+        totalLikes.innerHTML = this.displayTotalLikes();
+        document.querySelector('select').addEventListener('change', this.sortingMedias)
         const article = document.createElement( 'article' );
         article.classList.add('media_photographer_page');
         const section = document.createElement('section');
@@ -28,15 +36,12 @@ class Picture{
         likes.setAttribute('id', `liked_${this.id}`);
         const likesOfMedia = document.createElement('span');
         likesOfMedia.classList.add('likesOfMedia')
-        likesOfMedia.textContent = this.likes + ' ';
+        likesOfMedia.textContent = this.likes;
         const like = document.createElement('span');
         like.classList.add('like');
         const heart = document.createElement('i');
         heart.classList.add('fa-solid','fa-heart');
-        heart.setAttribute("onclick", `incrLike(${this.id})`);
-        if(sessionStorage.getItem(`likes_media_${this.id}`)){
-            heart.setAttribute('onclick', '');
-        }
+        heart.addEventListener('click', this.incrThisLike.bind(this, likesOfMedia, totalLikes, heart));
         title.textContent = this.title;
         article.appendChild(section);
         section.appendChild(img);
@@ -48,7 +53,17 @@ class Picture{
         like.appendChild(heart);
         return (article);
     }
-   
+
+    incrThisLike(likesOfMedia, totalLikes, heart){
+        likesOfMedia.textContent = this.likesIncr;
+        this.likes = this.likesIncr;
+        this.displayLikes();
+        totalLikes.innerHTML = this.displayTotalLikes();
+    }
+
+    displayLikes(){
+        console.log(this.displayTotalLikes());
+    }
 }
 
 

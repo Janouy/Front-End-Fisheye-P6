@@ -278,7 +278,6 @@ form #message {
 
  footer .footer{
     display: flex;
-    flex-direction: row-reverse;
     justify-content: space-between;
     position: fixed;
     bottom: 0;
@@ -288,13 +287,15 @@ form #message {
     width: 20%;
     border-radius: 5px;
 } 
- footer .photographer_price, .totalLikes{
+ footer .photographer_price, .total_likes{
     font-weight: bold;
  }
 
+ footer .total_likes_content{
+    display: flex;
+ }
  .medias_sorting{
     display: flex;
-   
     padding-left: 2%;
  }
  .medias_sorting form{

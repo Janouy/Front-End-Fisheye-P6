@@ -1,13 +1,16 @@
 class CarouselPicture{
-    constructor (data, index){
+    constructor (data, sortingMedias){
         this.photographerId = data.photographerId;
         this.title = data.title;
         this.image = data.image;
-        this.title = data.title;
         this.id = data.id;
+        this.likes = data.likes;
+        this.date = data.likes;
+        this.sortingMedias = sortingMedias;
     }
 
     getUserCardDOM() {
+        document.querySelector('select').addEventListener('change', this.sortingMedias)
         const slide = document.createElement('div');
         slide.classList.add('slide');
         const button_left = document.createElement('div');
@@ -56,6 +59,10 @@ class CarouselPicture{
             goToNextSlide(carousel_item, imgs)
         })
         return (slide);
+        }
+
+        setLikes(likes) {
+            this.likes = likes;
         }
     }
 

@@ -18,49 +18,77 @@ async function getMedias() {
                 return acc
             }, []);
 
+            //choix du model de class à executer avec le factory pattern carouselFactory si le media est une photo ou une video
+            let mediasCarousel = mediasSortedById.map(media => carouselFactory(media, sortingMedias));
+            let carouselMedia = document.getElementById("lightbox_modal");
+            //choix du model de class à executer avec le factory pattern mediasFactory si le media est une photo ou une video
+            let medias = mediasSortedById.map(media => mediasFactory(media, sortingMedias, displayTotalLikes));
             // appel de la balise qui contiendra l'affichage des medias dans la lightbox
             const carouselUl = document.querySelector('.carousel');
-            //choix du model de class à executer avec le factory pattern carouselFactory si le media est une photo ou une video
-            let mediasCarousel = mediasSortedById.map(media => carouselFactory(media));
-            //affichage de la lightbox sur la page photographer.html pour chaque instance de classes appelées dans le carouselfactory
-            mediasCarousel.forEach((media) => {
-                let li = document.createElement( 'li' );
-                carouselUl.appendChild(li);
-                li.appendChild(media.getUserCardDOM());
-                li.classList.add("carousel-item");
-                li.setAttribute('id', media.id);
-            });
-
             // appel de la balise qui contiendra l'affichage des medias sur la page photographe
             const mediasSection = document.querySelector(".medias");
-            //choix du model de class à executer avec le factory pattern mediasFactory si le media est une photo ou une video
-            let medias = mediasSortedById.map(media => mediasFactory(media));
-            
-            // appel de la balsie qui permet de trier les médias
-            const medias_sorting = document.querySelector('select');
-            //affichage des medias sur la page photographer.html et gestion de l'incrementation du like et affichage du tri
-            medias.forEach((media) => {
-                mediasSection.appendChild(media.getUserCardDOM());
-                selectSortingValue(medias_sorting, medias, mediasSection);
-            });
-        
-            // appel de la balise qui contiendra l'affichage de l'encart contenant le total des likes et le tarif  sur la page photographe
-            const photographerFooter = document.querySelector(".footer");
-
+            //affichage des medias sur la page photographer.html 
+            function displayMediasPhotographer(){
+                medias.forEach((media) => {
+                    mediasSection.appendChild(media.getUserCardDOM());
+                    document.getElementById(`liked_${media.id}`);
+                });
+            }
+            displayMediasPhotographer();
+              // affichage des medias de la lightbox
+            function displayLightboxElt(){
+                mediasCarousel.forEach((media) => {
+                    let li = document.createElement( 'li' );
+                    carouselUl.appendChild(li);
+                    li.appendChild(media.getUserCardDOM());
+                    li.classList.add("carousel-item");
+                    li.setAttribute('id', media.id);
+                });
+            }
+            displayLightboxElt()
+            // reload des données à l'incrémentation et tri pour la page photographer et la lightbox
+            function sortingMedias(){
+                mediasSection.innerHTML = '';
+                mediasCarousel.forEach(() => {
+                    carouselMedia.removeChild(carouselMedia.lastChild);
+                });
+                if (this.value === 'Titre') {
+                    medias.sort(compare_title);
+                    mediasCarousel.sort(compare_title);
+                }
+                if (this.value === 'Popularite') {
+                    medias.sort(compare_likes);
+                    mediasCarousel.sort(compare_likes);
+                } if (this.value === 'date') {
+                    medias.sort(compare_date);
+                    mediasCarousel.sort(compare_date);
+                }
+                displayMediasPhotographer();
+                displayLightboxElt();
+            }
+          
+            function displayTotalLikes(){
+                let totalLikes = 0;
+                for(let i=0; i<medias.length; i++){
+                    totalLikes += medias[i].likes
+                }
+                return totalLikes;
+            }
             // faire la somme des likes et les afficher dans l'encart
-            const initialValue = 0;
-            let totalOfLikes = [];
-            const totalLike = mediasSortedById.map(media => new Likes(media));
-            totalLike.forEach((media) => {
-                totalOfLikes.push(media.likes)
-            });
-            const totalLikes = totalOfLikes.reduce(
-                (previousValue, currentValue) => previousValue + currentValue,
-                initialValue
-            );
-            const allLikes = {likes: totalLikes}
-            const test = new Likes(allLikes);
-            photographerFooter.appendChild(test.getUsercardDOMFooter()); 
+            // const initialValue = 0;
+            // let totalOfLikes = [];
+            // const totalLike = mediasSortedById.map(media => new Likes(media));
+            // totalLike.forEach((media) => {
+            //     totalOfLikes.push(media.likes)
+                
+            // });
+            // const totalLikes = totalOfLikes.reduce(
+            //     (previousValue, currentValue) => previousValue + currentValue,
+            //     initialValue
+            // );
+            // const allLikes = {likes: totalLikes}
+            // const newLikes = new Likes(allLikes);
+            // photographerFooter.appendChild(newLikes.getUsercardDOMFooter()); 
             
         })
         .catch(err => console.log('==== error ====', err));
@@ -68,6 +96,4 @@ async function getMedias() {
 }
 
 getMedias();
-window.onunload = function () {
-	sessionStorage.clear();
-}
+

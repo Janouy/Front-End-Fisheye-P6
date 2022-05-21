@@ -1,16 +1,19 @@
 
 class Video{
-    constructor (data){
+    constructor (data, sortingMedias){
         this.photographerId = data.photographerId;
         this.title = data.title;
         this.video = data.video;
         this.likes = data.likes;
+        this.likesIncr = data.likes +1;
         this.date = data.date;
         this.price = data.price;
         this.id = data.id;
+        this.sortingMedias = sortingMedias;
     }
 
     getUserCardDOM() {
+        document.querySelector('select').addEventListener('change', this.sortingMedias)
         const article = document.createElement( 'article' );
         article.classList.add('media_photographer_page');
         const section = document.createElement('section');
@@ -38,10 +41,7 @@ class Video{
         like.classList.add('like');
         const heart = document.createElement('i');
         heart.classList.add('fa-solid','fa-heart');
-        heart.setAttribute("onclick", `incrLike(${this.id})`);
-        if(sessionStorage.getItem(`likes_media_${this.id}`)){
-            heart.setAttribute('onclick', '');
-        }
+        heart.addEventListener('click', this.incrThisLike.bind(this, likesOfMedia));
         title.textContent = this.title;
         article.appendChild(section);
         section.appendChild(video);
@@ -53,6 +53,11 @@ class Video{
         likes.appendChild(like);
         like.appendChild(heart);
         return (article);
+    }
+
+    incrThisLike(likesOfMedia){
+        likesOfMedia.textContent = this.likesIncr + ' ';
+        this.likes = this.likesIncr+ ' ';
     }
 
 }
