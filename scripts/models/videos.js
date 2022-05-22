@@ -1,6 +1,6 @@
 
 class Video{
-    constructor (data, sortingMedias){
+    constructor (data, sortingMedias, displayTotalLikes){
         this.photographerId = data.photographerId;
         this.title = data.title;
         this.video = data.video;
@@ -10,9 +10,13 @@ class Video{
         this.price = data.price;
         this.id = data.id;
         this.sortingMedias = sortingMedias;
+        this.displayTotalLikes = displayTotalLikes;
     }
 
     getUserCardDOM() {
+           
+        let totalLikes = document.querySelector('.total_likes');
+        totalLikes.innerHTML = this.displayTotalLikes();
         document.querySelector('select').addEventListener('change', this.sortingMedias)
         const article = document.createElement( 'article' );
         article.classList.add('media_photographer_page');
@@ -36,12 +40,12 @@ class Video{
         likes.setAttribute('id', `liked_${this.id}`);
         const likesOfMedia = document.createElement('span');
         likesOfMedia.classList.add('likesOfMedia')
-        likesOfMedia.textContent = this.likes + ' ';
+        likesOfMedia.textContent = this.likes;
         const like = document.createElement('span');
         like.classList.add('like');
         const heart = document.createElement('i');
         heart.classList.add('fa-solid','fa-heart');
-        heart.addEventListener('click', this.incrThisLike.bind(this, likesOfMedia));
+        heart.addEventListener('click', this.incrThisLike.bind(this, likesOfMedia, totalLikes, heart));
         title.textContent = this.title;
         article.appendChild(section);
         section.appendChild(video);
@@ -55,9 +59,10 @@ class Video{
         return (article);
     }
 
-    incrThisLike(likesOfMedia){
-        likesOfMedia.textContent = this.likesIncr + ' ';
-        this.likes = this.likesIncr+ ' ';
+    incrThisLike(likesOfMedia, totalLikes, heart){
+        likesOfMedia.textContent = this.likesIncr;
+        this.likes = this.likesIncr;
+        totalLikes.innerHTML = this.displayTotalLikes();
     }
 
 }

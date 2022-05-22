@@ -74,22 +74,6 @@ async function getMedias() {
                 }
                 return totalLikes;
             }
-            // faire la somme des likes et les afficher dans l'encart
-            // const initialValue = 0;
-            // let totalOfLikes = [];
-            // const totalLike = mediasSortedById.map(media => new Likes(media));
-            // totalLike.forEach((media) => {
-            //     totalOfLikes.push(media.likes)
-                
-            // });
-            // const totalLikes = totalOfLikes.reduce(
-            //     (previousValue, currentValue) => previousValue + currentValue,
-            //     initialValue
-            // );
-            // const allLikes = {likes: totalLikes}
-            // const newLikes = new Likes(allLikes);
-            // photographerFooter.appendChild(newLikes.getUsercardDOMFooter()); 
-            
         })
         .catch(err => console.log('==== error ====', err));
             

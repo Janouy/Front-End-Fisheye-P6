@@ -7,7 +7,6 @@ const goToNextSlide = (carousel_item, imgs) => {
         }
     })
     currentItemPosition += 1
-    console.log('cas:',currentItemPosition, carousel_item.length);
         if (currentItemPosition >= 1 && currentItemPosition < carousel_item.length) {
         let currentItem = `.item-${currentItemPosition}`
         let lastItem = `.item-${currentItemPosition -1}`

@@ -57,13 +57,9 @@ class Picture{
     incrThisLike(likesOfMedia, totalLikes, heart){
         likesOfMedia.textContent = this.likesIncr;
         this.likes = this.likesIncr;
-        this.displayLikes();
         totalLikes.innerHTML = this.displayTotalLikes();
     }
 
-    displayLikes(){
-        console.log(this.displayTotalLikes());
-    }
 }
 
 
