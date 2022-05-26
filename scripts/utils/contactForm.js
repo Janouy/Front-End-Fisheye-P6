@@ -40,7 +40,18 @@ function closeModal() {
     sortsLinks.removeAttribute('tabindex', -1);
     sortsOpen.removeAttribute('tabindex', -1);
     submitBtn.setAttribute('aria-hidden', true);
+    submitBtn.removeAttribute('aria-label', 'Votre formulaire contient des erreurs');
 }
+inputForm.forEach((input) => {
+    input.addEventListener('blur', elt => {
+        if(!input.checkValidity()){
+            input.setAttribute('aria-invalid', true);
+        }else 
+        if(input.checkValidity()){
+            input.setAttribute('aria-invalid', false);
+        }
+    })
+})
 
 submitBtn.addEventListener('click', function(event){
     let inputFormdatas = Array.from(inputForm);

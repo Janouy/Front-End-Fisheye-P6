@@ -62,20 +62,28 @@
 		</header>
 		<form>
 			<div role="group">
-				<label for="firstName">Prénom</label>
-				<input type="text" class="text-input" name="firstName" id="firstName" aria-required="required"
-					minlength='2' required="required" />
-				<label for="lastName">Nom</label>
-				<input type="text" class="text-input" name="lastName" id="lastName" aria-required="required"
-					minlength='2' required="required" />
-				<label for="email">Email</label>
-				<input type="email" class="text-input" name="email" id="email" aria-required="required" minlength='2'
-					required="required" />
-				<label for="message">Message</label>
-				<textarea class="text-input" name="message" id="message" aria-required="required" minlength='2'
-					required="required"></textarea>
+				<label for="firstName">Prénom
+					<input type="text" class="text-input" name="firstName" id="firstName" aria-required="required"
+						minlength='2' required="required" aria-describedby="format_firstName" aria-invalid="false" />
+					<p id="format_firstName" class="hiddenInput">Votre prénom doit contenir plus de 2 caractères</p>
+				</label>
+				<label for="lastName">Nom
+					<input type="text" class="text-input" name="lastName" id="lastName" aria-required="required"
+						minlength='2' required="required" aria-describedby="format_lastName" aria-invalid="false" />
+					<p id="format_lastName" class="hiddenInput">Votre nom doit contenir plus de 2 caractères</p>
+				</label>
+				<label for="email">Email
+					<input type="email" class="text-input" name="email" id="email" aria-required="required"
+						minlength='2' required="required" aria-describedby="format_email" aria-invalid="false" />
+					<p id="format_email" class="hiddenInput">Votre email doit avoir un format d'email valide</p>
+				</label>
+				<label for="message">Message
+					<textarea class="text-input" name="message" id="message" aria-required="required" minlength='20'
+						required="required" aria-describedby="format_message" aria-invalid="false"></textarea>
+					<p id="format_message	" class="hiddenInput">Votre message doit contenir plus de 20 caractères</p>
+				</label>
 			</div>
-			<!-- <button id="form_submit" aria-hidden="true" type="submit">Envoyer</button> -->
+
 			<input id="form_submit" type="submit" value="Envoyer" />
 		</form>
 	</div>

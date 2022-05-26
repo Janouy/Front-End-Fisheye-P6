@@ -231,7 +231,7 @@ form {
 form label {
     color: #312E2E;
     font-size: 2rem;
-    
+    width: 100%;
 }
 
 form div {
@@ -409,3 +409,12 @@ form #message {
     white-space: nowrap;
     width: 1px;
 }
+
+.hiddenInput {
+    height: 1px;
+    left: 0;
+    overflow: hidden;
+    position: absolute;
+    top: -10000px;
+    width: 1px;
+ }
