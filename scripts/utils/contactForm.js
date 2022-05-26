@@ -1,54 +1,65 @@
+const body = document.getElementById('body');
+const modal = document.getElementById("contact_modal");
+const wrapper = document.getElementById("main-wrapper");
+const wrapperLinks = document.querySelector("#main-wrapper a");
+const sortsLinks = document.querySelector(".header-dropdown-link-content a, .header-dropdown-link");
+const sortsOpen = document.querySelector(".header-dropdown-link");
+const closedBtn = document.getElementById("modal-close-btn");
+const submitBtn = document.getElementById('form_submit');
+const logo = document.querySelector('.logo');
+let inputForm = document.querySelectorAll(".text-input");
+
 function displayModal() {
-    const body = document.getElementById('body');
-    const modal = document.getElementById("contact_modal");
-    const wrapper = document.getElementById("main-wrapper");
-    const closeBtn = document.getElementById("modal-close-btn");
-    const submitBtn = document.getElementById('form_submit');
+    const contactButton = document.querySelector('.contact_button');
     modal.setAttribute('aria-hidden', false);
-    modal.style.display = "flex";
     modal.classList.remove('hidden');    
     wrapper.setAttribute('aria-hidden', true);
     closeBtn.focus();
     closeBtn.setAttribute('aria-hidden', false);
     wrapper.classList.add('opacity');
     body.classList.add('no-scroll');
-    body.setAttribute('aria-hidden', true);
+    wrapper.setAttribute('aria-hidden', true);
     submitBtn.setAttribute('aria-hidden', false);
-    
+    wrapperLinks.setAttribute('tabindex', -1);
+    contactButton.setAttribute('tabindex', -1);
+    sortsLinks.setAttribute('tabindex', -1);
+    sortsOpen.setAttribute('tabindex', -1);
 }
 
 function closeModal() {
-    const modal = document.getElementById("contact_modal");
-    const wrapper = document.getElementById("main-wrapper");
-    const body = document.getElementById('body');
-    const closeBtn = document.getElementById("modal-close-btn");
-    const submitBtn = document.getElementById('form_submit');
+    const contactButton = document.querySelector('.contact_button');
     body.classList.remove('no-scroll');
     wrapper.classList.remove('opacity');
     modal.classList.add('hidden');
     modal.setAttribute('aria-hidden', true);
-    closeBtn.setAttribute('aria-hidden', true);
+    modal.setAttribute('tabindex', -1);
+    closedBtn.setAttribute('tabindex', -1);
+    submitBtn.setAttribute('tabindex', -1);
+    wrapperLinks.removeAttribute('tabindex', -1);
+    contactButton.removeAttribute('tabindex', -1);
+    sortsLinks.removeAttribute('tabindex', -1);
+    sortsOpen.removeAttribute('tabindex', -1);
     submitBtn.setAttribute('aria-hidden', true);
 }
 
-const submitBtn = document.getElementById('form_submit');
-
 submitBtn.addEventListener('click', function(event){
-    submitBtn.setAttribute('aria-hidden', true);
-    const inputForm = document.querySelectorAll(".text-input");
-    event.preventDefault();
-    closeModal();
-    let formDatas ={};
-    for (let input of inputForm) {
-        formDatas[input.id] = input.value;
+    let inputFormdatas = Array.from(inputForm);
+    if(inputFormdatas.every((data) => data.checkValidity())){
+        event.preventDefault();
+        let formDatas ={};
+        for (let input of inputForm) {
+            formDatas[input.id] = input.value;
+        }
+        console.log(formDatas);
+        this.form.reset();
+        closeModal();   
     }
-    console.log(formDatas);
-    this.form.reset();
 })
 
 const closeBtn = document.getElementById("modal-close-btn");
 closeBtn.addEventListener('focus', function(elt) {
     elt.target.style.border = '2px solid black';
+    elt.target.style.borderRadius = '5px';
 })
 
 document.addEventListener('keydown', function(e){

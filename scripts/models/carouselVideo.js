@@ -1,14 +1,16 @@
 class CarouselVideo{
-    constructor (data){
+    constructor (data, sortingMedias){
         this.photographerId = data.photographerId;
         this.title = data.title;
         this.video = data.video;
         this.date = data.date;
         this.id = data.id;
         this.likes = data.likes;
+        this.sortingMedias = sortingMedias;
     }
 
   getUserCardDOM() {
+       //document.querySelector('select').addEventListener('change', this.sortingMedias)
         const slide = document.createElement('div');
         slide.classList.add('slide');
         const button_left = document.createElement('div');

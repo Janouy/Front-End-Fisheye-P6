@@ -13,7 +13,7 @@ class Photographer{
         const modalTitle = document.getElementById("modalTitle");
         modalTitle.innerHTML = "Contactez-moi <br/>" + this.name;
         const article = document.createElement( 'article' );
-        article.classList.add('photograph_header-page')
+        article.classList.add('photograph_header-page');
         const divInfoPhotograper = document.createElement('div');
         divInfoPhotograper.classList.add('photograph_infos')
         const h1 = document.createElement('h1');
@@ -29,6 +29,7 @@ class Photographer{
         const buttonContact = document.createElement('button');
         buttonContact.classList.add('contact_button');
         buttonContact.textContent = 'Contactez-moi';
+        buttonContact.setAttribute("aria-label", 'Contactez: '+ this.name)
         buttonContact.setAttribute("onclick", "displayModal()");
         const img = document.createElement( 'img' );
         img.setAttribute("src", `${`assets/Samplephotos/PhotographersIDPhotos/${this.portrait}`}`)

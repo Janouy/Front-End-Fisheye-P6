@@ -1,4 +1,3 @@
-
 class Video{
     constructor (data, sortingMedias, displayTotalLikes){
         this.photographerId = data.photographerId;
@@ -14,10 +13,12 @@ class Video{
     }
 
     getUserCardDOM() {
-           
         let totalLikes = document.querySelector('.total_likes');
         totalLikes.innerHTML = this.displayTotalLikes();
-        document.querySelector('select').addEventListener('change', this.sortingMedias)
+        let sorts = document.querySelectorAll(".select_sorting");
+        for(let sort of sorts){
+            sort.addEventListener('click', this.sortingMedias);
+        };
         const article = document.createElement( 'article' );
         article.classList.add('media_photographer_page');
         const section = document.createElement('section');
@@ -64,6 +65,7 @@ class Video{
         this.likes = this.likesIncr;
         totalLikes.innerHTML = this.displayTotalLikes();
     }
+
 
 }
 

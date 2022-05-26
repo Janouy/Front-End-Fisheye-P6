@@ -5,12 +5,12 @@ class CarouselPicture{
         this.image = data.image;
         this.id = data.id;
         this.likes = data.likes;
-        this.date = data.likes;
+        this.date = data.date;
         this.sortingMedias = sortingMedias;
     }
 
     getUserCardDOM() {
-        document.querySelector('select').addEventListener('change', this.sortingMedias)
+        //document.querySelector('select').addEventListener('change', this.sortingMedias)
         const slide = document.createElement('div');
         slide.classList.add('slide');
         const button_left = document.createElement('div');

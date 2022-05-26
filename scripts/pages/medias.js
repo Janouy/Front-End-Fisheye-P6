@@ -22,7 +22,7 @@ async function getMedias() {
             let mediasCarousel = mediasSortedById.map(media => carouselFactory(media, sortingMedias));
             let carouselMedia = document.getElementById("lightbox_modal");
             //choix du model de class à executer avec le factory pattern mediasFactory si le media est une photo ou une video
-            let medias = mediasSortedById.map(media => mediasFactory(media, sortingMedias, displayTotalLikes));
+            let medias = mediasSortedById.map(media => mediasFactory(media, sortingMedias, displayTotalLikes)).sort(compare_likes);
             // appel de la balise qui contiendra l'affichage des medias dans la lightbox
             const carouselUl = document.querySelector('.carousel');
             // appel de la balise qui contiendra l'affichage des medias sur la page photographe
@@ -46,20 +46,23 @@ async function getMedias() {
                 });
             }
             displayLightboxElt()
+
             // reload des données à l'incrémentation et tri pour la page photographer et la lightbox
-            function sortingMedias(){
+            function sortingMedias(e){
+                e.preventDefault();
                 mediasSection.innerHTML = '';
                 mediasCarousel.forEach(() => {
                     carouselMedia.removeChild(carouselMedia.lastChild);
                 });
-                if (this.value === 'Titre') {
+                if (this.innerHTML == 'Titre') {
                     medias.sort(compare_title);
                     mediasCarousel.sort(compare_title);
                 }
-                if (this.value === 'Popularite') {
+                if (this.innerHTML == 'Popularité') {
                     medias.sort(compare_likes);
                     mediasCarousel.sort(compare_likes);
-                } if (this.value === 'date') {
+                } 
+                if (this.innerHTML == 'Date') {
                     medias.sort(compare_date);
                     mediasCarousel.sort(compare_date);
                 }
@@ -80,4 +83,3 @@ async function getMedias() {
 }
 
 getMedias();
-

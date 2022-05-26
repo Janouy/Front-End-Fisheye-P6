@@ -10,14 +10,16 @@ class Picture{
         this.id= data.id;
         this.sortingMedias = sortingMedias;
         this.displayTotalLikes = displayTotalLikes;
-       
     }
 
     getUserCardDOM() {
-       
         let totalLikes = document.querySelector('.total_likes');
         totalLikes.innerHTML = this.displayTotalLikes();
-        document.querySelector('select').addEventListener('change', this.sortingMedias)
+        document.querySelector('.header-dropdown-link').addEventListener('click', this.openMenu);
+        let sorts = document.querySelectorAll(".select_sorting");
+        for(let sort of sorts){
+            sort.addEventListener('click', this.sortingMedias);
+        };
         const article = document.createElement( 'article' );
         article.classList.add('media_photographer_page');
         const section = document.createElement('section');
@@ -60,6 +62,22 @@ class Picture{
         totalLikes.innerHTML = this.displayTotalLikes();
     }
 
+    openMenu(e){
+        e.preventDefault();
+        let dropdownMenu = document.querySelector(".dropdown");
+       //avant le menu est caché
+        if(dropdownMenu.classList.contains('hidden')){
+            dropdownMenu.classList.remove('hidden');
+            dropdownMenu.classList.add('dropdown_menu');
+            document.querySelector(".header-dropdown-link svg").setAttribute("transform","rotate(180)");
+            
+        }else if(dropdownMenu.classList.contains('dropdown_menu')){
+            dropdownMenu.classList.remove('dropdown_menu');
+            dropdownMenu.classList.add('hidden');
+            document.querySelector(".header-dropdown-link svg").setAttribute("transform","");
+        }
+         
+    }
 }
 
 
