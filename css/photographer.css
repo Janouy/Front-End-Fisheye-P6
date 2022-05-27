@@ -308,6 +308,7 @@ form #message {
     margin-top: 1%;
 }
 
+
 .header-dropdown-link {
     border: 1px solid transparent;
     color: #0000;
@@ -334,11 +335,17 @@ form #message {
     padding: 10px 15px 10px 25px;
     width : 110px;
 }
+
+
 .header-dropdown-link-content a{
     color: #FFF;
     text-decoration: none;
 }
-
+.header-dropdown-link-content button{
+    color: #FFF;
+    background-color: #901C1C;
+    text-decoration: none;
+}
 .header-dropdown-link-content:hover{
     background-color: #DB8876;
     cursor: pointer;
@@ -352,15 +359,15 @@ form #message {
     padding-left: 0;
     position: absolute;
     left: 10%;
-    top: 424px;
-    /* z-index: 10; */
+    top: 422px;
+    z-index: 10;
     width : 150px;
 }
 
 .dropdown_menu .line{
     width: 65%; 
     border-bottom: 1.5px solid #fff;
-    border-top: 4px solid #fff;
+    border-top: 1.5px solid #fff;
     margin: auto;
 }
 

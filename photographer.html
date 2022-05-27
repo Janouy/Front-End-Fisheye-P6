@@ -23,24 +23,26 @@
 			<section class="medias_sorting">
 				<div><span class="dropdown-link-title">Triez par</span>
 					<div class="header-dropdown-link-content">
-						<a href="#" class="select_sorting" aria-label="trier par popularité">Popularité</a>
-						<a class="header-dropdown-link"
-							aria-label="ouvrir ou fermer le menu déoulant des tris de photographies et videos"
-							aria-haspopup="true" aria-expanded="false" href="#">
+						<a href="#" class="select_sorting" role="listbox" aria-label="trier par popularité"
+							id="trier">Popularité</a>
+						<button class="header-dropdown-link" role="button" aria-haspopup="listbox" aria-expanded="true"
+							aria-label="ouvrir ou fermer le menu déoulant des tris de photographies et videos">
 							<svg width="16" height="10" viewBox="0 0 16 10" fill="none"
 								xmlns="http://www.w3.org/2000/svg">
 								<path d="M1 1.33447L8.00465 8.13311L14.5973 1.33447" stroke="#E9E9E9"
 									stroke-width="2" />
 							</svg>
-						</a>
+						</button>
 					</div>
 				</div>
-				<ul class="dropdown hidden">
+				<ul class="dropdown hidden" aria-labelledby="trier" role="listbox">
 					<li class="line">
-						<a href="#" class="select_sorting" aria-label="trier par date">Date</a>
+						<a href="#" tabindex="0" class="select_sorting" aria-label="trier par date" role="listbox"
+							aria-activedescendant>Date</a>
 					</li>
 					<li>
-						<a href="#" class="select_sorting" aria-label="trier par Titre">Titre</a>
+						<a href="#" tabindex="0" class="select_sorting" aria-label="trier par Titre" role="listbox"
+							aria-activedescendant>Titre</a>
 					</li>
 				</ul>
 			</section>
@@ -64,25 +66,26 @@
 		<form>
 			<div role="group">
 				<label for="firstName">Prénom
-					<input type="text" class="text-input" name="firstName" id="firstName" aria-required="required"
+					<input type="text" class="text-input" name="firstName" id="firstName" aria-required="true"
 						minlength='2' required="required" aria-describedby="format_firstName" aria-invalid="false" />
-					<p id="format_firstName" class="hiddenInput">Votre prénom doit contenir plus de 2 caractères</p>
+					<span id="format_firstName" class="hiddenInput">Votre prénom doit contenir plus de 2 caractères
+					</span>
 				</label>
 				<label for="lastName">Nom
-					<input type="text" class="text-input" name="lastName" id="lastName" aria-required="required"
+					<input type="text" class="text-input" name="lastName" id="lastName" aria-required="true"
 						minlength='2' required="required" aria-describedby="format_lastName" aria-invalid="false" />
-					<p id="format_lastName" class="hiddenInput">Votre nom doit contenir plus de 2 caractères</p>
+					<span id="format_lastName" class="hiddenInput">Votre nom doit contenir plus de 2 caractères</span>
 				</label>
 				<label for="email">Email
-					<input type="email" class="text-input" name="email" id="email" aria-required="required"
-						minlength='2' required="required" aria-describedby="format_email" aria-invalid="false" />
-					<p id="format_email" class="hiddenInput">Votre email doit avoir un format d'email valide</p>
+					<input type="email" class="text-input" name="email" id="email" aria-required="true" minlength='2'
+						required="required" aria-describedby="format_email" aria-invalid="false" />
+					<span id="format_email" class="hiddenInput">Votre email doit avoir un format d'email valide</span>
 				</label>
 				<label for="message">Message
-					<textarea class="text-input" name="message" id="message" aria-required="required" minlength='20'
+					<textarea class="text-input" name="message" id="message" aria-required="true" minlength='20'
 						required="required" aria-describedby="format_message" aria-invalid="false"></textarea>
-					<p id="format_message	" class="hiddenInput">Votre message doit contenir plus de 20 caractères
-					</p>
+					<span id="format_message" class="hiddenInput">Votre message doit contenir plus de 20 caractères
+					</span>
 				</label>
 			</div>
 			<input id="form_submit" type="submit" value="Envoyer" />

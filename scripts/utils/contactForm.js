@@ -83,7 +83,6 @@ submitBtn.addEventListener('click', function(event){
         console.log(formDatas);
         this.form.reset();
         closeModal();   
-        addAlert('Votre formulaire a été envoyé')
     }
 })
 
