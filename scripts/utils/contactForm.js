@@ -8,22 +8,35 @@ const closedBtn = document.getElementById("modal-close-btn");
 const submitBtn = document.getElementById('form_submit');
 const logo = document.querySelector('.logo');
 let inputForm = document.querySelectorAll(".text-input");
+function desabledEvents(e){
+    e.stopPropagation();
+    e.preventDefault();
+}
 
 function displayModal() {
+    modal.classList.remove('pointerCancel');
     const contactButton = document.querySelector('.contact_button');
     modal.setAttribute('aria-hidden', false);
     modal.classList.remove('hidden');    
     wrapper.setAttribute('aria-hidden', true);
     closeBtn.focus();
     closeBtn.setAttribute('aria-hidden', false);
+    closeBtn.removeAttribute('tabindex', -1);
     wrapper.classList.add('opacity');
     body.classList.add('no-scroll');
     wrapper.setAttribute('aria-hidden', true);
     submitBtn.setAttribute('aria-hidden', false);
+    submitBtn.removeAttribute('tabindex', -1);
     wrapperLinks.setAttribute('tabindex', -1);
+    wrapper.setAttribute('tabindex', -1);
     contactButton.setAttribute('tabindex', -1);
     sortsLinks.setAttribute('tabindex', -1);
     sortsOpen.setAttribute('tabindex', -1);
+    contactButton.setAttribute('disabled', 'disabled');
+    sortsLinks.setAttribute('disabled', 'disabled');
+    sortsOpen.setAttribute('onclick', "return false");
+    wrapper.addEventListener("click",desabledEvents,true);
+    wrapper.classList.add('pointerCancel');
 }
 
 function closeModal() {
@@ -41,6 +54,12 @@ function closeModal() {
     sortsOpen.removeAttribute('tabindex', -1);
     submitBtn.setAttribute('aria-hidden', true);
     submitBtn.removeAttribute('aria-label', 'Votre formulaire contient des erreurs');
+    contactButton.removeAttribute('disabled', 'disabled')
+    sortsLinks.removeAttribute('disabled', 'disabled');
+    sortsOpen.removeAttribute('onclick', "return false");
+    wrapper.removeEventListener("click",desabledEvents,true);
+    wrapper.classList.remove('pointerCancel');
+    modal.classList.add('pointerCancel');
 }
 inputForm.forEach((input) => {
     input.addEventListener('blur', elt => {
@@ -64,6 +83,7 @@ submitBtn.addEventListener('click', function(event){
         console.log(formDatas);
         this.form.reset();
         closeModal();   
+        addAlert('Votre formulaire a été envoyé')
     }
 })
 

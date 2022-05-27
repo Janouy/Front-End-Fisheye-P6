@@ -17,7 +17,6 @@ async function getMedias() {
                 }
                 return acc
             }, []);
-
             //choix du model de class à executer avec le factory pattern carouselFactory si le media est une photo ou une video
             let mediasCarousel = mediasSortedById.map(media => carouselFactory(media, sortingMedias));
             let carouselMedia = document.getElementById("lightbox_modal");
@@ -46,7 +45,6 @@ async function getMedias() {
                 });
             }
             displayLightboxElt()
-
             // reload des données à l'incrémentation et tri pour la page photographer et la lightbox
             function sortingMedias(e){
                 e.preventDefault();
@@ -79,7 +77,7 @@ async function getMedias() {
             }
         })
         .catch(err => console.log('==== error ====', err));
-            
 }
 
 getMedias();
+
