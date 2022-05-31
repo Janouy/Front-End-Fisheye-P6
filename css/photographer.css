@@ -40,6 +40,11 @@
     cursor: pointer;
    
 }
+.contact_button:focus,
+.contact_button:hover{
+    background-color:#DB8876;
+    outline:none
+}
 
 .medias{
     display: grid;
@@ -56,6 +61,7 @@
 }
 
 .image_section, .video_section{
+    display: inline-block;
     width: 350px; 
     height: 350px;
     overflow: hidden; 
@@ -63,6 +69,8 @@
     border-radius: 5px;
     position: relative;
 }
+
+
 .photograph_image{
     position: absolute;
     left: 50%;
@@ -72,6 +80,11 @@
     -webkit-transform: translate(-50%,-50%);
         -ms-transform: translate(-50%,-50%);
             transform: translate(-50%,-50%);
+}
+
+.image_section:focus,
+.image_section:hover{
+    border: 2px solid black;
 }
 .photograph_video{
     min-width: auto;
@@ -105,7 +118,6 @@
 }
 
 .carousel{
-
     width: 95%;
     margin: 0 auto;
     overflow: hidden;
@@ -114,7 +126,6 @@
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    
 }
 
 .carousel-item{
@@ -282,27 +293,7 @@ form #message {
  footer .total_likes_content{
     display: flex;
  }
- /* .medias_sorting{
-    display: flex;
-    position: absolute;
-    left: 5%;
-    right: 0%;
-    top: 65%;
-    bottom: -146.38%;
-   
-    
- }
- .medias_sorting .sorting_title{
-    width: 7%;
-    margin-top: 0.5%;
- }
- .medias_sorting select{
-    background-color: #911c1c;
-    color: white; 
-    border-radius: 5px;
-    padding: 0.5%;
-    margin-top: 0.2%;
-} */
+
 .medias_sorting{
     margin-left: 5%;
     margin-top: 1%;
@@ -345,6 +336,7 @@ form #message {
     color: #FFF;
     background-color: #901C1C;
     text-decoration: none;
+    border-radius: 4px;
 }
 .header-dropdown-link-content:hover{
     background-color: #DB8876;
@@ -365,7 +357,7 @@ form #message {
 }
 
 .dropdown_menu .line{
-    width: 65%; 
+    width: 110px; 
     border-bottom: 1.5px solid #fff;
     border-top: 1.5px solid #fff;
     margin: auto;
@@ -374,9 +366,9 @@ form #message {
 .dropdown li {
     list-style-type: none;
     color: #FFF;
-    width: 65%;
+    width:  100px;
     margin: auto;
-    padding: 5px 15px 10px; 
+    padding: 5px 25px 10px; 
     
 }
 .dropdown a{
@@ -392,19 +384,16 @@ form #message {
 .dropdown li:focus {
     background-color: #DB8876;
     cursor: pointer;
-    border-radius: 4px;
+    border-radius: 0px 0px 4px 4px;
 }
 
-.sr-only {
-    border: 0;
-    clip: rect(0,0,0,0);
-    height: 1px;
-    margin: -1px;
-    overflow: hidden;
-    padding: 0;
-    position: absolute;
-    white-space: nowrap;
-    width: 1px;
+.dropdown_menu .line:focus,
+.dropdown_menu .line:hover{
+    width: 100px; 
+    border-bottom: 1.5px solid #fff;
+    border-top: 1.5px solid #fff;
+    margin: auto;
+    border-radius: 0px;
 }
 
 .hiddenInput {

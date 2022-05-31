@@ -61,29 +61,33 @@
 		<header class="header_modal">
 			<h2 id="modalTitle" class="modal-title"></h2>
 			<button id="modal-close-btn" aria-hidden="true" onclick="closeModal()"><img src="assets/icons/close.svg"
-					alt="Fermeture modale" /></button>
+					alt="fermeture modale" /></button>
 		</header>
 		<form>
 			<div role="group">
-				<label for="firstName">Prénom
-					<input type="text" class="text-input" name="firstName" id="firstName" aria-required="true"
-						minlength='2' required="required" aria-describedby="format_firstName" aria-invalid="false" />
+				<label for="firstName" id="prénom">Prénom
+					<input aria-labelledby="prénom" type="text" class="text-input" name="firstName" id="firstName"
+						aria-required="true" minlength='2' required="required" aria-describedby="format_firstName"
+						aria-invalid="false" />
 					<span id="format_firstName" class="hiddenInput">Votre prénom doit contenir plus de 2 caractères
 					</span>
 				</label>
-				<label for="lastName">Nom
-					<input type="text" class="text-input" name="lastName" id="lastName" aria-required="true"
-						minlength='2' required="required" aria-describedby="format_lastName" aria-invalid="false" />
+				<label for="lastName" id="nom">Nom
+					<input aria-labelledby="nom" type="text" class="text-input" name="lastName" id="lastName"
+						aria-required="true" minlength='2' required="required" aria-describedby="format_lastName"
+						aria-invalid="false" />
 					<span id="format_lastName" class="hiddenInput">Votre nom doit contenir plus de 2 caractères</span>
 				</label>
-				<label for="email">Email
-					<input type="email" class="text-input" name="email" id="email" aria-required="true" minlength='2'
-						required="required" aria-describedby="format_email" aria-invalid="false" />
+				<label for="email" id="email">Email
+					<input aria-labelledby="email" type="email" class="text-input" name="email" id="email"
+						aria-required="true" minlength='2' required="required" aria-describedby="format_email"
+						aria-invalid="false" />
 					<span id="format_email" class="hiddenInput">Votre email doit avoir un format d'email valide</span>
 				</label>
-				<label for="message">Message
-					<textarea class="text-input" name="message" id="message" aria-required="true" minlength='20'
-						required="required" aria-describedby="format_message" aria-invalid="false"></textarea>
+				<label for="message" id="votre message">Message
+					<textarea aria-labelledby="votre message" class="text-input" name="message" id="message"
+						aria-required="true" minlength='20' required="required" aria-describedby="format_message"
+						aria-invalid="false"></textarea>
 					<span id="format_message" class="hiddenInput">Votre message doit contenir plus de 20 caractères
 					</span>
 				</label>

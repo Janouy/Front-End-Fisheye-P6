@@ -58,6 +58,18 @@ class CarouselPicture{
         next_img.addEventListener('click',function() {
             goToNextSlide(carousel_item, imgs)
         })
+        document.addEventListener('keydown', function(e){
+            const keyCode = e.code;
+            if(keyCode == 'ArrowRight'){
+                goToNextSlide(carousel_item, imgs);
+            }
+        })
+        document.addEventListener('keydown', function(e){
+            const keyCode = e.code;
+            if(keyCode == 'ArrowLeft'){
+                goToPreviousSlide(carousel_item, imgs)
+            }
+        })
         return (slide);
         }
 

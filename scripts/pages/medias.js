@@ -18,7 +18,7 @@ async function getMedias() {
                 return acc
             }, []);
             //choix du model de class à executer avec le factory pattern carouselFactory si le media est une photo ou une video
-            let mediasCarousel = mediasSortedById.map(media => carouselFactory(media, sortingMedias));
+            let mediasCarousel = mediasSortedById.map(media => carouselFactory(media, sortingMedias)).sort(compare_likes);
             let carouselMedia = document.getElementById("lightbox_modal");
             //choix du model de class à executer avec le factory pattern mediasFactory si le media est une photo ou une video
             let medias = mediasSortedById.map(media => mediasFactory(media, sortingMedias, displayTotalLikes)).sort(compare_likes);

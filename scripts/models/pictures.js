@@ -22,13 +22,16 @@ class Picture{
         };
         const article = document.createElement( 'article' );
         article.classList.add('media_photographer_page');
-        const section = document.createElement('section');
-        section.classList.add('image_section');
-        const img = document.createElement( 'img' );
+        const linkImg = document.createElement('a');
+        linkImg.setAttribute('href', '#');  
+        linkImg.setAttribute('role', 'img'); 
+        linkImg.classList.add('image_section');                  
+        linkImg.setAttribute('aria-label', this.title + 'cliquer pour ouvrir dans la lightbox'); 
+        linkImg.setAttribute('onclick', `displayLightbox(${this.id})`);
+        const img = document.createElement('img');
         img.setAttribute("src", `${`assets/samplePhotos/${this.photographerId}/${this.image}`}`);
         img.setAttribute("alt", "");
         img.classList.add('photograph_image');
-        img.setAttribute('onclick', `displayLightbox(${this.id})`);
         const titleAndLikes = document.createElement( 'div' );
         titleAndLikes.classList.add('title_likes_media');
         const title = document.createElement('div');
@@ -45,8 +48,8 @@ class Picture{
         heart.classList.add('fa-solid','fa-heart');
         heart.addEventListener('click', this.incrThisLike.bind(this, likesOfMedia, totalLikes, heart));
         title.textContent = this.title;
-        article.appendChild(section);
-        section.appendChild(img);
+        article.appendChild(linkImg);
+        linkImg.appendChild(img);
         article.appendChild(titleAndLikes);
         titleAndLikes.appendChild(title)
         titleAndLikes.appendChild(likes)
