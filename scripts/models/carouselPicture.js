@@ -17,7 +17,8 @@ class CarouselPicture{
         button_left.classList.add("controls");
         button_left.classList.add("controls-left");
         button_left.setAttribute("role", "button");
-        const prev_img = document.createElement('span');
+        button_left.setAttribute("aria-hidden", "true");
+        const prev_img = document.createElement('span');    
         prev_img.classList.add('img');
         prev_img.classList.add('prev-image');
         const arrow_left = document.createElement('i');
@@ -27,6 +28,7 @@ class CarouselPicture{
         button_right.classList.add("controls");
         button_right.classList.add("controls-right");
         button_right.setAttribute("role", "button");
+        button_right.setAttribute("aria-hidden", "true");
         const next_img = document.createElement('span');
         next_img.classList.add('img');
         next_img.classList.add('next-image');

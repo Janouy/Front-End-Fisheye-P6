@@ -195,7 +195,6 @@
     align-items: center;
     justify-content: space-between;
     padding: 2%;
-    /* z-index: 2; */
     position: absolute;
     left: 50%;
     top: 50%;
@@ -295,6 +294,7 @@ form #message {
  }
 
 .medias_sorting{
+    display: flex;
     margin-left: 5%;
     margin-top: 1%;
 }
@@ -338,11 +338,7 @@ form #message {
     text-decoration: none;
     border-radius: 4px;
 }
-.header-dropdown-link-content:hover{
-    background-color: #DB8876;
-    cursor: pointer;
-    border-radius: 4px;
-}
+
 
 .dropdown_menu {
     background-color: #901C1C;
@@ -376,25 +372,6 @@ form #message {
     text-decoration: none;
 }
 
-.dropdown li:last-child {
-    border-bottom: none;
-}
-
-.dropdown li:hover,
-.dropdown li:focus {
-    background-color: #DB8876;
-    cursor: pointer;
-    border-radius: 0px 0px 4px 4px;
-}
-
-.dropdown_menu .line:focus,
-.dropdown_menu .line:hover{
-    width: 100px; 
-    border-bottom: 1.5px solid #fff;
-    border-top: 1.5px solid #fff;
-    margin: auto;
-    border-radius: 0px;
-}
 
 .hiddenInput {
     height: 1px;

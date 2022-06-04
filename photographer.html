@@ -46,7 +46,7 @@
 					</li>
 				</ul>
 			</section>
-			<section class="medias"></section>
+			<section class="medias" aria-hidden="false"></section>
 		</main>
 		<footer>
 			<section class="footer">
@@ -56,11 +56,10 @@
 			</section>
 		</footer>
 	</div>
-
 	<div id="contact_modal" class="modal hidden" aria-hidden="true" role="dialog" aria-describedby="modalTitle">
 		<header class="header_modal">
 			<h2 id="modalTitle" class="modal-title"></h2>
-			<button id="modal-close-btn" aria-hidden="true" onclick="closeModal()"><img src="assets/icons/close.svg"
+			<button id="modal-close-btn" onclick="closeModal()"><img src="assets/icons/close.svg"
 					alt="fermeture modale" /></button>
 		</header>
 		<form>
@@ -76,15 +75,17 @@
 					<input aria-labelledby="nom" type="text" class="text-input" name="lastName" id="lastName"
 						aria-required="true" minlength='2' required="required" aria-describedby="format_lastName"
 						aria-invalid="false" />
-					<span id="format_lastName" class="hiddenInput">Votre nom doit contenir plus de 2 caractères</span>
+					<span id="format_lastName" class="hiddenInput">Votre nom doit contenir plus de 2
+						caractères</span>
 				</label>
 				<label for="email" id="email">Email
 					<input aria-labelledby="email" type="email" class="text-input" name="email" id="email"
 						aria-required="true" minlength='2' required="required" aria-describedby="format_email"
 						aria-invalid="false" />
-					<span id="format_email" class="hiddenInput">Votre email doit avoir un format d'email valide</span>
+					<span id="format_email" class="hiddenInput">Votre email doit avoir un format d'email
+						valide</span>
 				</label>
-				<label for="message" id="votre message">Message
+				<label for="message" id="format_message">Message
 					<textarea aria-labelledby="votre message" class="text-input" name="message" id="message"
 						aria-required="true" minlength='20' required="required" aria-describedby="format_message"
 						aria-invalid="false"></textarea>
@@ -95,10 +96,12 @@
 			<input id="form_submit" type="submit" value="Envoyer" />
 		</form>
 	</div>
-
-	<div class="carousel hidden" aria-hidden="true" id="lightbox_modal" aria-label="image closeup view">
-		<button id='lightbox-close-btn' aria-hidden="true" onclick="closeLightbox()"><svg width="42" height="42"
-				viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
+	<div class="carousel hidden" aria-hidden="true" id="lightbox_modal" aria-label="image closeup view" role="dialog"
+		aria-describedby="lightboxTitle">
+		<span id="lightboxTitle" class="hiddenInput"> Lightbox ouverte appuyer sur les flèches pour faire défiler les
+			photos et vidéos</span>
+		<button id='lightbox-close-btn' onclick="closeLightbox()" aria-label="bouton de fermeture lightbox"><svg
+				width="42" height="42" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
 				<path
 					d="M42 4.23L37.77 0L21 16.77L4.23 0L0 4.23L16.77 21L0 37.77L4.23 42L21 25.23L37.77 42L42 37.77L25.23 21L42 4.23Z"
 					fill="#901C1C" />

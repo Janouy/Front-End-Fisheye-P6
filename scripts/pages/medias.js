@@ -17,11 +17,12 @@ async function getMedias() {
                 }
                 return acc
             }, []);
+
             //choix du model de class à executer avec le factory pattern carouselFactory si le media est une photo ou une video
             let mediasCarousel = mediasSortedById.map(media => carouselFactory(media, sortingMedias)).sort(compare_likes);
             let carouselMedia = document.getElementById("lightbox_modal");
             //choix du model de class à executer avec le factory pattern mediasFactory si le media est une photo ou une video
-            let medias = mediasSortedById.map(media => mediasFactory(media, sortingMedias, displayTotalLikes)).sort(compare_likes);
+            let medias = mediasSortedById.map(media => mediasFactory(media, sortingMedias, displayTotalLikes, displayLightbox, buttonFocus)).sort(compare_likes);
             // appel de la balise qui contiendra l'affichage des medias dans la lightbox
             const carouselUl = document.querySelector('.carousel');
             // appel de la balise qui contiendra l'affichage des medias sur la page photographe
@@ -48,6 +49,7 @@ async function getMedias() {
             // reload des données à l'incrémentation et tri pour la page photographer et la lightbox
             function sortingMedias(e){
                 e.preventDefault();
+                let actualTitleSorting  = document.querySelector('.select_sorting').innerHTML;
                 mediasSection.innerHTML = '';
                 mediasCarousel.forEach(() => {
                     carouselMedia.removeChild(carouselMedia.lastChild);
@@ -55,19 +57,35 @@ async function getMedias() {
                 if (this.innerHTML == 'Titre') {
                     medias.sort(compare_title);
                     mediasCarousel.sort(compare_title);
+                    closeMenu('Titre');
                 }
                 if (this.innerHTML == 'Popularité') {
                     medias.sort(compare_likes);
                     mediasCarousel.sort(compare_likes);
+                    closeMenu('Popularité');
                 } 
                 if (this.innerHTML == 'Date') {
                     medias.sort(compare_date);
                     mediasCarousel.sort(compare_date);
+                    closeMenu('Date');
                 }
+                this.innerHTML = actualTitleSorting;
                 displayMediasPhotographer();
                 displayLightboxElt();
             }
-          
+
+            function closeMenu(title){
+                let dropdownMenu = document.querySelector(".dropdown");
+                let titleSorting = document.querySelector('.select_sorting');
+                if(dropdownMenu.classList.contains('dropdown_menu')){
+                    dropdownMenu.classList.remove('dropdown_menu');
+                    dropdownMenu.classList.add('hidden');
+                    document.querySelector(".header-dropdown-link svg").setAttribute("transform","");
+                    titleSorting.innerHTML= title;
+                }
+                
+            }
+          // affichage de total des likes
             function displayTotalLikes(){
                 let totalLikes = 0;
                 for(let i=0; i<medias.length; i++){
@@ -75,6 +93,7 @@ async function getMedias() {
                 }
                 return totalLikes;
             }
+        
         })
         .catch(err => console.log('==== error ====', err));
 }

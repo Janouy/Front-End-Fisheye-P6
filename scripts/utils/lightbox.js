@@ -1,22 +1,29 @@
-const lightboxWrapper = document.getElementById("main-wrapper");
 const lightbox = document.getElementById("lightbox_modal");
-const closeLightboxBtn = document.getElementById("lightbox-close-btn");
-function desabledEvents(e){
-    e.stopPropagation();
-    e.preventDefault();
-}
 
-function displayLightbox(picture_id) {
+
+function displayLightbox() {
+    let image_section = document.querySelectorAll('.image_section');
+    let video_section = document.querySelectorAll('.video_section');
+    let media_photographer_page = document.querySelectorAll('.media_photographer_page');
+    image_section.forEach((img) => img.setAttribute('tabindex', -1));
+    video_section.forEach((img) => img.setAttribute('tabindex', -1));
+    image_section.forEach((img) => img.setAttribute('aria-hidden', true));
+    video_section.forEach((img) => img.setAttribute('aria-hidden', true));
+    image_section.forEach((img) => img.removeAttribute('aria-label'));
+    image_section.forEach((media) => media.classList.add('hidden'))
+    media_photographer_page.forEach((media) => media.setAttribute('aria-hidden', true))
+    media_photographer_page.forEach((media) => media.classList.add('hidden'))
+    document.querySelectorAll('.photograph_image').forEach((media)=> media.classList.add('hidden'));
+    document.querySelector('.medias').setAttribute('aria-hidden', true);
+    document.querySelector('.medias').classList.add('hidden');
     const contactButton = document.querySelector('.contact_button');
-    lightbox.setAttribute('aria-hidden', false);
+    lightbox.setAttribute('aria-hidden', false);    
     lightbox.classList.remove('hidden');    
-    lightboxWrapper.setAttribute('aria-hidden', true);
-    lightboxWrapper.classList.add('opacity');
+    wrapper.setAttribute('aria-hidden', true);
+    wrapper.classList.add('opacity');
     body.classList.add('no-scroll');
     lightbox.classList.remove('hidden');
-    closeLightboxBtn.focus();
-    closeLightboxBtn.setAttribute('aria-hidden', false);
-    const opened_media = document.getElementById(picture_id);
+    const opened_media = document.getElementById(this.id);
     opened_media.setAttribute('aria-hidden', false);
     opened_media.style.display='flex';
     let imgs_li = [...document.querySelectorAll(".carousel li")];
@@ -46,10 +53,10 @@ function displayLightbox(picture_id) {
 
 function closeLightbox() {
     const contactButton = document.querySelector('.contact_button');
-    closeLightboxBtn.setAttribute('aria-hidden', true);
     body.classList.remove('no-scroll');
-    lightboxWrapper.classList.remove('opacity');
+    wrapper.classList.remove('opacity');
     lightbox.classList.add('hidden');
+    lightbox.setAttribute('aria-hidden', true);
     const display_none_media = document.querySelectorAll('.carousel-item');
     display_none_media.forEach((elt) => elt.setAttribute('aria-hidden', true));
     display_none_media.forEach((elt) => elt.style.display = 'none');
@@ -78,3 +85,26 @@ document.addEventListener('keydown', function(e){
         closeLightbox();
     }
 })
+
+    // focus btn fermeture ligthbox
+    const closeLightboxBtn = document.getElementById("lightbox-close-btn");
+    function buttonFocus(){
+        closeLightboxBtn.focus();
+        document.querySelector('.medias').setAttribute('aria-hidden', true);
+        document.querySelector('.medias').classList.add('hidden');
+        document.querySelector('.medias').classList.remove('hidden')
+    // closeLightboxBtn.setAttribute('tabindex', -1);
+        let image_section = document.querySelectorAll('.image_section');
+        let video_section = document.querySelectorAll('.video_section');
+        image_section.forEach((img) => img.removeAttribute('tabindex', -1));
+        video_section.forEach((img) => img.removeAttribute('tabindex', -1));
+        image_section.forEach((img) => img.setAttribute('aria-hidden', false));
+        video_section.forEach((img) => img.setAttribute('aria-hidden', false));
+    }
+    closeLightboxBtn.addEventListener('focus', function(elt) {
+        elt.target.style.border = '2px solid black';
+        elt.target.style.borderRadius = '5px';
+    })
+
+
+

@@ -1,5 +1,5 @@
 class Picture{
-    constructor (data, sortingMedias, displayTotalLikes){
+    constructor (data, sortingMedias, displayTotalLikes, displayLightbox, buttonFocus){
         this.photographerId = data.photographerId;
         this.title = data.title;
         this.image = data.image;
@@ -10,6 +10,8 @@ class Picture{
         this.id= data.id;
         this.sortingMedias = sortingMedias;
         this.displayTotalLikes = displayTotalLikes;
+        this.displayLightbox = displayLightbox ;
+        this.buttonFocus = buttonFocus;
     }
 
     getUserCardDOM() {
@@ -22,12 +24,16 @@ class Picture{
         };
         const article = document.createElement( 'article' );
         article.classList.add('media_photographer_page');
+        article.setAttribute('aria-hidden', false);
         const linkImg = document.createElement('a');
         linkImg.setAttribute('href', '#');  
         linkImg.setAttribute('role', 'img'); 
         linkImg.classList.add('image_section');                  
         linkImg.setAttribute('aria-label', this.title + 'cliquer pour ouvrir dans la lightbox'); 
-        linkImg.setAttribute('onclick', `displayLightbox(${this.id})`);
+        linkImg.setAttribute('aria-hidden', 'false'); 
+        //linkImg.setAttribute('onclick', `displayLightbox(${this.id})`);
+        linkImg.addEventListener('click', this.displayLightbox.bind(this));
+        linkImg.addEventListener('click', this.buttonFocus.bind(this));
         const img = document.createElement('img');
         img.setAttribute("src", `${`assets/samplePhotos/${this.photographerId}/${this.image}`}`);
         img.setAttribute("alt", "");
@@ -68,7 +74,6 @@ class Picture{
     openMenu(e){
         e.preventDefault();
         let dropdownMenu = document.querySelector(".dropdown");
-       //avant le menu est caché
         if(dropdownMenu.classList.contains('hidden')){
             dropdownMenu.classList.remove('hidden');
             dropdownMenu.classList.add('dropdown_menu');
