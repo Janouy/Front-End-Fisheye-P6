@@ -34,10 +34,10 @@ function displayModal() {
     submitBtn.removeAttribute('tabindex', -1);
     wrapperLinks.setAttribute('tabindex', -1);
     wrapper.setAttribute('tabindex', -1);
-    contactButton.setAttribute('tabindex', -1);
+    //contactButton.setAttribute('tabindex', -1);
     sortsLinks.setAttribute('tabindex', -1);
     sortsOpen.setAttribute('tabindex', -1);
-    contactButton.setAttribute('disabled', 'disabled');
+    //contactButton.setAttribute('disabled', 'disabled');
     sortsLinks.setAttribute('disabled', 'disabled');
     sortsOpen.setAttribute('onclick', "return false");
     wrapper.addEventListener("click",desabledEvents,true);
@@ -55,6 +55,7 @@ function closeModal() {
     submitBtn.setAttribute('tabindex', -1);
     wrapperLinks.removeAttribute('tabindex', -1);
     contactButton.removeAttribute('tabindex', -1);
+    contactButton.focus();
     sortsLinks.removeAttribute('tabindex', -1);
     sortsOpen.removeAttribute('tabindex', -1);
     submitBtn.removeAttribute('aria-label', 'Votre formulaire contient des erreurs');

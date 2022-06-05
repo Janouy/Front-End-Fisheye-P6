@@ -22,7 +22,7 @@ async function getMedias() {
             let mediasCarousel = mediasSortedById.map(media => carouselFactory(media, sortingMedias)).sort(compare_likes);
             let carouselMedia = document.getElementById("lightbox_modal");
             //choix du model de class à executer avec le factory pattern mediasFactory si le media est une photo ou une video
-            let medias = mediasSortedById.map(media => mediasFactory(media, sortingMedias, displayTotalLikes, displayLightbox, buttonFocus)).sort(compare_likes);
+            let medias = mediasSortedById.map(media => mediasFactory(media, sortingMedias, displayTotalLikes, displayLightbox)).sort(compare_likes);
             // appel de la balise qui contiendra l'affichage des medias dans la lightbox
             const carouselUl = document.querySelector('.carousel');
             // appel de la balise qui contiendra l'affichage des medias sur la page photographe
@@ -75,13 +75,17 @@ async function getMedias() {
             }
 
             function closeMenu(title){
-                let dropdownMenu = document.querySelector(".dropdown");
-                let titleSorting = document.querySelector('.select_sorting');
+                const dropdownMenu = document.querySelector(".dropdown");
+                const titleSortingButton = document.querySelector('.select_sorting');
+                const titleSorting = document.querySelector('.header-dropdown-link-content');
                 if(dropdownMenu.classList.contains('dropdown_menu')){
                     dropdownMenu.classList.remove('dropdown_menu');
                     dropdownMenu.classList.add('hidden');
+                    titleSortingButton.classList.add('change-border');
                     document.querySelector(".header-dropdown-link svg").setAttribute("transform","");
-                    titleSorting.innerHTML= title;
+                    titleSortingButton.innerHTML= title;
+                    titleSorting.classList.remove('border');
+                    titleSorting.classList.add('change-border');
                 }
                 
             }

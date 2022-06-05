@@ -22,9 +22,9 @@
 			<section class="photograph-header"></section>
 			<section class="medias_sorting">
 				<div><span class="dropdown-link-title">Triez par</span>
-					<div class="header-dropdown-link-content">
-						<a href="#" class="select_sorting" role="listbox" aria-label="trier par popularité"
-							id="trier">Popularité</a>
+					<div class="header-dropdown-link-content border">
+						<button class="select_sorting" role="listbox" aria-label="trier par popularité"
+							id="trier">Popularité</button>
 						<button class="header-dropdown-link" role="button" aria-haspopup="listbox" aria-expanded="true"
 							aria-label="ouvrir ou fermer le menu déoulant des tris de photographies et videos">
 							<svg width="16" height="10" viewBox="0 0 16 10" fill="none"
@@ -37,12 +37,18 @@
 				</div>
 				<ul class="dropdown hidden" aria-labelledby="trier" role="listbox">
 					<li class="line">
-						<a href="#" tabindex="0" class="select_sorting" aria-label="trier par date" role="listbox"
-							aria-activedescendant>Date</a>
+
 					</li>
 					<li>
-						<a href="#" tabindex="0" class="select_sorting" aria-label="trier par Titre" role="listbox"
-							aria-activedescendant>Titre</a>
+						<button tabindex="0" class="select_sorting" aria-label="trier par date" role="listbox"
+							aria-activedescendant>Date</button>
+					</li>
+					<li class="line">
+
+					</li>
+					<li>
+						<button tabindex="0" class="select_sorting" aria-label="trier par Titre" role="listbox"
+							aria-activedescendant>Titre</button>
 					</li>
 				</ul>
 			</section>

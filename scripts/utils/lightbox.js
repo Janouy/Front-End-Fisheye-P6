@@ -1,21 +1,12 @@
 const lightbox = document.getElementById("lightbox_modal");
 
-
-function displayLightbox() {
+function displayLightbox(media_id) {
     let image_section = document.querySelectorAll('.image_section');
     let video_section = document.querySelectorAll('.video_section');
-    let media_photographer_page = document.querySelectorAll('.media_photographer_page');
     image_section.forEach((img) => img.setAttribute('tabindex', -1));
     video_section.forEach((img) => img.setAttribute('tabindex', -1));
     image_section.forEach((img) => img.setAttribute('aria-hidden', true));
     video_section.forEach((img) => img.setAttribute('aria-hidden', true));
-    image_section.forEach((img) => img.removeAttribute('aria-label'));
-    image_section.forEach((media) => media.classList.add('hidden'))
-    media_photographer_page.forEach((media) => media.setAttribute('aria-hidden', true))
-    media_photographer_page.forEach((media) => media.classList.add('hidden'))
-    document.querySelectorAll('.photograph_image').forEach((media)=> media.classList.add('hidden'));
-    document.querySelector('.medias').setAttribute('aria-hidden', true);
-    document.querySelector('.medias').classList.add('hidden');
     const contactButton = document.querySelector('.contact_button');
     lightbox.setAttribute('aria-hidden', false);    
     lightbox.classList.remove('hidden');    
@@ -23,7 +14,7 @@ function displayLightbox() {
     wrapper.classList.add('opacity');
     body.classList.add('no-scroll');
     lightbox.classList.remove('hidden');
-    const opened_media = document.getElementById(this.id);
+    const opened_media = document.getElementById(media_id);
     opened_media.setAttribute('aria-hidden', false);
     opened_media.style.display='flex';
     let imgs_li = [...document.querySelectorAll(".carousel li")];
@@ -52,6 +43,12 @@ function displayLightbox() {
 }
 
 function closeLightbox() {
+    let image_section = document.querySelectorAll('.image_section');
+    let video_section = document.querySelectorAll('.video_section');
+    image_section.forEach((img) => img.setAttribute('tabindex', 0));
+    video_section.forEach((img) => img.setAttribute('tabindex', 0));
+    image_section.forEach((img) => img.setAttribute('aria-hidden', false));
+    video_section.forEach((img) => img.setAttribute('aria-hidden', false));
     const contactButton = document.querySelector('.contact_button');
     body.classList.remove('no-scroll');
     wrapper.classList.remove('opacity');
@@ -75,6 +72,7 @@ function closeLightbox() {
     sortsOpen.removeAttribute('onclick', "return false");
     wrapper.removeEventListener("click",desabledEvents,true);
     wrapper.classList.remove('pointerCancel'); 
+    logoFocus();
 }
 
 
@@ -86,25 +84,31 @@ document.addEventListener('keydown', function(e){
     }
 })
 
-    // focus btn fermeture ligthbox
-    const closeLightboxBtn = document.getElementById("lightbox-close-btn");
-    function buttonFocus(){
-        closeLightboxBtn.focus();
-        document.querySelector('.medias').setAttribute('aria-hidden', true);
-        document.querySelector('.medias').classList.add('hidden');
-        document.querySelector('.medias').classList.remove('hidden')
-    // closeLightboxBtn.setAttribute('tabindex', -1);
-        let image_section = document.querySelectorAll('.image_section');
-        let video_section = document.querySelectorAll('.video_section');
-        image_section.forEach((img) => img.removeAttribute('tabindex', -1));
-        video_section.forEach((img) => img.removeAttribute('tabindex', -1));
-        image_section.forEach((img) => img.setAttribute('aria-hidden', false));
-        video_section.forEach((img) => img.setAttribute('aria-hidden', false));
+function buttonEventHandler(event) {
+    if (event.keyCode === 13) {
+        displayLightbox(this.dataset.id);
+        buttonFocus();
+    event.preventDefault();
     }
-    closeLightboxBtn.addEventListener('focus', function(elt) {
-        elt.target.style.border = '2px solid black';
-        elt.target.style.borderRadius = '5px';
-    })
+    
+  }
+// focus btn fermeture ligthbox
+const closeLightboxBtn = document.getElementById("lightbox-close-btn");
+function buttonFocus(){
+    closeLightboxBtn.focus();
+}
+
+function logoFocus(){
+    logo.setAttribute('tabindex', 0);
+    logo.focus();
+}
+
+closeLightboxBtn.addEventListener('focus', function(elt) {
+    elt.target.style.border = '2px solid black';
+    elt.target.style.borderRadius = '5px';
+})
+
+
 
 
 

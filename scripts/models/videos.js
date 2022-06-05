@@ -21,12 +21,14 @@ class Video{
         };
         const article = document.createElement( 'article' );
         article.classList.add('media_photographer_page');
-        const linkVideo = document.createElement('a');
+        const linkVideo = document.createElement('div');
         linkVideo.classList.add('video_section');
-        linkVideo.setAttribute('href', '#');  
-        linkVideo.setAttribute('role', 'img'); 
+        linkVideo.setAttribute('role', 'button'); 
+        linkVideo.setAttribute('tabindex', 0); 
+        linkVideo.setAttribute('data-id', this.id); 
         linkVideo.setAttribute('aria-label', this.title + 'cliquer pour ouvrir dans la lightbox'); 
         linkVideo.setAttribute('onclick', `displayLightbox(${this.id})`);
+        linkVideo.addEventListener('keydown', buttonEventHandler);
         const video = document.createElement( 'video' );    
         video.classList.add('photograph_video');
         const source = document.createElement('source');
@@ -43,11 +45,11 @@ class Video{
         const likesOfMedia = document.createElement('span');
         likesOfMedia.classList.add('likesOfMedia')
         likesOfMedia.textContent = this.likes;
-        const like = document.createElement('span');
+        const like = document.createElement('button');
         like.classList.add('like');
         const heart = document.createElement('i');
         heart.classList.add('fa-solid','fa-heart');
-        heart.addEventListener('click', this.incrThisLike.bind(this, likesOfMedia, totalLikes, heart));
+        like.addEventListener('click', this.incrThisLike.bind(this, likesOfMedia, totalLikes));
         title.textContent = this.title;
         article.appendChild(linkVideo);
         linkVideo.appendChild(video);
@@ -61,12 +63,11 @@ class Video{
         return (article);
     }
 
-    incrThisLike(likesOfMedia, totalLikes, heart){
+    incrThisLike(likesOfMedia, totalLikes){
         likesOfMedia.textContent = this.likesIncr;
         this.likes = this.likesIncr;
         totalLikes.innerHTML = this.displayTotalLikes();
     }
-
 
 }
 

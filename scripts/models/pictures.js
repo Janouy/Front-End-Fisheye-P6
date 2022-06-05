@@ -1,5 +1,5 @@
 class Picture{
-    constructor (data, sortingMedias, displayTotalLikes, displayLightbox, buttonFocus){
+    constructor (data, sortingMedias, displayTotalLikes, displayLightbox){
         this.photographerId = data.photographerId;
         this.title = data.title;
         this.image = data.image;
@@ -11,7 +11,6 @@ class Picture{
         this.sortingMedias = sortingMedias;
         this.displayTotalLikes = displayTotalLikes;
         this.displayLightbox = displayLightbox ;
-        this.buttonFocus = buttonFocus;
     }
 
     getUserCardDOM() {
@@ -26,14 +25,15 @@ class Picture{
         article.classList.add('media_photographer_page');
         article.setAttribute('aria-hidden', false);
         const linkImg = document.createElement('a');
-        linkImg.setAttribute('href', '#');  
-        linkImg.setAttribute('role', 'img'); 
-        linkImg.classList.add('image_section');                  
+        linkImg.classList.add('image_section');  
+        linkImg.setAttribute('data-id', this.id); 
+        linkImg.setAttribute('role', 'button'); 
+        linkImg.setAttribute('tabindex', 0);
         linkImg.setAttribute('aria-label', this.title + 'cliquer pour ouvrir dans la lightbox'); 
         linkImg.setAttribute('aria-hidden', 'false'); 
-        //linkImg.setAttribute('onclick', `displayLightbox(${this.id})`);
-        linkImg.addEventListener('click', this.displayLightbox.bind(this));
-        linkImg.addEventListener('click', this.buttonFocus.bind(this));
+        linkImg.setAttribute('onclick', `displayLightbox(${this.id})`);
+        linkImg.addEventListener('keydown', buttonEventHandler);
+        linkImg.addEventListener('click', this.buttonFocus);
         const img = document.createElement('img');
         img.setAttribute("src", `${`assets/samplePhotos/${this.photographerId}/${this.image}`}`);
         img.setAttribute("alt", "");
@@ -48,11 +48,11 @@ class Picture{
         const likesOfMedia = document.createElement('span');
         likesOfMedia.classList.add('likesOfMedia')
         likesOfMedia.textContent = this.likes;
-        const like = document.createElement('span');
+        const like = document.createElement('button');
         like.classList.add('like');
         const heart = document.createElement('i');
         heart.classList.add('fa-solid','fa-heart');
-        heart.addEventListener('click', this.incrThisLike.bind(this, likesOfMedia, totalLikes, heart));
+        like.addEventListener('click', this.incrThisLike.bind(this, likesOfMedia, totalLikes));
         title.textContent = this.title;
         article.appendChild(linkImg);
         linkImg.appendChild(img);
@@ -65,26 +65,29 @@ class Picture{
         return (article);
     }
 
-    incrThisLike(likesOfMedia, totalLikes, heart){
+    incrThisLike(likesOfMedia, totalLikes){
         likesOfMedia.textContent = this.likesIncr;
         this.likes = this.likesIncr;
         totalLikes.innerHTML = this.displayTotalLikes();
     }
-
     openMenu(e){
         e.preventDefault();
-        let dropdownMenu = document.querySelector(".dropdown");
+        const dropdownMenu = document.querySelector(".dropdown");
+        const titleSorting = document.querySelector('.header-dropdown-link-content');
         if(dropdownMenu.classList.contains('hidden')){
             dropdownMenu.classList.remove('hidden');
             dropdownMenu.classList.add('dropdown_menu');
             document.querySelector(".header-dropdown-link svg").setAttribute("transform","rotate(180)");
+            titleSorting.classList.remove('border');
+            titleSorting.classList.add('change-border');
             
         }else if(dropdownMenu.classList.contains('dropdown_menu')){
             dropdownMenu.classList.remove('dropdown_menu');
             dropdownMenu.classList.add('hidden');
             document.querySelector(".header-dropdown-link svg").setAttribute("transform","");
+            titleSorting.classList.add('border');
+            titleSorting.classList.remove('change-border');
         }
-         
     }
 }
 
