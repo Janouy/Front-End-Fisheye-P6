@@ -21,28 +21,25 @@ class Photographers{
         img.setAttribute("src", `${`assets/Samplephotos/PhotographersIDPhotos/${this.portrait}`}`)
         img.setAttribute("alt", "")
         img.classList.add('photograph_item');
-        const h2 = document.createElement( 'h2' );
+        const h2 = document.createElement('h2');
         h2.textContent = this.name;
-        h2.setAttribute("aria-label", 'Nom du phorographe: '+ this.name)
-        const pLocation = document.createElement( 'p' );
-        pLocation.classList.add('location');
-        pLocation.textContent = this.country + ', ' + this.city;
-        pLocation.setAttribute("aria-label", 'Pays du photographe: '+ this.country + 'et ville du photographe: '+ this.city )
-        const pTagline = document.createElement( 'p' );
-        pTagline.classList.add('tagline');
-        pTagline.textContent = this.tagline;
-        pTagline.setAttribute("aria-label", 'Slogan du photographe: '+ this.tagline)
-        const pPrice = document.createElement( 'p' );
-        pPrice.classList.add('price');
-        pPrice.textContent = this.price + "€/jour";
-        pPrice.setAttribute("aria-label", 'Tarif du photographe: '+ this.price + ' euros par jour')
+        h2.setAttribute("aria-label", this.name)
+        const location = document.createElement( 'p' );
+        location.classList.add('location');
+        location.textContent = this.country + ', ' + this.city;
+        const tagline = document.createElement( 'p' );
+        tagline.classList.add('tagline');
+        tagline.textContent = this.tagline;
+        const price = document.createElement( 'p' );
+        price.classList.add('price');
+        price.textContent = this.price + "€/jour";
         article.appendChild(linkToPersonalPage);
         article.appendChild(divDescrPhotographers);
         linkToPersonalPage.appendChild(img)
         linkToPersonalPage.appendChild(h2);
-        divDescrPhotographers.appendChild(pLocation);
-        divDescrPhotographers.appendChild(pTagline);
-        divDescrPhotographers.appendChild(pPrice);
+        divDescrPhotographers.appendChild(location);
+        divDescrPhotographers.appendChild(tagline);
+        divDescrPhotographers.appendChild(price);
         return (article);
     }
         

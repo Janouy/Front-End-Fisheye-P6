@@ -34,10 +34,10 @@ function displayModal() {
     submitBtn.removeAttribute('tabindex', -1);
     wrapperLinks.setAttribute('tabindex', -1);
     wrapper.setAttribute('tabindex', -1);
-    //contactButton.setAttribute('tabindex', -1);
+    contactButton.setAttribute('tabindex', -1);
     sortsLinks.setAttribute('tabindex', -1);
     sortsOpen.setAttribute('tabindex', -1);
-    //contactButton.setAttribute('disabled', 'disabled');
+    contactButton.setAttribute('disabled', 'disabled');
     sortsLinks.setAttribute('disabled', 'disabled');
     sortsOpen.setAttribute('onclick', "return false");
     wrapper.addEventListener("click",desabledEvents,true);
@@ -90,7 +90,6 @@ submitBtn.addEventListener('click', function(event){
         closeModal();   
     }
 })
-
 
 closeBtn.addEventListener('focus', function(elt) {
     elt.target.style.border = '2px solid black';

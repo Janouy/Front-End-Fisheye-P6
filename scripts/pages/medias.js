@@ -1,4 +1,3 @@
-
 async function getMedias() {
     
     fetch('../../data/photographers.json')

@@ -33,7 +33,7 @@ class Picture{
         linkImg.setAttribute('aria-hidden', 'false'); 
         linkImg.setAttribute('onclick', `displayLightbox(${this.id})`);
         linkImg.addEventListener('keydown', buttonEventHandler);
-        linkImg.addEventListener('click', this.buttonFocus);
+        linkImg.addEventListener('click', buttonFocus);
         const img = document.createElement('img');
         img.setAttribute("src", `${`assets/samplePhotos/${this.photographerId}/${this.image}`}`);
         img.setAttribute("alt", "");
@@ -50,6 +50,7 @@ class Picture{
         likesOfMedia.textContent = this.likes;
         const like = document.createElement('button');
         like.classList.add('like');
+        like.setAttribute('aria-label', 'Cliquez pour liker la photo' + this.title)
         const heart = document.createElement('i');
         heart.classList.add('fa-solid','fa-heart');
         like.addEventListener('click', this.incrThisLike.bind(this, likesOfMedia, totalLikes));

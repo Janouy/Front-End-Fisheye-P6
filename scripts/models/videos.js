@@ -21,7 +21,7 @@ class Video{
         };
         const article = document.createElement( 'article' );
         article.classList.add('media_photographer_page');
-        const linkVideo = document.createElement('div');
+        const linkVideo = document.createElement('a');
         linkVideo.classList.add('video_section');
         linkVideo.setAttribute('role', 'button'); 
         linkVideo.setAttribute('tabindex', 0); 
@@ -50,6 +50,7 @@ class Video{
         const heart = document.createElement('i');
         heart.classList.add('fa-solid','fa-heart');
         like.addEventListener('click', this.incrThisLike.bind(this, likesOfMedia, totalLikes));
+        like.setAttribute('aria-label', 'Cliquez pour liker la video' + this.title)
         title.textContent = this.title;
         article.appendChild(linkVideo);
         linkVideo.appendChild(video);
