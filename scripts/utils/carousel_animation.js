@@ -1,4 +1,7 @@
 let currentItemPosition = 0;
+let carousel = document.querySelector('.carousel')
+let carousel_item = document.getElementsByClassName('carousel-item');
+let imgs = [...document.querySelectorAll(".carousel li")];
 
 const goToNextSlide = (carousel_item, imgs) => {
     imgs.forEach((item, idx) => {
@@ -55,4 +58,19 @@ const setNodeAttributes = (lastItem, currentItem) => {
     $(currentItem).css('display', 'flex')
     $(lastItem).attr('aria-hidden', 'true')
     $(currentItem).attr('aria-hidden', 'false')
+}
+
+if(carousel.getAttribute('aria-hidden', false)){
+    document.addEventListener('keydown', function(e){
+        const keyCode = e.code;
+        if(keyCode == 'ArrowRight'){
+            goToNextSlide(carousel_item, imgs);
+        }
+    })
+    document.addEventListener('keydown', function(e){
+        const keyCode = e.code;
+        if(keyCode == 'ArrowLeft'){
+            goToPreviousSlide(carousel_item, imgs)
+        }
+    })
 }

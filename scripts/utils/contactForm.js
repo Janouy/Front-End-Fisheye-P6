@@ -1,11 +1,11 @@
 const body = document.getElementById('body');
-const modal = document.getElementById("contact_modal");
+const modal = document.getElementById("contact-modal");
 const wrapper = document.getElementById("main-wrapper");
 const wrapperLinks = document.querySelector("#main-wrapper a");
 const sortsLinks = document.querySelector(".header-dropdown-link-content a, .header-dropdown-link");
 const sortsOpen = document.querySelector(".header-dropdown-link");
 const closeBtn = document.getElementById("modal-close-btn");
-const submitBtn = document.getElementById('form_submit');
+const submitBtn = document.getElementById('form-submit');
 const logo = document.querySelector('.logo');
 let inputForm = document.querySelectorAll(".text-input");
 function desabledEvents(e){
@@ -14,9 +14,9 @@ function desabledEvents(e){
 }
 
 function displayModal() {
-    const contactButton = document.querySelector('.contact_button');
-    let image_section = document.querySelectorAll('.image_section');
-    let video_section = document.querySelectorAll('.video_section');
+    const contactButton = document.querySelector('.contact-button');
+    let image_section = document.querySelectorAll('.image-section');
+    let video_section = document.querySelectorAll('.video-section');
     image_section.forEach((img) => img.setAttribute('tabindex', -1));
     video_section.forEach((img) => img.setAttribute('tabindex', -1));
     image_section.forEach((img) => img.setAttribute('aria-hidden', true));
@@ -45,12 +45,13 @@ function displayModal() {
 }
 
 function closeModal() {
-    const contactButton = document.querySelector('.contact_button');
+    const contactButton = document.querySelector('.contact-button');
     body.classList.remove('no-scroll');
     modal.classList.add('hidden');
     modal.setAttribute('aria-hidden', true);
     modal.setAttribute('tabindex', -1);
     wrapper.classList.remove('opacity');
+    wrapper.setAttribute('aria-hidden', false);
     closeBtn.setAttribute('tabindex', -1);
     submitBtn.setAttribute('tabindex', -1);
     wrapperLinks.removeAttribute('tabindex', -1);
@@ -65,6 +66,7 @@ function closeModal() {
     wrapper.removeEventListener("click",desabledEvents,true);
     wrapper.classList.remove('pointerCancel');
     modal.classList.add('pointerCancel');
+    logoFocus();
 }
 inputForm.forEach((input) => {
     input.addEventListener('blur', elt => {

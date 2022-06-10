@@ -10,7 +10,6 @@ class CarouselPicture{
     }
 
     getUserCardDOM() {
-        //document.querySelector('select').addEventListener('change', this.sortingMedias)
         const slide = document.createElement('div');
         slide.classList.add('slide');
         const button_left = document.createElement('div');
@@ -36,19 +35,25 @@ class CarouselPicture{
         arrow_right.classList.add('fa-solid','fa-angle-right');
         arrow_right.setAttribute("aria-hidden", false);
         const source_content = document.createElement('div');
-        source_content.classList.add('source_content');
+        source_content.classList.add('source-content');
         const source = document.createElement('img');
         source.setAttribute("src", `${`assets/samplePhotos/${this.photographerId}/${this.image}`}`);
+        source.setAttribute('alt', this.title)
+        const title = document.createElement('div');
+        title.classList.add('title-lightbox')
+        title.innerHTML = this.title;
         slide.appendChild(button_left);
         slide.appendChild(source_content);
         slide.appendChild(button_right);
         source_content.appendChild(source);
+        source_content.appendChild(title);
         button_left.appendChild(prev_img);
         button_right.appendChild(next_img);
         prev_img.appendChild(arrow_left);
         next_img.appendChild(arrow_right);
 
         let carousel_item = document.getElementsByClassName('carousel-item');
+        
         let imgs = [...document.querySelectorAll(".carousel li")];
         imgs.forEach((item, idx) => {
             item.style.display = "none";
@@ -59,18 +64,6 @@ class CarouselPicture{
         })
         next_img.addEventListener('click',function() {
             goToNextSlide(carousel_item, imgs)
-        })
-        document.addEventListener('keydown', function(e){
-            const keyCode = e.code;
-            if(keyCode == 'ArrowRight'){
-                goToNextSlide(carousel_item, imgs);
-            }
-        })
-        document.addEventListener('keydown', function(e){
-            const keyCode = e.code;
-            if(keyCode == 'ArrowLeft'){
-                goToPreviousSlide(carousel_item, imgs)
-            }
         })
         return (slide);
         }

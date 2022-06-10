@@ -34,18 +34,23 @@ class CarouselVideo{
         arrow_right.classList.add('fa-solid','fa-angle-right');
         arrow_right.setAttribute("aria-hidden", false);
         const source_content = document.createElement('div');
-        source_content.classList.add('source_content');
+        source_content.classList.add('source-content');
         const video = document.createElement( 'video' );
         video.setAttribute("controls", true);
         video.setAttribute("playsinline", true);
         const source = document.createElement('source');
         source.setAttribute("src", `${`assets/samplePhotos/${this.photographerId}/${this.video}`}`);
+        source.setAttribute('alt', this.title)
         source.setAttribute("type", "video/mp4");
         source.setAttribute("autoplay", false);
+        const title = document.createElement('div');
+        title.classList.add('title-lightbox')
+        title.innerHTML = this.title;
         slide.appendChild(button_left);
         slide.appendChild(source_content);
         slide.appendChild(button_right);
         source_content.appendChild(video);
+        source_content.appendChild(title);
         video.appendChild(source);
         button_left.appendChild(prev_img);
         button_right.appendChild(next_img);

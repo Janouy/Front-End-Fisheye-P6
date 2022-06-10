@@ -1,13 +1,13 @@
-const lightbox = document.getElementById("lightbox_modal");
+const lightbox = document.getElementById("lightbox-modal");
 
 function displayLightbox(media_id) {
-    let image_section = document.querySelectorAll('.image_section');
-    let video_section = document.querySelectorAll('.video_section');
+    let image_section = document.querySelectorAll('.image-section');
+    let video_section = document.querySelectorAll('.video-section');
     image_section.forEach((img) => img.setAttribute('tabindex', -1));
     video_section.forEach((img) => img.setAttribute('tabindex', -1));
     image_section.forEach((img) => img.setAttribute('aria-hidden', true));
     video_section.forEach((img) => img.setAttribute('aria-hidden', true));
-    const contactButton = document.querySelector('.contact_button');
+    const contactButton = document.querySelector('.contact-button');
     lightbox.setAttribute('aria-hidden', false);    
     lightbox.classList.remove('hidden');    
     wrapper.setAttribute('aria-hidden', true);
@@ -43,13 +43,13 @@ function displayLightbox(media_id) {
 }
 
 function closeLightbox() {
-    let image_section = document.querySelectorAll('.image_section');
-    let video_section = document.querySelectorAll('.video_section');
+    let image_section = document.querySelectorAll('.image-section');
+    let video_section = document.querySelectorAll('.video-section');
     image_section.forEach((img) => img.setAttribute('tabindex', 0));
     video_section.forEach((img) => img.setAttribute('tabindex', 0));
     image_section.forEach((img) => img.setAttribute('aria-hidden', false));
     video_section.forEach((img) => img.setAttribute('aria-hidden', false));
-    const contactButton = document.querySelector('.contact_button');
+    const contactButton = document.querySelector('.contact-button');
     body.classList.remove('no-scroll');
     wrapper.classList.remove('opacity');
     lightbox.classList.add('hidden');

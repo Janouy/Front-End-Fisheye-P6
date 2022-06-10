@@ -19,7 +19,7 @@ async function getMedias() {
 
             //choix du model de class à executer avec le factory pattern carouselFactory si le media est une photo ou une video
             let mediasCarousel = mediasSortedById.map(media => carouselFactory(media, sortingMedias)).sort(compare_likes);
-            let carouselMedia = document.getElementById("lightbox_modal");
+            let carouselMedia = document.getElementById("lightbox-modal");
             //choix du model de class à executer avec le factory pattern mediasFactory si le media est une photo ou une video
             let medias = mediasSortedById.map(media => mediasFactory(media, sortingMedias, displayTotalLikes, displayLightbox)).sort(compare_likes);
             // appel de la balise qui contiendra l'affichage des medias dans la lightbox
@@ -48,7 +48,8 @@ async function getMedias() {
             // reload des données à l'incrémentation et tri pour la page photographer et la lightbox
             function sortingMedias(e){
                 e.preventDefault();
-                let actualTitleSorting  = document.querySelector('.select_sorting').innerHTML;
+                let actualTitleSorting  = document.querySelector('.select-sorting').innerHTML;
+                let sortingButton = document.querySelector('.select-sorting-title');
                 mediasSection.innerHTML = '';
                 mediasCarousel.forEach(() => {
                     carouselMedia.removeChild(carouselMedia.lastChild);
@@ -57,16 +58,19 @@ async function getMedias() {
                     medias.sort(compare_title);
                     mediasCarousel.sort(compare_title);
                     closeMenu('Titre');
+                    sortingButton.focus();
                 }
                 if (this.innerHTML == 'Popularité') {
                     medias.sort(compare_likes);
                     mediasCarousel.sort(compare_likes);
                     closeMenu('Popularité');
+                    sortingButton.focus();
                 } 
                 if (this.innerHTML == 'Date') {
                     medias.sort(compare_date);
                     mediasCarousel.sort(compare_date);
                     closeMenu('Date');
+                    sortingButton.focus();
                 }
                 this.innerHTML = actualTitleSorting;
                 displayMediasPhotographer();
@@ -75,16 +79,16 @@ async function getMedias() {
 
             function closeMenu(title){
                 const dropdownMenu = document.querySelector(".dropdown");
-                const titleSortingButton = document.querySelector('.select_sorting');
+                const titleSortingButton = document.querySelector('.select-sorting');
                 const titleSorting = document.querySelector('.header-dropdown-link-content');
-                if(dropdownMenu.classList.contains('dropdown_menu')){
-                    dropdownMenu.classList.remove('dropdown_menu');
+                if(dropdownMenu.classList.contains('dropdown-menu')){
+                    dropdownMenu.classList.remove('dropdown-menu');
                     dropdownMenu.classList.add('hidden');
-                    titleSortingButton.classList.add('change-border');
+                    titleSortingButton.classList.add('border');
                     document.querySelector(".header-dropdown-link svg").setAttribute("transform","");
                     titleSortingButton.innerHTML= title;
-                    titleSorting.classList.remove('border');
-                    titleSorting.classList.add('change-border');
+                    titleSorting.classList.remove('change-border');
+                    titleSorting.classList.add('border');
                 }
                 
             }

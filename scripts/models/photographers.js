@@ -11,26 +11,25 @@ class Photographers{
   
     getUserCardDOM() {
         const article = document.createElement( 'article' );
-        article.classList.add('photograph_card');
-        const divDescrPhotographers = document.createElement( 'div' );
-        divDescrPhotographers.classList.add('descrPhotographers')
+        article.classList.add('photograph-card');
+        const divDescrPhotographers = document.createElement( 'p' );
+        divDescrPhotographers.classList.add('descr-photographers')
         const linkToPersonalPage = document.createElement('a')
         linkToPersonalPage.setAttribute("href", 'photographer.html?' + this.id)
         linkToPersonalPage.setAttribute("aria-label", this.name)
         const img = document.createElement( 'img' );
         img.setAttribute("src", `${`assets/Samplephotos/PhotographersIDPhotos/${this.portrait}`}`)
         img.setAttribute("alt", "")
-        img.classList.add('photograph_item');
+        img.classList.add('photograph-item');
         const h2 = document.createElement('h2');
         h2.textContent = this.name;
-        h2.setAttribute("aria-label", this.name)
-        const location = document.createElement( 'p' );
+        const location = document.createElement( 'span' );
         location.classList.add('location');
         location.textContent = this.country + ', ' + this.city;
-        const tagline = document.createElement( 'p' );
+        const tagline = document.createElement( 'span' );
         tagline.classList.add('tagline');
         tagline.textContent = this.tagline;
-        const price = document.createElement( 'p' );
+        const price = document.createElement( 'span' );
         price.classList.add('price');
         price.textContent = this.price + "€/jour";
         article.appendChild(linkToPersonalPage);

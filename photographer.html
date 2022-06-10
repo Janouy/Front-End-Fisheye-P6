@@ -1,5 +1,7 @@
 <!DOCTYPE html>
+
 <html lang="fr">
+
 
 <head>
 	<link href="css/style.css" rel="stylesheet" type="text/css" />
@@ -12,21 +14,21 @@
 </head>
 
 <body id="body">
-	<div id="main-wrapper">
+	<div id="main-wrapper" aria-hidden="false">
 		<header>
 			<a href="index.html" tabindex=0 aria-label="Fisheye Home page">
 				<img src="assets/images/logo.png" class="logo" alt="Fisheye Home Page" />
 			</a>
 		</header>
 		<main>
-			<section class="photograph-header"></section>
-			<section class="medias_sorting">
+			<div class="photograph-header"></div>
+			<div class="medias-sorting">
 				<div><span class="dropdown-link-title">Triez par</span>
 					<div class="header-dropdown-link-content border">
-						<button class="select_sorting" role="listbox" aria-label="trier par popularité"
-							id="trier">Popularité</button>
-						<button class="header-dropdown-link" role="button" aria-haspopup="listbox" aria-expanded="true"
-							aria-label="ouvrir ou fermer le menu déoulant des tris de photographies et videos">
+						<div tabindex="0" class="select-sorting select-sorting-title">Popularité
+						</div>
+						<button class="header-dropdown-link" aria-haspopup="listbox" aria-label="trie des médias"
+							aria-expanded="true" id="exp-button">
 							<svg width="16" height="10" viewBox="0 0 16 10" fill="none"
 								xmlns="http://www.w3.org/2000/svg">
 								<path d="M1 1.33447L8.00465 8.13311L14.5973 1.33447" stroke="#E9E9E9"
@@ -35,35 +37,29 @@
 						</button>
 					</div>
 				</div>
-				<ul class="dropdown hidden" aria-labelledby="trier" role="listbox">
+				<ul id="exp-elem" class="dropdown hidden" aria-labelledby="exp-elem exp-button" role="listbox">
 					<li class="line">
-
+						<button tabindex="0" role='option' class="select-sorting" aria-activedescendant
+							aria-selected="false">Date</button>
 					</li>
 					<li>
-						<button tabindex="0" class="select_sorting" aria-label="trier par date" role="listbox"
-							aria-activedescendant>Date</button>
-					</li>
-					<li class="line">
-
-					</li>
-					<li>
-						<button tabindex="0" class="select_sorting" aria-label="trier par Titre" role="listbox"
-							aria-activedescendant>Titre</button>
+						<button tabindex="0" role='option' class="select-sorting" aria-activedescendant
+							aria-selected="false">Titre</button>
 					</li>
 				</ul>
-			</section>
-			<section class="medias" aria-hidden="false"></section>
+			</div>
+			<div class="medias" aria-hidden="false"></div>
 		</main>
 		<footer>
-			<section class="footer">
-				<div class="total_likes_content">
-					<div class='total_likes'> </div><span><i class="fa-solid fa-heart"></i></span>
+			<div class="footer">
+				<div class="total-likes-content">
+					<div class='total-likes'> </div><span><i class="fa-solid fa-heart"></i></span>
 				</div>
-			</section>
+			</div>
 		</footer>
 	</div>
-	<div id="contact_modal" class="modal hidden" aria-hidden="true" role="dialog" aria-describedby="modalTitle">
-		<header class="header_modal">
+	<div id="contact-modal" class="modal hidden" aria-hidden="true" role="dialog" aria-labelledby="modalTitle">
+		<header class="header-modal">
 			<h2 id="modalTitle" class="modal-title"></h2>
 			<button id="modal-close-btn" onclick="closeModal()"><img src="assets/icons/close.svg"
 					alt="fermeture modale" /></button>
@@ -72,37 +68,34 @@
 			<div role="group">
 				<label for="firstName" id="prénom">Prénom
 					<input aria-labelledby="prénom" type="text" class="text-input" name="firstName" id="firstName"
-						aria-required="true" minlength='2' required="required" aria-describedby="format_firstName"
-						aria-invalid="false" />
-					<span id="format_firstName" class="hiddenInput">Votre prénom doit contenir plus de 2 caractères
+						minlength='2' required="required" aria-describedby="format-firstName" aria-invalid="false" />
+					<span id="format-firstName" class="hiddenInput">Votre prénom doit contenir plus de 2 caractères
 					</span>
 				</label>
 				<label for="lastName" id="nom">Nom
 					<input aria-labelledby="nom" type="text" class="text-input" name="lastName" id="lastName"
-						aria-required="true" minlength='2' required="required" aria-describedby="format_lastName"
-						aria-invalid="false" />
-					<span id="format_lastName" class="hiddenInput">Votre nom doit contenir plus de 2
+						minlength='2' required="required" aria-describedby="format-lastName" aria-invalid="false" />
+					<span id="format-lastName" class="hiddenInput">Votre nom doit contenir plus de 2
 						caractères</span>
 				</label>
-				<label for="email" id="email">Email
-					<input aria-labelledby="email" type="email" class="text-input" name="email" id="email"
-						aria-required="true" minlength='2' required="required" aria-describedby="format_email"
-						aria-invalid="false" />
-					<span id="format_email" class="hiddenInput">Votre email doit avoir un format d'email
+				<label for="email" id="emailInput">Email
+					<input aria-labelledby="emailInput" type="email" class="text-input" name="email" id="email"
+						minlength='2' required="required" aria-describedby="format-email" aria-invalid="false" />
+					<span id="format-email" class="hiddenInput">Votre email doit avoir un format d'email
 						valide</span>
 				</label>
-				<label for="message" id="format_message">Message
-					<textarea aria-labelledby="votre message" class="text-input" name="message" id="message"
-						aria-required="true" minlength='20' required="required" aria-describedby="format_message"
+				<label for="message" id="messageInput">Message
+					<textarea aria-labelledby="messageInput" class="text-input" name="message" id="message"
+						minlength='20' required="required" aria-describedby="format-message"
 						aria-invalid="false"></textarea>
-					<span id="format_message" class="hiddenInput">Votre message doit contenir plus de 20 caractères
+					<span id="format-message" class="hiddenInput">Votre message doit contenir plus de 20 caractères
 					</span>
 				</label>
 			</div>
-			<input id="form_submit" type="submit" value="Envoyer" />
+			<input id="form-submit" type="submit" value="Envoyer" />
 		</form>
 	</div>
-	<div class="carousel hidden" aria-hidden="true" id="lightbox_modal" aria-label="image closeup view" role="dialog"
+	<div class="carousel hidden" aria-hidden="true" id="lightbox-modal" aria-label="image closeup view" role="dialog"
 		aria-describedby="lightboxTitle">
 		<span id="lightboxTitle" class="hiddenInput"> Lightbox ouverte appuyer sur les flèches pour faire défiler les
 			photos et vidéos</span>

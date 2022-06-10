@@ -10,37 +10,39 @@ class Video{
         this.id = data.id;
         this.sortingMedias = sortingMedias;
         this.displayTotalLikes = displayTotalLikes;
+        this.liked = false;
     }
 
     getUserCardDOM() {
-        let totalLikes = document.querySelector('.total_likes');
+        let totalLikes = document.querySelector('.total-likes');
         totalLikes.innerHTML = this.displayTotalLikes();
-        let sorts = document.querySelectorAll(".select_sorting");
+        let sorts = document.querySelectorAll(".select-sorting");
         for(let sort of sorts){
             sort.addEventListener('click', this.sortingMedias);
         };
         const article = document.createElement( 'article' );
         article.classList.add('media_photographer_page');
-        const linkVideo = document.createElement('a');
-        linkVideo.classList.add('video_section');
+        const linkVideo = document.createElement('div');
+        linkVideo.classList.add('video-section');
         linkVideo.setAttribute('role', 'button'); 
         linkVideo.setAttribute('tabindex', 0); 
         linkVideo.setAttribute('data-id', this.id); 
         linkVideo.setAttribute('aria-label', this.title + 'cliquer pour ouvrir dans la lightbox'); 
         linkVideo.setAttribute('onclick', `displayLightbox(${this.id})`);
         linkVideo.addEventListener('keydown', buttonEventHandler);
+        linkVideo.addEventListener('click', buttonFocus);
         const video = document.createElement( 'video' );    
-        video.classList.add('photograph_video');
+        video.classList.add('photograph-video');
         const source = document.createElement('source');
         source.setAttribute("src", `${`assets/samplePhotos/${this.photographerId}/${this.video}`}`);
         source.setAttribute("type", "video/mp4");
         source.setAttribute("autoplay", false);
         const titleAndLikes = document.createElement( 'div' );
-        titleAndLikes.classList.add('title_likes_media');
+        titleAndLikes.classList.add('title-likes-media');
         const title = document.createElement('div');
-        title.classList.add('media_title');
+        title.classList.add('media-title');
         const likes = document.createElement('div');
-        likes.classList.add('media_likes');
+        likes.classList.add('media-likes');
         likes.setAttribute('id', `liked_${this.id}`);
         const likesOfMedia = document.createElement('span');
         likesOfMedia.classList.add('likesOfMedia')
@@ -48,9 +50,15 @@ class Video{
         const like = document.createElement('button');
         like.classList.add('like');
         const heart = document.createElement('i');
-        heart.classList.add('fa-solid','fa-heart');
-        like.addEventListener('click', this.incrThisLike.bind(this, likesOfMedia, totalLikes));
-        like.setAttribute('aria-label', 'Cliquez pour liker la video' + this.title)
+        if(this.liked == false){
+            heart.classList.add('fa-regular','fa-heart');
+            like.setAttribute('aria-label', 'Cliquez pour liker la vidéo' + this.title)
+            like.addEventListener('click', this.incrThisLike.bind(this, likesOfMedia, totalLikes, heart, like));
+        }
+        if(this.liked == true){
+            like.setAttribute('aria-label', 'Vous avez déjà liker' + this.title);
+            heart.classList.add('fa-solid','fa-heart');
+        }
         title.textContent = this.title;
         article.appendChild(linkVideo);
         linkVideo.appendChild(video);
@@ -64,10 +72,14 @@ class Video{
         return (article);
     }
 
-    incrThisLike(likesOfMedia, totalLikes){
+    incrThisLike(likesOfMedia, totalLikes, heart, like){
+        this.liked = true;
         likesOfMedia.textContent = this.likesIncr;
         this.likes = this.likesIncr;
         totalLikes.innerHTML = this.displayTotalLikes();
+        like.setAttribute('aria-label', 'Vous avez déjà liker' + this.title);
+        heart.classList.remove('fa-regular','fa-heart');
+        heart.classList.add('fa-solid','fa-heart');
     }
 
 }

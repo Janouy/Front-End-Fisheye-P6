@@ -13,28 +13,26 @@ class Photographer{
         const modalTitle = document.getElementById("modalTitle");
         modalTitle.innerHTML = "Contactez-moi <br/>" + this.name;
         const article = document.createElement( 'article' );
-        article.classList.add('photograph_header-page');
+        article.classList.add('photograph-header-page');
         const divInfoPhotograper = document.createElement('div');
-        divInfoPhotograper.classList.add('photograph_infos')
+        divInfoPhotograper.classList.add('photograph-infos')
         const h1 = document.createElement('h1');
         h1.textContent = this.name;
         const pLocation = document.createElement( 'p' );
         pLocation.classList.add('location');
         pLocation.textContent = this.country + ', ' + this.city;
-        pLocation.setAttribute("aria-label", 'Pays du photographe: '+ this.country + 'et ville du photographe: '+ this.city )
         const pTagline = document.createElement( 'p' );
         pTagline.classList.add('tagline');
         pTagline.textContent = this.tagline;
-        pTagline.setAttribute("aria-label", 'Slogan du photographe: '+ this.tagline)
         const buttonContact = document.createElement('button');
-        buttonContact.classList.add('contact_button');
+        buttonContact.classList.add('contact-button');
         buttonContact.textContent = 'Contactez-moi';
         buttonContact.setAttribute("aria-label", 'Contactez: '+ this.name)
         buttonContact.setAttribute("onclick", "displayModal()");
         const img = document.createElement( 'img' );
         img.setAttribute("src", `${`assets/Samplephotos/PhotographersIDPhotos/${this.portrait}`}`)
         img.setAttribute("alt", "")
-        img.classList.add('photograph_picture');
+        img.classList.add('photograph-picture');
         article.appendChild(divInfoPhotograper);
         article.appendChild(buttonContact);
         article.appendChild(img);
@@ -45,7 +43,7 @@ class Photographer{
     }
     getUsercardDOMFooter(){
         const price = document.createElement('div');
-        price.classList.add('photographer_price');
+        price.classList.add('photographer-price');
         price.textContent = this.price + '€/jour';
         return (price);
     }
