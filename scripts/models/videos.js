@@ -22,6 +22,7 @@ class Video{
         };
         const article = document.createElement( 'article' );
         article.classList.add('media_photographer_page');
+        article.setAttribute('aria-hidden', false);
         const linkVideo = document.createElement('div');
         linkVideo.classList.add('video-section');
         linkVideo.setAttribute('role', 'button'); 

@@ -124,8 +124,15 @@
     top: 3%;
     background: transparent;    
     padding: 0;
+    border:none;
 }
-
+#lightbox-close-btn:focus,
+#lightbox-close-btn:hover{
+    background-color: #DB8876;
+    border-radius: 4px;
+    outline:none;
+    border: none;
+}
 .carousel{
     width: 95%;
     margin: 0 auto;
@@ -156,17 +163,17 @@
 }
   
 .slide .portrait{
-    width: 400px;
+    width: 300px;
     height: auto;
 }
 .slide .landscape{
     width: auto;
-    height: 500px;
+    height: 400px;
 }
 
 .slide video {
     width: auto;
-    height: 500px;
+    height: 400px;
 }
  
 .img {
@@ -186,8 +193,15 @@
   
  .prev-image {
     left: 50px;
+    border: none;
  }
-  
+ .prev-image:hover,
+ .prev-image:focus,
+ .next-image:hover,
+ .next-image:focus{
+    background-color: #DB8876;
+ }
+
  .fa-angle-left,
  .fa-angle-right {
     font-size: 30px;
@@ -196,7 +210,9 @@
   
  .next-image {
     right: 50px;
+    border: none;
  }
+ 
 
 .modal{
     border-radius: 5px;
@@ -314,11 +330,19 @@ form #message {
 .select-sorting{
     font-size: 1rem;
 }
-
+.select-sorting-title{
+    position: absolute;
+    top: 10px;
+   
+}
 .header-dropdown-link {
     border: 1px solid transparent;
     color: #0000;
     text-decoration: none;
+    position: relative;
+    left: 90px;
+    top:-2px;
+    z-index:99;
 }
 
 .header-dropdown-link:hover,
@@ -328,69 +352,37 @@ form #message {
 }
 
 .header-dropdown-link-content {
-    display: flex;
-    justify-content: space-between;
     background-color: #901C1C;
     position: absolute;
     left: 10%;
-    top: 400px;
-    /* z-index: 15;     */
+    top: 380px;
+    margin-left: 2%;
     list-style-type: none;
     color: #FFF;
     padding: 10px 15px 10px 20px;
     width : 115px;
-}
-.border{
+    z-index: 99;
     border-radius: 4px;
-}
-.change-border{
-    border-radius: 4px 4px 0px 0px;
+    cursor: pointer;
 }
 
-.header-dropdown-link-content button{
+.header-dropdown-link{
     color: #FFF;
     background-color: #901C1C;
     text-decoration: none;
     border: none; 
+    cursor: pointer;
 }
 
-.dropdown-menu {
-    background-color: #901C1C;
-    border-radius: 0px 0px 4px 4px;
-    flex-direction: column;
-    padding-left: 0;
-    position: absolute;
-    left: 10%;
-    top: 420px;
-    z-index: 10;
-    width : 150px;
-}
-
-.dropdown-menu .line{
+.line{
     width: 120px; 
     border-top: 1.5px solid #fff;
     border-bottom: 1.5px solid #fff;
-    margin: auto;
-    padding-right: 0px;
-    padding-left: 10px;
-
+    margin-top: 10px;
+    margin-bottom: 7px;
+    padding-top: 4px;
+    padding-bottom: 5px;
 }
-
-.dropdown li {
-    list-style-type: none;
-    color: #FFF;
-    width:  100px;
-    margin: auto;
-    padding: 4px 25px 10px 10px;; 
-    
-}
-.dropdown button{
-    color: #fff;
-    text-decoration: none;
-    background-color: #901C1C;
-    border: none; 
-}
-
 
 .hiddenInput {
     height: 1px;
@@ -404,3 +396,5 @@ form #message {
 .pointerCancel{
     pointer-events: none;
 }
+
+

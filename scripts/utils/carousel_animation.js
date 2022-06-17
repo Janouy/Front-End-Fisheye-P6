@@ -49,7 +49,6 @@ const goToPreviousSlide = (carousel_item, imgs) => {
             let lastItem = `.item-${currentItemPosition +1}`
             let currentItem = `.item-${currentItemPosition}`
             setNodeAttributes(lastItem, currentItem)
-            console.log('2nd cas:',currentItem, lastItem, currentItemPosition);
         }
     }
 }

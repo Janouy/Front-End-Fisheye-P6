@@ -1,4 +1,3 @@
-
 // fonctionnalités de tri pour l'affichage des medias sur la page photographe
 function compare_title( a, b ){
     if ( a.title.toLowerCase() < b.title.toLowerCase()){
@@ -15,3 +14,5 @@ function compare_date( a, b ){
 function compare_likes( a, b ){
     return a.likes - b.likes;
 };
+
+

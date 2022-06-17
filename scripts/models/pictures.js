@@ -17,7 +17,6 @@ class Picture{
     getUserCardDOM() {
         let totalLikes = document.querySelector('.total-likes');
         totalLikes.innerHTML = this.displayTotalLikes();
-        document.querySelector('.header-dropdown-link').addEventListener('click', this.openMenu);
         let sorts = document.querySelectorAll(".select-sorting");
         for(let sort of sorts){
             sort.addEventListener('click', this.sortingMedias);
@@ -81,26 +80,6 @@ class Picture{
         heart.classList.remove('fa-regular','fa-heart');
         heart.classList.add('fa-solid','fa-heart');
         like.setAttribute('aria-label', 'Vous avez déjà liker' + this.title);
-    }
-
-    openMenu(e){
-        e.preventDefault();
-        const dropdownMenu = document.querySelector(".dropdown");
-        const titleSorting = document.querySelector('.header-dropdown-link-content');
-        if(dropdownMenu.classList.contains('hidden')){
-            dropdownMenu.classList.remove('hidden');
-            dropdownMenu.classList.add('dropdown-menu');
-            document.querySelector(".header-dropdown-link svg").setAttribute("transform","rotate(180)");
-            titleSorting.classList.remove('border');
-            titleSorting.classList.add('change-border');
-            
-        }else if(dropdownMenu.classList.contains('dropdown-menu')){
-            dropdownMenu.classList.remove('dropdown-menu');
-            dropdownMenu.classList.add('hidden');
-            document.querySelector(".header-dropdown-link svg").setAttribute("transform","");
-            titleSorting.classList.add('border');
-            titleSorting.classList.remove('change-border');
-        }
     }
 }
 

@@ -1,50 +1,52 @@
 class CarouselVideo{
-    constructor (data, sortingMedias){
+    constructor (data){
         this.photographerId = data.photographerId;
         this.title = data.title;
         this.video = data.video;
         this.date = data.date;
         this.id = data.id;
         this.likes = data.likes;
-        this.sortingMedias = sortingMedias;
     }
 
   getUserCardDOM() {
-       //document.querySelector('select').addEventListener('change', this.sortingMedias)
         const slide = document.createElement('div');
         slide.classList.add('slide');
         const button_left = document.createElement('div');
         button_left.classList.add("controls");
         button_left.classList.add("controls-left");
-        button_left.setAttribute("role", "button");
-        const prev_img = document.createElement('span');
+        const prev_img = document.createElement('button');
         prev_img.classList.add('img');
         prev_img.classList.add('prev-image');
+        prev_img.setAttribute('aria-label', 'média précédent');
+        prev_img.setAttribute('tabindex', 0);
         const arrow_left = document.createElement('i');
         arrow_left.classList.add('fa-solid','fa-angle-left');
         arrow_left.setAttribute("aria-hidden", false);
         const button_right = document.createElement('div');
         button_right.classList.add("controls");
         button_right.classList.add("controls-right");
-        button_right.setAttribute("role", "button");
-        const next_img = document.createElement('span');
+        const next_img = document.createElement('button');
         next_img.classList.add('img');
         next_img.classList.add('next-image');
+        next_img.setAttribute('aria-label','média suivant');
+        next_img.setAttribute('tabindex', 0);
         const arrow_right = document.createElement('i');
         arrow_right.classList.add('fa-solid','fa-angle-right');
         arrow_right.setAttribute("aria-hidden", false);
         const source_content = document.createElement('div');
         source_content.classList.add('source-content');
-        const video = document.createElement( 'video' );
+        const video = document.createElement('video');
         video.setAttribute("controls", true);
         video.setAttribute("playsinline", true);
+        video.setAttribute('aria-label', this.title);
         const source = document.createElement('source');
         source.setAttribute("src", `${`assets/samplePhotos/${this.photographerId}/${this.video}`}`);
-        source.setAttribute('alt', this.title)
+        source.setAttribute('alt', this.title);
         source.setAttribute("type", "video/mp4");
         source.setAttribute("autoplay", false);
+        source.setAttribute('tabindex', 0);
         const title = document.createElement('div');
-        title.classList.add('title-lightbox')
+        title.classList.add('title-lightbox');
         title.innerHTML = this.title;
         slide.appendChild(button_left);
         slide.appendChild(source_content);

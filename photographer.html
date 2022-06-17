@@ -23,28 +23,22 @@
 		<main>
 			<div class="photograph-header"></div>
 			<div class="medias-sorting">
-				<div><span class="dropdown-link-title">Triez par</span>
-					<div class="header-dropdown-link-content border">
-						<div tabindex="0" class="select-sorting select-sorting-title">Popularité
-						</div>
-						<button class="header-dropdown-link" aria-haspopup="listbox" aria-label="trie des médias"
-							aria-expanded="true" id="exp-button">
-							<svg width="16" height="10" viewBox="0 0 16 10" fill="none"
-								xmlns="http://www.w3.org/2000/svg">
-								<path d="M1 1.33447L8.00465 8.13311L14.5973 1.33447" stroke="#E9E9E9"
-									stroke-width="2" />
-							</svg>
-						</button>
-					</div>
-				</div>
-				<ul id="exp-elem" class="dropdown hidden" aria-labelledby="exp-elem exp-button" role="listbox">
-					<li class="line">
-						<button tabindex="0" role='option' class="select-sorting" aria-activedescendant
-							aria-selected="false">Date</button>
+				<span class="dropdown-link-title">Triez par</span>
+				<ul id="exp-elem" class="header-dropdown-link-content" aria-labelledby="exp-elem exp-button"
+					role="listbox">
+					<button tabindex="0" class="header-dropdown-link" aria-haspopup="listbox"
+						aria-label="trie des médias" aria-expanded="true" id="exp-button">
+						<svg width="16" height="10" viewBox="0 0 16 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<path d="M1 1.33447L8.00465 8.13311L14.5973 1.33447" stroke="#E9E9E9" stroke-width="2" />
+						</svg>
+					</button>
+					<li tabindex="0" class="select-sorting select-sorting-title" aria-selected="true">Popularité
 					</li>
-					<li>
-						<button tabindex="0" role='option' class="select-sorting" aria-activedescendant
-							aria-selected="false">Titre</button>
+					<li tabindex="0" role='option' class="line dropdown hidden select-sorting" aria-selected="false">
+						Date
+					</li>
+					<li tabindex="0" role='option' class="dropdown hidden select-sorting" aria-selected="false">
+						Titre
 					</li>
 				</ul>
 			</div>
@@ -95,19 +89,17 @@
 			<input id="form-submit" type="submit" value="Envoyer" />
 		</form>
 	</div>
-	<div class="carousel hidden" aria-hidden="true" id="lightbox-modal" aria-label="image closeup view" role="dialog"
+	<ul class="carousel hidden" aria-hidden="true" id="lightbox-modal" aria-label="image closeup view" role="dialog"
 		aria-describedby="lightboxTitle">
 		<span id="lightboxTitle" class="hiddenInput"> Lightbox ouverte appuyer sur les flèches pour faire défiler les
 			photos et vidéos</span>
-		<button id='lightbox-close-btn' onclick="closeLightbox()" aria-label="bouton de fermeture lightbox"><svg
+		<button tabindex="0" id='lightbox-close-btn' onclick="closeLightbox()" aria-label="fermeture lightbox"><svg
 				width="42" height="42" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
 				<path
 					d="M42 4.23L37.77 0L21 16.77L4.23 0L0 4.23L16.77 21L0 37.77L4.23 42L21 25.23L37.77 42L42 37.77L25.23 21L42 4.23Z"
 					fill="#901C1C" />
 			</svg> </button>
-		<ul>
-		</ul>
-	</div>
+	</ul>
 	<!-- Utils -->
 	<script src="/scripts/utils/contactForm.js"></script>
 	<script src="/scripts/utils/lightbox.js"></script>
