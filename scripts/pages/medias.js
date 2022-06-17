@@ -47,7 +47,6 @@ async function getMedias() {
             displayLightbox()
             // reload des données à l'incrémentation et tri pour la page photographer et la lightbox
             function sortingMedias(event){
-                console.log(event.target)
                 let actualTitleSorting  = document.querySelector('.select-sorting').innerText;
                 let sortingTitle = document.querySelector('.select-sorting-title');
                 mediasSection.innerHTML = '';
@@ -76,6 +75,7 @@ async function getMedias() {
                 displayMediasPhotographer();
                 displayLightbox();
             }
+
             document.querySelector('.header-dropdown-link').addEventListener('click', openMenu);
             function openMenu(e){
                 e.preventDefault();
@@ -109,6 +109,22 @@ async function getMedias() {
                 })
             }
 
+            function closeMenuWithMouseLeave(){
+                const dropdownMenu = document.querySelectorAll(".dropdown");
+                dropdownMenu.forEach((item) => {
+                    item.classList.contains('dropdown-menu')
+                    item.classList.remove('dropdown-menu');
+                    item.classList.add('hidden');
+                    document.querySelector(".header-dropdown-link svg").setAttribute("transform","");
+                })
+            }
+            const sortingContent= document.querySelector('.header-dropdown-link-content');
+            const mediasContent = document.querySelectorAll('.media-photographer-page');
+            const contactButton = document.querySelector('.contact-button');
+            sortingContent.addEventListener('mouseleave', closeMenuWithMouseLeave);
+            mediasContent.forEach((item) => item.addEventListener('focusin', closeMenuWithMouseLeave));
+            contactButton.addEventListener('focusin', closeMenuWithMouseLeave);
+            
             function sortsEventHandler(event) {
                 if (event.keyCode === 13) {
                     sortingMedias(event);
@@ -130,4 +146,6 @@ async function getMedias() {
 }
 
 getMedias();
+
+
 
