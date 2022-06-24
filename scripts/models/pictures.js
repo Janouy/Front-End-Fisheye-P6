@@ -1,6 +1,6 @@
-//affichage des photos sur la pahe photographer
+//affichage des photos sur la page photographer
 class Picture {
-  constructor(data, sortingMedias, displayTotalLikes, displayLightbox) {
+  constructor(data, sortingMedias, displayTotalLikes, incrThisLike) {
     this.photographerId = data.photographerId
     this.title = data.title
     this.image = data.image
@@ -11,7 +11,7 @@ class Picture {
     this.id = data.id
     this.sortingMedias = sortingMedias
     this.displayTotalLikes = displayTotalLikes
-    this.displayLightbox = displayLightbox
+    this.incrThisLike = incrThisLike
     this.liked = false
   }
 
@@ -82,15 +82,5 @@ class Picture {
     likes.appendChild(like)
     like.appendChild(heart)
     return article
-  }
-
-  incrThisLike(likesOfMedia, totalLikes, heart, like) {
-    this.liked = true
-    likesOfMedia.textContent = this.likesIncr
-    this.likes = this.likesIncr
-    totalLikes.innerHTML = this.displayTotalLikes()
-    heart.classList.remove('fa-regular', 'fa-heart')
-    heart.classList.add('fa-solid', 'fa-heart')
-    like.setAttribute('aria-label', `Vous avez déjà liker${this.title}`)
   }
 }

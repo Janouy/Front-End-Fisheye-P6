@@ -14,6 +14,9 @@ function desabledEvents(e) {
 }
 
 function displayModal() {
+  const hearts = document.querySelectorAll('.like')
+  const imageSection = document.querySelectorAll('.image-section')
+  const videoSection = document.querySelectorAll('.video-section')
   const contactButton = document.querySelector('.contact-button')
   imageSection.forEach((img) => img.setAttribute('tabindex', -1))
   videoSection.forEach((img) => img.setAttribute('tabindex', -1))
@@ -46,7 +49,10 @@ function displayModal() {
 }
 
 function closeModal() {
+  const imageSection = document.querySelectorAll('.image-section')
+  const videoSection = document.querySelectorAll('.video-section')
   const contactButton = document.querySelector('.contact-button')
+  const hearts = document.querySelectorAll('.like')
   imageSection.forEach((img) => img.setAttribute('tabindex', 0))
   videoSection.forEach((img) => img.setAttribute('tabindex', 0))
   imageSection.forEach((img) => img.setAttribute('aria-hidden', false))
@@ -65,6 +71,8 @@ function closeModal() {
   contactButton.removeAttribute('tabindex', -1)
   contactButton.focus()
   sortsLinks.removeAttribute('tabindex', -1)
+  sortsLinks.removeAttribute('disabled', 'disabled')
+  sortsOpen.forEach((item) => item.setAttribute('tabindex', 0))
   sortsOpen.forEach((item) => item.removeAttribute('onclick', 'return false'))
   hearts.forEach((item) => item.removeAttribute('onclick', 'return false'))
   submitBtn.removeAttribute(
@@ -73,7 +81,6 @@ function closeModal() {
   )
   contactButton.removeAttribute('disabled', 'disabled')
   sortsLinks.removeAttribute('disabled', 'disabled')
-  sortsOpen.forEach((item) => item.removeAttribute('tabindex', -1))
   hearts.forEach((item) => item.setAttribute('tabindex', 0))
   wrapper.removeEventListener('click', desabledEvents, true)
   wrapper.classList.remove('pointerCancel')
@@ -90,12 +97,12 @@ inputForm.forEach((input) => {
   })
 })
 
-submitBtn.addEventListener('click', (event) => {
-  const inputFormdatas = Array.from(inputForm)
+submitBtn.addEventListener('click', function (event) {
+  let inputFormdatas = Array.from(inputForm)
   if (inputFormdatas.every((data) => data.checkValidity())) {
     event.preventDefault()
-    const formDatas = {}
-    for (const input of inputForm) {
+    let formDatas = {}
+    for (let input of inputForm) {
       formDatas[input.id] = input.value
     }
     console.log(formDatas)

@@ -1,5 +1,5 @@
 class Video {
-  constructor(data, sortingMedias, displayTotalLikes) {
+  constructor(data, sortingMedias, displayTotalLikes, incrThisLike) {
     this.photographerId = data.photographerId
     this.title = data.title
     this.video = data.video
@@ -10,6 +10,7 @@ class Video {
     this.id = data.id
     this.sortingMedias = sortingMedias
     this.displayTotalLikes = displayTotalLikes
+    this.incrThisLike = incrThisLike
     this.liked = false
   }
 
@@ -83,15 +84,5 @@ class Video {
     likes.appendChild(like)
     like.appendChild(heart)
     return article
-  }
-
-  incrThisLike(likesOfMedia, totalLikes, heart, like) {
-    this.liked = true
-    likesOfMedia.textContent = this.likesIncr
-    this.likes = this.likesIncr
-    totalLikes.innerHTML = this.displayTotalLikes()
-    like.setAttribute('aria-label', `Vous avez déjà liker${this.title}`)
-    heart.classList.remove('fa-regular', 'fa-heart')
-    heart.classList.add('fa-solid', 'fa-heart')
   }
 }

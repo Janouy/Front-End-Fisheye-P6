@@ -46,6 +46,7 @@ class Photographer {
     return article
   }
 
+  // affichage du footer avec le total des likes
   getUsercardDOMFooter() {
     const price = document.createElement('div')
     price.classList.add('photographer-price')

@@ -17,12 +17,7 @@ async function getMedias() {
       // choix du model de class à executer avec le factory pattern mediasFactory si le media est une photo ou une video
       const medias = mediasSortedById
         .map((media) =>
-          mediasFactory(
-            media,
-            sortingMedias,
-            displayTotalLikes,
-            displayLightbox
-          )
+          mediasFactory(media, sortingMedias, displayTotalLikes, incrThisLike)
         )
         .sort(compareLikes)
       // choix du model de class à executer avec le factory pattern carouselFactory si le media est une photo ou une video
@@ -55,6 +50,7 @@ async function getMedias() {
         })
       }
       displayLightbox()
+      //ouverture de la liste déroulante de tri
       function openMenu(e) {
         e.preventDefault()
         const dropdownMenu = document.querySelectorAll('.dropdown')
@@ -74,7 +70,7 @@ async function getMedias() {
           }
         })
       }
-
+      //fermeture de la liste déroulante de tri
       function closeMenu(title) {
         const dropdownMenu = document.querySelectorAll('.dropdown')
         const titleSorting = document.querySelector('.select-sorting-title')
@@ -124,6 +120,7 @@ async function getMedias() {
         displayMediasPhotographer()
         displayLightbox()
       }
+      //fermeture du mende tri si la souris quitte la zone
       function closeMenuWithMouseLeave() {
         const dropdownMenu = document.querySelectorAll('.dropdown')
         dropdownMenu.forEach((item) => {
@@ -147,7 +144,7 @@ async function getMedias() {
         item.addEventListener('focusin', closeMenuWithMouseLeave)
       )
       contactButton.addEventListener('focusin', closeMenuWithMouseLeave)
-
+      //tri au click de la souris sur les choix du menu de tri
       function sortsEventHandler(event) {
         if (event.keyCode === 13) {
           sortingMedias(event)
@@ -164,6 +161,17 @@ async function getMedias() {
           totalLikes += medias[i].likes
         }
         return totalLikes
+      }
+
+      // fonction d'incrément des likes
+      function incrThisLike(likesOfMedia, totalLikes, heart, like) {
+        this.liked = true
+        likesOfMedia.textContent = this.likesIncr
+        this.likes = this.likesIncr
+        totalLikes.innerHTML = displayTotalLikes()
+        heart.classList.remove('fa-regular', 'fa-heart')
+        heart.classList.add('fa-solid', 'fa-heart')
+        like.setAttribute('aria-label', `Vous avez déjà liker${this.title}`)
       }
     })
     .catch((err) => console.log('==== error ====', err))

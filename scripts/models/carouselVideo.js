@@ -54,7 +54,7 @@ class CarouselVideo {
     source.setAttribute('tabindex', 0)
     const title = document.createElement('div')
     title.classList.add('title-lightbox')
-    title.innerHTML = this.id
+    title.innerHTML = this.title
     slide.appendChild(button_left)
     slide.appendChild(source_content)
     slide.appendChild(button_right)
