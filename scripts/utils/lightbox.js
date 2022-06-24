@@ -1,5 +1,7 @@
 const lightbox = document.getElementById('lightbox-modal')
 let currentItemPosition = 0
+const lightboxMedias = document.getElementById('lightbox-modal')
+//ouverture de la lightbox
 function displayLightbox(media_id) {
   const hearts = document.querySelectorAll('.like')
   const imageSection = document.querySelectorAll('.image-section')
@@ -9,7 +11,7 @@ function displayLightbox(media_id) {
   imageSection.forEach((img) => img.setAttribute('aria-hidden', true))
   videoSection.forEach((img) => img.setAttribute('aria-hidden', true))
   const contactButton = document.querySelector('.contact-button')
-  closeLightboxBtn.setAttribute('tabindex', 0)
+  lightboxMedias.setAttribute('tabindex', 0)
   lightbox.setAttribute('aria-hidden', false)
   lightbox.classList.remove('hidden')
   wrapper.setAttribute('aria-hidden', true)
@@ -53,7 +55,7 @@ function displayLightbox(media_id) {
   wrapper.addEventListener('click', desabledEvents, true)
   wrapper.classList.add('pointerCancel')
 }
-
+//fermeture de la lightbox
 function closeLightbox() {
   const imageSection = document.querySelectorAll('.image-section')
   const videoSection = document.querySelectorAll('.video-section')
@@ -77,7 +79,7 @@ function closeLightbox() {
     item.classList.remove(`item-${index}`)
   })
   wrapper.setAttribute('aria-hidden', false)
-  closeLightboxBtn.setAttribute('tabindex', -1)
+  lightboxMedias.setAttribute('tabindex', -1)
   wrapperLinks.removeAttribute('tabindex', -1)
   wrapper.removeAttribute('tabindex', -1)
   contactButton.removeAttribute('tabindex', -1)
@@ -93,6 +95,7 @@ function closeLightbox() {
   logoFocus()
 }
 
+//fermeture de la lightbox avec escape
 document.addEventListener('keydown', (e) => {
   const keyCode = e.code
   const lightboxAttribut = lightbox.getAttribute('aria-hidden')
@@ -101,12 +104,11 @@ document.addEventListener('keydown', (e) => {
   }
 })
 
-// focus btn fermeture ligthbox
-const closeLightboxBtn = document.getElementById('lightbox-modal')
+// focus sur la ligthbox à l'ouverture
 function buttonFocus() {
-  closeLightboxBtn.focus()
+  lightboxMedias.focus()
 }
-
+//ouverture de la lightbox au click sur touche entrée du clavier
 function buttonEventHandler(event) {
   if (event.keyCode == 13) {
     displayLightbox(this.dataset.id)
@@ -114,7 +116,7 @@ function buttonEventHandler(event) {
     event.preventDefault()
   }
 }
-
+// focus sur le logo principal de la page
 function logoFocus() {
   logo.setAttribute('tabindex', 0)
   logo.focus()

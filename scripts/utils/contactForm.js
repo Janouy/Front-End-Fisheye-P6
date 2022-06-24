@@ -13,6 +13,7 @@ function desabledEvents(e) {
   e.preventDefault()
 }
 
+//ouverture de la modale de contact
 function displayModal() {
   const hearts = document.querySelectorAll('.like')
   const imageSection = document.querySelectorAll('.image-section')
@@ -47,7 +48,7 @@ function displayModal() {
   wrapper.addEventListener('click', desabledEvents, true)
   wrapper.classList.add('pointerCancel')
 }
-
+//fermeture de la modale de contact
 function closeModal() {
   const imageSection = document.querySelectorAll('.image-section')
   const videoSection = document.querySelectorAll('.video-section')
@@ -97,6 +98,7 @@ inputForm.forEach((input) => {
   })
 })
 
+//affichage des données du formulaire dans la console
 submitBtn.addEventListener('click', function (event) {
   let inputFormdatas = Array.from(inputForm)
   if (inputFormdatas.every((data) => data.checkValidity())) {
@@ -110,12 +112,12 @@ submitBtn.addEventListener('click', function (event) {
     closeModal()
   }
 })
-
+//focus du bouton de fermeture de la modals de contact
 closeBtn.addEventListener('focus', (elt) => {
   elt.target.style.border = '2px solid black'
   elt.target.style.borderRadius = '5px'
 })
-
+//fermeture de la modale de contact avec esc
 document.addEventListener('keydown', (e) => {
   const keyCode = e.code
   const modalAttribut = modal.getAttribute('aria-hidden')
