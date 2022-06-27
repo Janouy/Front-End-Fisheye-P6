@@ -62,9 +62,23 @@ class CarouselPicture {
 
     prev_img.addEventListener('click', () => {
       goToPreviousSlide(carouselItem)
+      const thisSlide = parseInt(
+        slide.parentNode.className.replace('carousel-item item-', '')
+      )
+      const prevArrow = document.querySelector(
+        `.item-${thisSlide - 1} .prev-image`
+      )
+      prevArrow.focus()
     })
     next_img.addEventListener('click', () => {
       goToNextSlide(carouselItem)
+      const thisSlide = parseInt(
+        slide.parentNode.className.replace('carousel-item item-', '')
+      )
+      const nextArrow = document.querySelector(
+        `.item-${thisSlide + 1} .next-image`
+      )
+      nextArrow.focus()
     })
     return slide
   }
