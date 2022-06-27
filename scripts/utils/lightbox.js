@@ -1,9 +1,11 @@
 const lightbox = document.getElementById('lightbox-modal')
 let currentItemPosition = 0
 const lightboxMedias = document.getElementById('lightbox-modal')
-
+//gestion de l'état d'ouverture de la ligthbox
+let lightBoxIsopen = false
 //ouverture de la lightbox
 function displayLightbox(media_id) {
+  lightBoxIsopen = true
   const hearts = document.querySelectorAll('.like')
   const imageSection = document.querySelectorAll('.image-section')
   const videoSection = document.querySelectorAll('.video-section')
@@ -58,6 +60,7 @@ function displayLightbox(media_id) {
 }
 //fermeture de la lightbox
 function closeLightbox() {
+  lightBoxIsopen = false
   const imageSection = document.querySelectorAll('.image-section')
   const videoSection = document.querySelectorAll('.video-section')
   const hearts = document.querySelectorAll('.like')
