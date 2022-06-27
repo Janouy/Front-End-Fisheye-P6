@@ -33,7 +33,7 @@ class Photographer {
     const img = document.createElement('img')
     img.setAttribute(
       'src',
-      `${`assets/Samplephotos/PhotographersIDPhotos/${this.portrait}`}`
+      `${`assets/samplephotos/PhotographersIDPhotos/${this.portrait}`}`
     )
     img.setAttribute('alt', '')
     img.classList.add('photograph-picture')

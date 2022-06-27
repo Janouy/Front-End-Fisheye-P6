@@ -1,6 +1,7 @@
 const lightbox = document.getElementById('lightbox-modal')
 let currentItemPosition = 0
 const lightboxMedias = document.getElementById('lightbox-modal')
+
 //ouverture de la lightbox
 function displayLightbox(media_id) {
   const hearts = document.querySelectorAll('.like')
@@ -23,11 +24,11 @@ function displayLightbox(media_id) {
   const opened_media = document.getElementById(media_id)
   opened_media.setAttribute('aria-hidden', false)
   opened_media.style.display = 'flex'
-  const imgs_li = [...document.querySelectorAll('.carousel li')]
+  const imgs_li = [...document.querySelectorAll('.carousel-item')]
   imgs_li.forEach((item, index) => {
     item.classList.add(`item-${index}`)
   })
-  const imgs = [...document.querySelectorAll('.carousel li img')]
+  const imgs = [...document.querySelectorAll('.carousel img')]
   imgs.forEach((item) => {
     if (item.naturalWidth > item.naturalHeight) {
       item.classList.add('landscape')
@@ -35,7 +36,7 @@ function displayLightbox(media_id) {
       item.classList.add('portrait')
     }
   })
-  const mediasLightbox = [...document.querySelectorAll('.carousel li')]
+  const mediasLightbox = [...document.querySelectorAll('.carousel-item')]
   mediasLightbox.forEach((item, idx) => {
     if (item.getAttribute('style') === 'display: flex;') {
       currentItemPosition = idx
@@ -84,7 +85,7 @@ function closeLightbox() {
   wrapper.removeAttribute('tabindex', -1)
   contactButton.removeAttribute('tabindex', -1)
   sortsLinks.removeAttribute('tabindex', -1)
-  sortsOpen.forEach((item) => item.removeAttribute('tabindex', -1))
+  sortsOpen.forEach((item) => item.setAttribute('tabindex', 0))
   hearts.forEach((item) => item.setAttribute('tabindex', 0))
   sortsOpen.forEach((item) => item.removeAttribute('onclick', 'return false'))
   hearts.forEach((item) => item.removeAttribute('onclick', 'return false'))
@@ -110,7 +111,7 @@ function buttonFocus() {
 }
 //ouverture de la lightbox au click sur touche entrée du clavier
 function buttonEventHandler(event) {
-  if (event.keyCode == 13) {
+  if (event.keyCode == 13 || event.keyCode == 32) {
     displayLightbox(this.dataset.id)
     buttonFocus()
     event.preventDefault()

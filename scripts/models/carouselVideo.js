@@ -40,7 +40,6 @@ class CarouselVideo {
     video.setAttribute('controls', true)
     video.setAttribute('playsinline', true)
     video.setAttribute('aria-label', this.title)
-    video.addEventListener('wheel', { passive: true })
     const source = document.createElement('source')
     source.setAttribute(
       'src',

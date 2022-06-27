@@ -53,14 +53,16 @@ const goToPreviousSlide = (carouselItem) => {
 }
 
 // navigation lightbox avec les flèches du clavier
-const carouselItem = document.getElementsByClassName('carousel-item')
-const carouselModal = document.getElementById('lightbox-modal')
 document.addEventListener('keydown', (e) => {
+  const carouselItem = document.getElementsByClassName('carousel-item')
+  const carouselModal = document.getElementById('lightbox-modal')
   const keycode = e.code
-  if (keycode === 'ArrowRight') {
-    goToNextSlide(carouselItem)
-  }
-  if (keycode === 'ArrowLeft') {
-    goToPreviousSlide(carouselItem)
+  if (carouselModal && !carouselModal.classList.contains('.hidden')) {
+    if (keycode === 'ArrowRight') {
+      goToNextSlide(carouselItem)
+    }
+    if (keycode === 'ArrowLeft') {
+      goToPreviousSlide(carouselItem)
+    }
   }
 })

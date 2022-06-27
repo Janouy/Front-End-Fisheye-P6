@@ -325,24 +325,28 @@ form #message {
     display: flex;
     margin-left: 5%;
     margin-top: 1%;
+    height: 30px;
 }
 
 .select-sorting{
     font-size: 1rem;
 }
-.select-sorting-title{
-    position: absolute;
-    top: 10px;
-   
+.dropdown-link-title{
+    margin-right: 25px;
 }
+
 .header-dropdown-link {
     border: 1px solid transparent;
     color: #0000;
     text-decoration: none;
-    position: relative;
-    left: 90px;
-    top:-2px;
     z-index:99;
+    color: #FFF;
+    background-color: #901C1C;
+    text-decoration: none;
+    border: none; 
+    cursor: pointer;
+    height: 25px;
+    margin-top: 8px;
 }
 
 .header-dropdown-link:hover,
@@ -350,28 +354,26 @@ form #message {
     border: 1px solid #FFF;
     border-radius: 5px;
 }
-
+.dropdown-content{
+    display: flex;
+    width: 115px;
+    z-index:99;
+}
+.list-content{
+    width: 100%;
+    padding: 0;
+}
 .header-dropdown-link-content {
     background-color: #901C1C;
-    position: absolute;
-    left: 10%;
-    top: 380px;
     margin-left: 2%;
     list-style-type: none;
     color: #FFF;
     padding: 10px 15px 10px 20px;
     width : 115px;
-    z-index: 99;
     border-radius: 4px;
     cursor: pointer;
-}
-
-.header-dropdown-link{
-    color: #FFF;
-    background-color: #901C1C;
-    text-decoration: none;
-    border: none; 
-    cursor: pointer;
+    margin-top: 0;
+    z-index: 99;
 }
 
 .line{

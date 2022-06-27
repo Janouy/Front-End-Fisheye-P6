@@ -38,18 +38,18 @@ async function getMedias() {
       }
       displayMediasPhotographer()
       // affichage des medias de la lightbox
-      function displayLightbox() {
+      function showLightbox() {
         mediasCarousel.forEach((media) => {
-          const li = document.createElement('li')
-          carouselUl.appendChild(li)
-          li.appendChild(media.getUserCardDOM())
-          li.classList.add('carousel-item')
-          li.setAttribute('id', media.id)
-          li.setAttribute('aria-hidden', true)
-          li.style.display = 'none'
+          const imgLightboxContenaire = document.createElement('div')
+          carouselUl.appendChild(imgLightboxContenaire)
+          imgLightboxContenaire.appendChild(media.getUserCardDOM())
+          imgLightboxContenaire.classList.add('carousel-item')
+          imgLightboxContenaire.setAttribute('id', media.id)
+          imgLightboxContenaire.setAttribute('aria-hidden', true)
+          imgLightboxContenaire.style.display = 'none'
         })
       }
-      displayLightbox()
+      showLightbox()
       //ouverture de la liste déroulante de tri
       function openMenu(e) {
         e.preventDefault()
@@ -118,9 +118,9 @@ async function getMedias() {
         }
         event.target.innerText = actualTitleSorting
         displayMediasPhotographer()
-        displayLightbox()
+        showLightbox()
       }
-      //fermeture du mende tri si la souris quitte la zone
+      //fermeture du menu de tri si la souris quitte la zone
       function closeMenuWithMouseLeave() {
         const dropdownMenu = document.querySelectorAll('.dropdown')
         dropdownMenu.forEach((item) => {
@@ -132,9 +132,7 @@ async function getMedias() {
             .setAttribute('transform', '')
         })
       }
-      const sortingContent = document.querySelector(
-        '.header-dropdown-link-content'
-      )
+      const sortingContent = document.querySelector('.dropdown-content')
       const mediasContent = document.querySelectorAll(
         '.media-photographer-page'
       )
@@ -146,7 +144,7 @@ async function getMedias() {
       contactButton.addEventListener('focusin', closeMenuWithMouseLeave)
       //tri au click de la souris sur les choix du menu de tri
       function sortsEventHandler(event) {
-        if (event.keyCode === 13) {
+        if (event.keyCode === 13 || event.keyCode === 32) {
           sortingMedias(event)
         }
       }
