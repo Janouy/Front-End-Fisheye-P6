@@ -21,8 +21,9 @@ async function getMedias() {
         )
         .sort(compareLikes)
       // choix du model de class à executer avec le factory pattern carouselFactory si le media est une photo ou une video
+      const mediasLength = medias.length
       const mediasCarousel = mediasSortedById
-        .map((media) => carouselFactory(media, sortingMedias))
+        .map((media) => carouselFactory(media, mediasLength))
         .sort(compareLikes)
       const carouselMedia = document.getElementById('lightbox-modal')
       // appel de la balise qui contiendra l'affichage des medias dans la lightbox

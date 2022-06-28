@@ -35,7 +35,7 @@ class Picture {
     linkImg.setAttribute('aria-hidden', 'false')
     linkImg.setAttribute('onclick', `displayLightbox(${this.id})`)
     linkImg.addEventListener('keydown', buttonEventHandler)
-    linkImg.addEventListener('click', buttonFocus)
+    linkImg.addEventListener('click', mediasFocus)
     const img = document.createElement('img')
     img.setAttribute(
       'src',

@@ -35,7 +35,7 @@ class Video {
     )
     linkVideo.setAttribute('onclick', `displayLightbox(${this.id})`)
     linkVideo.addEventListener('keydown', buttonEventHandler)
-    linkVideo.addEventListener('click', buttonFocus)
+    linkVideo.addEventListener('click', mediasFocus)
     const video = document.createElement('video')
     video.classList.add('photograph-video')
     const source = document.createElement('source')

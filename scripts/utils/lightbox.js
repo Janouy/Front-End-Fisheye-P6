@@ -1,6 +1,5 @@
 const lightbox = document.getElementById('lightbox-modal')
 let currentItemPosition = 0
-const lightboxMedias = document.getElementById('lightbox-modal')
 //gestion de l'état d'ouverture de la ligthbox
 let lightBoxIsopen = false
 //ouverture de la lightbox
@@ -14,7 +13,7 @@ function displayLightbox(media_id) {
   imageSection.forEach((img) => img.setAttribute('aria-hidden', true))
   videoSection.forEach((img) => img.setAttribute('aria-hidden', true))
   const contactButton = document.querySelector('.contact-button')
-  lightboxMedias.setAttribute('tabindex', 0)
+  lightbox.setAttribute('tabindex', 0)
   lightbox.setAttribute('aria-hidden', false)
   lightbox.classList.remove('hidden')
   wrapper.setAttribute('aria-hidden', true)
@@ -83,7 +82,7 @@ function closeLightbox() {
     item.classList.remove(`item-${index}`)
   })
   wrapper.setAttribute('aria-hidden', false)
-  lightboxMedias.setAttribute('tabindex', -1)
+  lightbox.setAttribute('tabindex', -1)
   wrapperLinks.removeAttribute('tabindex', -1)
   wrapper.removeAttribute('tabindex', -1)
   contactButton.removeAttribute('tabindex', -1)
@@ -109,14 +108,14 @@ document.addEventListener('keydown', (e) => {
 })
 
 // focus sur la ligthbox à l'ouverture
-function buttonFocus() {
-  lightboxMedias.focus()
+function mediasFocus() {
+  lightbox.focus()
 }
 //ouverture de la lightbox au click sur touche entrée du clavier
 function buttonEventHandler(event) {
   if (event.keyCode == 13 || event.keyCode == 32) {
     displayLightbox(this.dataset.id)
-    buttonFocus()
+    mediasFocus()
     event.preventDefault()
   }
 }

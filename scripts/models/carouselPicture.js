@@ -1,12 +1,13 @@
 //affichage des images de la lightbox
 class CarouselPicture {
-  constructor(data) {
+  constructor(data, mediasLength) {
     this.photographerId = data.photographerId
     this.title = data.title
     this.image = data.image
     this.id = data.id
     this.likes = data.likes
     this.date = data.date
+    this.mediasLength = mediasLength
   }
 
   getUserCardDOM() {
@@ -59,25 +60,37 @@ class CarouselPicture {
 
     //fonction de gestion défilement d'images au click
     const carouselItem = document.getElementsByClassName('carousel-item')
-
+    const carouselItemLength = this.mediasLength
+    let prevArrow
+    let nextArrow
     prev_img.addEventListener('click', () => {
       goToPreviousSlide(carouselItem)
-      const thisSlide = parseInt(
+      const parentItem = parseInt(
         slide.parentNode.className.replace('carousel-item item-', '')
       )
-      const prevArrow = document.querySelector(
-        `.item-${thisSlide - 1} .prev-image`
-      )
+      if (parentItem == 0) {
+        prevArrow = document.querySelector(
+          `.item-${carouselItemLength - 1} .prev-image`
+        )
+      } else {
+        prevArrow = document.querySelector(
+          `.item-${parentItem - 1} .prev-image`
+        )
+      }
       prevArrow.focus()
     })
     next_img.addEventListener('click', () => {
       goToNextSlide(carouselItem)
-      const thisSlide = parseInt(
+      const parentItem = parseInt(
         slide.parentNode.className.replace('carousel-item item-', '')
       )
-      const nextArrow = document.querySelector(
-        `.item-${thisSlide + 1} .next-image`
-      )
+      if (parentItem == carouselItemLength - 1) {
+        nextArrow = document.querySelector(`.item-${0} .next-image`)
+      } else {
+        nextArrow = document.querySelector(
+          `.item-${parentItem + 1} .next-image`
+        )
+      }
       nextArrow.focus()
     })
     return slide
