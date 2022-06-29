@@ -33,7 +33,7 @@ async function getMedias() {
       // affichage des medias sur la page photographer.html
       function displayMediasPhotographer() {
         medias.forEach((media) => {
-          mediasSection.appendChild(media.getUserCardDOM())
+          mediasSection.appendChild(media.getMediaCardDOM())
           document.getElementById(`liked_${media.id}`)
         })
       }
@@ -43,7 +43,7 @@ async function getMedias() {
         mediasCarousel.forEach((media) => {
           const imgLightboxContenaire = document.createElement('div')
           carouselUl.appendChild(imgLightboxContenaire)
-          imgLightboxContenaire.appendChild(media.getUserCardDOM())
+          imgLightboxContenaire.appendChild(media.getCarouselMediaCardDOM())
           imgLightboxContenaire.classList.add('carousel-item')
           imgLightboxContenaire.setAttribute('id', media.id)
           imgLightboxContenaire.setAttribute('aria-hidden', true)

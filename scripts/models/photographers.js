@@ -10,7 +10,7 @@ class Photographers {
     this.tagline = data.tagline
   }
 
-  getUserCardDOM() {
+  getPhotographersCardDOM() {
     const article = document.createElement('article')
     article.classList.add('photograph-card')
     const divDescrPhotographers = document.createElement('p')
@@ -23,7 +23,7 @@ class Photographers {
       'src',
       `${`assets/Samplephotos/PhotographersIDPhotos/${this.portrait}`}`
     )
-    img.setAttribute('alt', '')
+    img.setAttribute('alt', this.name)
     img.classList.add('photograph-item')
     const h2 = document.createElement('h2')
     h2.textContent = this.name

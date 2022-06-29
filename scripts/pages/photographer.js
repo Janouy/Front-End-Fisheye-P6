@@ -17,9 +17,9 @@ async function getPhotographer() {
         'photographerPage'
       )
       const photographerSection = document.querySelector('.photograph-header')
-      photographerSection.appendChild(photographer.getUserCardDOM())
+      photographerSection.appendChild(photographer.getPhotographerCardDOM())
       const photographerFooter = document.querySelector('.footer')
-      photographerFooter.appendChild(photographer.getUsercardDOMFooter())
+      photographerFooter.appendChild(photographer.getFootercardDOM())
     })
     .catch((err) => console.log('==== error ====', err))
 }

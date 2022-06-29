@@ -10,7 +10,7 @@ class CarouselPicture {
     this.mediasLength = mediasLength
   }
 
-  getUserCardDOM() {
+  getCarouselMediaCardDOM() {
     const slide = document.createElement('div')
     slide.classList.add('slide')
     const button_left = document.createElement('div')

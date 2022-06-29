@@ -1,8 +1,9 @@
-class Video {
+//affichage des photos sur la page photographer
+class Picture {
   constructor(data, sortingMedias, displayTotalLikes, incrThisLike) {
     this.photographerId = data.photographerId
     this.title = data.title
-    this.video = data.video
+    this.image = data.image
     this.likes = data.likes
     this.likesIncr = data.likes + 1
     this.date = data.date
@@ -14,37 +15,34 @@ class Video {
     this.liked = false
   }
 
-  getUserCardDOM() {
+  getMediaCardDOM() {
     const totalLikes = document.querySelector('.total-likes')
     totalLikes.innerHTML = this.displayTotalLikes()
     const sorts = document.querySelectorAll('.select-sorting')
-    for (const sort of sorts) {
-      sort.addEventListener('click', this.sortingMedias)
-    }
+    sorts.forEach((elt) => elt.addEventListener('click', this.sortingMedias))
     const article = document.createElement('article')
-    article.classList.add('media_photographer_page')
+    article.classList.add('media-photographer-page')
     article.setAttribute('aria-hidden', false)
-    const linkVideo = document.createElement('div')
-    linkVideo.classList.add('video-section')
-    linkVideo.setAttribute('role', 'button')
-    linkVideo.setAttribute('tabindex', 0)
-    linkVideo.setAttribute('data-id', this.id)
-    linkVideo.setAttribute(
+    const linkImg = document.createElement('div')
+    linkImg.classList.add('image-section')
+    linkImg.setAttribute('data-id', this.id)
+    linkImg.setAttribute('role', 'button')
+    linkImg.setAttribute('tabindex', 0)
+    linkImg.setAttribute(
       'aria-label',
       `${this.title}cliquer pour ouvrir dans la lightbox`
     )
-    linkVideo.setAttribute('onclick', `displayLightbox(${this.id})`)
-    linkVideo.addEventListener('keydown', buttonEventHandler)
-    linkVideo.addEventListener('click', mediasFocus)
-    const video = document.createElement('video')
-    video.classList.add('photograph-video')
-    const source = document.createElement('source')
-    source.setAttribute(
+    linkImg.setAttribute('aria-hidden', 'false')
+    linkImg.setAttribute('onclick', `displayLightbox(${this.id})`)
+    linkImg.addEventListener('keydown', buttonEventHandler)
+    linkImg.addEventListener('click', mediasFocus)
+    const img = document.createElement('img')
+    img.setAttribute(
       'src',
-      `${`assets/samplePhotos/${this.photographerId}/${this.video}`}`
+      `${`assets/samplePhotos/${this.photographerId}/${this.image}`}`
     )
-    source.setAttribute('type', 'video/mp4')
-    source.setAttribute('autoplay', false)
+    img.setAttribute('alt', this.title)
+    img.classList.add('photograph-image')
     const titleAndLikes = document.createElement('div')
     titleAndLikes.classList.add('title-likes-media')
     const title = document.createElement('div')
@@ -58,11 +56,12 @@ class Video {
     const like = document.createElement('button')
     like.classList.add('like')
     const heart = document.createElement('i')
+    //gestion des likes
     if (this.liked == false) {
       heart.classList.add('fa-regular', 'fa-heart')
       like.setAttribute(
         'aria-label',
-        `Cliquez pour liker la vidéo${this.title}`
+        `Cliquez pour liker la photo${this.title}`
       )
       like.addEventListener(
         'click',
@@ -74,9 +73,8 @@ class Video {
       heart.classList.add('fa-solid', 'fa-heart')
     }
     title.textContent = this.title
-    article.appendChild(linkVideo)
-    linkVideo.appendChild(video)
-    video.appendChild(source)
+    article.appendChild(linkImg)
+    linkImg.appendChild(img)
     article.appendChild(titleAndLikes)
     titleAndLikes.appendChild(title)
     titleAndLikes.appendChild(likes)

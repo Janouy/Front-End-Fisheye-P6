@@ -10,7 +10,7 @@ class Photographer {
     this.tagline = data.tagline
   }
 
-  getUserCardDOM() {
+  getPhotographerCardDOM() {
     const modalTitle = document.getElementById('modalTitle')
     modalTitle.innerHTML = `Contactez-moi <br/>${this.name}`
     const article = document.createElement('article')
@@ -35,7 +35,7 @@ class Photographer {
       'src',
       `${`assets/samplephotos/PhotographersIDPhotos/${this.portrait}`}`
     )
-    img.setAttribute('alt', '')
+    img.setAttribute('alt', this.name)
     img.classList.add('photograph-picture')
     article.appendChild(divInfoPhotograper)
     article.appendChild(buttonContact)
@@ -47,7 +47,7 @@ class Photographer {
   }
 
   // affichage du footer avec le total des likes
-  getUsercardDOMFooter() {
+  getFootercardDOM() {
     const price = document.createElement('div')
     price.classList.add('photographer-price')
     price.textContent = `${this.price}€/jour`

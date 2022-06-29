@@ -11,7 +11,7 @@ async function getPhotographers() {
         '.photographer-section'
       )
       photographers.forEach((photographer) => {
-        photographersSection.appendChild(photographer.getUserCardDOM())
+        photographersSection.appendChild(photographer.getPhotographersCardDOM())
       })
     })
     .catch((err) => console.log('==== error ====', err))
